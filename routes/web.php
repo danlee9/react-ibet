@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('{catchall}', function() {
+    return view('welcome');
+});

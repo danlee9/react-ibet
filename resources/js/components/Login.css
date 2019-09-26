@@ -1,5 +1,6 @@
 body {
-    background-color: #DADADA;
+    /* background-color: #DADADA; */
+    background-color: white;
 }
 body > .grid {
     height: 100%;
@@ -9,4 +10,7 @@ body > .grid {
 }
 .column {
     max-width: 450px;
+}
+.ui.stacked.segment {
+    background-color: dodgerblue;
 }

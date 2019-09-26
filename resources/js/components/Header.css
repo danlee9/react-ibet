@@ -1,0 +1,19 @@
+.leagues {
+    padding-top: 1vw;
+}
+
+.sports-league {
+    font-family: 'Khand', sans-serif;
+    font-size: 2.2vw;
+    /* text-align: center; */
+}
+
+.sports-league:hover {
+    color: deepskyblue;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+div.two.wide.column.sports-league {
+    text-align: center;
+}

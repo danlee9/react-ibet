@@ -23,5 +23,8 @@ export const logOut = () => async (dispatch) => {
 export const fetchUserInfo = id => async (dispatch) => {
     const token = sessionStorage.getItem('token');
     const response = await axios.get(`/api/user/${id}?api_token=${token}`);
-    console.log(response);
+    let { name, email, bankroll } = response.data;
+    const payload = { name, email, bankroll };
+    console.log(payload);
+    dispatch({type: FETCH_USER_INFO, payload});
 }

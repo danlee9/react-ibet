@@ -74038,7 +74038,8 @@ var fetchUserInfo = function fetchUserInfo(id) {
       var _ref3 = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(dispatch) {
-        var token, response;
+        var token, response, _response$data, name, email, bankroll, payload;
+
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
@@ -74049,9 +74050,19 @@ var fetchUserInfo = function fetchUserInfo(id) {
 
               case 3:
                 response = _context3.sent;
-                console.log(response);
+                _response$data = response.data, name = _response$data.name, email = _response$data.email, bankroll = _response$data.bankroll;
+                payload = {
+                  name: name,
+                  email: email,
+                  bankroll: bankroll
+                };
+                console.log(payload);
+                dispatch({
+                  type: _types__WEBPACK_IMPORTED_MODULE_1__["FETCH_USER_INFO"],
+                  payload: payload
+                });
 
-              case 5:
+              case 8:
               case "end":
                 return _context3.stop();
             }
@@ -74378,7 +74389,7 @@ function (_React$Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "ui center aligned grid"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Test Page"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello ", this.props.name, "!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/bets"
       }, "Bet History"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.onLogOut
@@ -74392,7 +74403,10 @@ function (_React$Component) {
 var mapStateToProps = function mapStateToProps(state) {
   return {
     loggedIn: state.auth.loggedIn,
-    token: state.auth.token
+    token: state.auth.token,
+    name: state.user.name,
+    email: state.user.email,
+    bankroll: state.user.bankroll
   };
 };
 
@@ -74795,11 +74809,59 @@ var INITIAL_STATE = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _authReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./authReducer */ "./resources/js/reducers/authReducer.js");
+/* harmony import */ var _userReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userReducer */ "./resources/js/reducers/userReducer.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  auth: _authReducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  auth: _authReducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  user: _userReducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 }));
+
+/***/ }),
+
+/***/ "./resources/js/reducers/userReducer.js":
+/*!**********************************************!*\
+  !*** ./resources/js/reducers/userReducer.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ "./resources/js/actions/types.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var INITIAL_STATE = {
+  name: '',
+  email: '',
+  bankroll: 0
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["FETCH_USER_INFO"]:
+      var _action$payload = action.payload,
+          name = _action$payload.name,
+          email = _action$payload.email,
+          bankroll = _action$payload.bankroll;
+      return _objectSpread({}, state, {
+        name: name,
+        email: email,
+        bankroll: bankroll
+      });
+
+    default:
+      return state;
+  }
+});
 
 /***/ }),
 

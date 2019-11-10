@@ -23,7 +23,7 @@ class Home extends React.Component {
     render() {
         return (
             <div className="ui center aligned grid">
-                <h1>Test Page</h1>
+                <h1>Hello {this.props.name}!</h1>
                 <Link to="/bets">Bet History</Link>
                 <br/>
                 <button onClick={this.onLogOut}>Log Out</button>
@@ -35,7 +35,10 @@ class Home extends React.Component {
 const mapStateToProps = state => {
     return { 
         loggedIn: state.auth.loggedIn,
-        token: state.auth.token
+        token: state.auth.token,
+        name: state.user.name,
+        email: state.user.email,
+        bankroll: state.user.bankroll
     };
 };
 

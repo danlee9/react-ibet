@@ -14,6 +14,11 @@
     </head>
     <body>
         <div id="root"></div>
+        @auth
+        <script>
+            sessionStorage.setItem('id', {{ auth()->id() }});
+        </script>
+        @endauth
         <script src="js/index.js"></script>
     </body>
 </html>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\Http\Controllers\ApiTokenController;
 
 class LoginController extends Controller
 {
@@ -35,5 +37,45 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+
+        $this->clearLoginAttempts($request);
+
+        $id = auth()->id();
+
+        $updateToken = ApiTokenController::update($id);
+
+        $user = [
+            'id' => $id,
+            'token' => $updateToken['token']
+        ];
+
+        return json_encode($user);
+    }
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        // return $this->loggedOut($request) ?: redirect('/');
+        return "LOG OUT";
     }
 }

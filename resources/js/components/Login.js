@@ -4,23 +4,29 @@ import { logIn } from "../actions";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import history from '../history';
+import axios from "axios";
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
-        console.log("Login.js:9", props);
-        if (!props.isLoggedIn) {
-            console.log("Login.js:11", 'not logged in');
-        } else {
-            console.log("Login.js:13", "logged in");
+        if (sessionStorage.getItem('id')) {
             history.push('/home');
         }
+        this.state = {
+            email: '',
+            password: ''
+        };
     }
 
-    onLogin(userID) {
-        this.props.logIn(userID);
-        // console.log("Clicked the login");
-        history.push('/home');
+    onInputChange(e, name) {
+        let obj = {};
+        obj[name] = e.target.value;
+        this.setState(obj);
+    }
+
+    onLogin() {
+        let {email, password} = this.state;
+        this.props.logIn(email, password);
     }
 
     render() {
@@ -39,6 +45,8 @@ class Login extends React.Component {
                                         type="text"
                                         name="email"
                                         placeholder="E-mail address"
+                                        value={this.state.email}
+                                        onChange={(e) => this.onInputChange(e, 'email')}
                                     />
                                 </div>
                             </div>
@@ -49,17 +57,19 @@ class Login extends React.Component {
                                         type="password"
                                         name="password"
                                         placeholder="Password"
+                                        value={this.state.password}
+                                        onChange={(e) => this.onInputChange(e, 'password')}
                                     />
                                 </div>
                             </div>
-                            <div className="ui fluid large teal submit button" onClick={() => this.onLogin("userID")}>
+                            <div className="ui fluid large teal submit button" onClick={() => this.onLogin()}>
                                 Login
                             </div>
                         </div>
                         <div className="ui error message"></div>
                     </form>
                     <div className="ui message">
-                        New to us? <a href="#">Sign Up</a> <Link to="/home">To Home Page</Link>
+                        New to us? <a href="#">Sign Up</a>
                     </div>
                 </div>
             </div>
@@ -68,7 +78,7 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { isLoggedIn: state.auth.isLoggedIn };
+    return { loggedIn: state.auth.loggedIn };
 };
 
 export default connect(

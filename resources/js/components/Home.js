@@ -1,33 +1,30 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { logOut } from "../actions";
+import { logOut, fetchUserInfo } from "../actions";
 import { Link } from "react-router-dom";
 import history from '../history';
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
-        console.log("Login.js:8", props);
-        if (!props.isLoggedIn) {
-            console.log("Login.js:10", 'not logged in');
+        if (!sessionStorage.getItem('id')) {
             history.push('/');
-        } else {
-            console.log("Login.js:13", "logged in");
         }
+    }
+
+    componentDidMount() {
+        this.props.fetchUserInfo(sessionStorage.getItem('id'));
     }
 
     onLogOut = () => {
         this.props.logOut();
-        history.push('/');
     }
 
     render() {
         return (
             <div className="ui center aligned grid">
                 <h1>Test Page</h1>
-                <Link to="/test">TEST PAGE</Link>
-                <br/>
-                <Link to="/">Login Page</Link>
+                <Link to="/bets">Bet History</Link>
                 <br/>
                 <button onClick={this.onLogOut}>Log Out</button>
             </div>
@@ -36,10 +33,13 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { isLoggedIn: state.auth.isLoggedIn };
+    return { 
+        loggedIn: state.auth.loggedIn,
+        token: state.auth.token
+    };
 };
 
 export default connect(
     mapStateToProps,
-    { logOut }
+    { logOut, fetchUserInfo }
 )(Home);

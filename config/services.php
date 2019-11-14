@@ -34,4 +34,8 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+    'odds-api' => [
+        'key' => env('ODDS_API_KEY')
+    ],
+
 ];

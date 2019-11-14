@@ -11,12 +11,25 @@
 |
 */
 
+/*
+| Home Page
+*/
 Route::get('/', function () {
     return view('welcome');
 });
 
+/*
+| All auth routes like register
+*/
 Auth::routes();
 
+Route::get('/oddstest', 'GameController@updateNFLMoneylines');
+Route::get('/points', 'GameController@updateNFLPointSpreads');
+Route::get('/totals', 'GameController@updateNFLOverUnders');
+
+/*
+| All other urls will get redirected to the welcome page then will be handled with react's router
+*/
 Route::get('{catchall}', function() {
     return view('welcome');
 });

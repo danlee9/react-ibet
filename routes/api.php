@@ -20,3 +20,4 @@ Route::get('token/{id}', 'ApiTokenController@update');
 // Route::get('user/{id}', 'UserController@info');
 
 Route::get('test', 'UserController@test');
+Route::get('games/nfl/upcoming', 'GameController@getUpcomingNFLGames');

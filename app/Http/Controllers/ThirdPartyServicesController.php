@@ -105,6 +105,22 @@ class ThirdPartyServicesController extends Controller
         return $games;
     }
 
+    public function getNFLScores()
+    {
+        $endpoint = 'https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=4391';
+        $data = $this->get($endpoint);
+        $games = [];
+        foreach ($data->events as $game) {
+            $games[] = [
+                'home_team' => $game->strHomeTeam,
+                'away_team' => $game->strAwayTeam,
+                'home_score' => $game->intHomeScore,
+                'away_score' => $game->intAwayScore
+            ];
+        }
+        return $games;
+    }
+
     public static function get($endpoint)
     {
         $client = new \GuzzleHttp\Client();

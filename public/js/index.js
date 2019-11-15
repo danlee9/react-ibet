@@ -66399,7 +66399,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73926,7 +73926,7 @@ module.exports = function(module) {
 /*!***************************************!*\
   !*** ./resources/js/actions/index.js ***!
   \***************************************/
-/*! exports provided: logIn, logOut, fetchUserInfo */
+/*! exports provided: logIn, logOut, fetchUserInfo, fetchUpcomingNFLGames */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73934,6 +73934,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logIn", function() { return logIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logOut", function() { return logOut; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserInfo", function() { return fetchUserInfo; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUpcomingNFLGames", function() { return fetchUpcomingNFLGames; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ "./resources/js/actions/types.js");
@@ -74056,13 +74057,12 @@ var fetchUserInfo = function fetchUserInfo(id) {
                   email: email,
                   bankroll: bankroll
                 };
-                console.log(payload);
                 dispatch({
                   type: _types__WEBPACK_IMPORTED_MODULE_1__["FETCH_USER_INFO"],
                   payload: payload
                 });
 
-              case 8:
+              case 7:
               case "end":
                 return _context3.stop();
             }
@@ -74076,6 +74076,42 @@ var fetchUserInfo = function fetchUserInfo(id) {
     }()
   );
 };
+var fetchUpcomingNFLGames = function fetchUpcomingNFLGames() {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref4 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(dispatch) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return axios.get('/api/games/nfl/upcoming');
+
+              case 2:
+                response = _context4.sent;
+                dispatch({
+                  type: _types__WEBPACK_IMPORTED_MODULE_1__["FETCH_UPCOMING_NFL_GAMES"],
+                  payload: response.data
+                });
+
+              case 4:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      return function (_x4) {
+        return _ref4.apply(this, arguments);
+      };
+    }()
+  );
+};
 
 /***/ }),
 
@@ -74083,7 +74119,7 @@ var fetchUserInfo = function fetchUserInfo(id) {
 /*!***************************************!*\
   !*** ./resources/js/actions/types.js ***!
   \***************************************/
-/*! exports provided: LOG_IN, LOG_OUT, FETCH_USER_INFO */
+/*! exports provided: LOG_IN, LOG_OUT, FETCH_USER_INFO, FETCH_UPCOMING_NFL_GAMES */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74091,9 +74127,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_IN", function() { return LOG_IN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_OUT", function() { return LOG_OUT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_USER_INFO", function() { return FETCH_USER_INFO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_UPCOMING_NFL_GAMES", function() { return FETCH_UPCOMING_NFL_GAMES; });
 var LOG_IN = 'LOG_IN';
 var LOG_OUT = 'LOG_OUT';
 var FETCH_USER_INFO = 'FETCH_USER_INFO';
+var FETCH_UPCOMING_NFL_GAMES = 'FETCH_UPCOMING_NFL_GAMES';
 
 /***/ }),
 
@@ -74160,6 +74198,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../history */ "./resources/js/history.js");
 /* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Header */ "./resources/js/components/Header.js");
 /* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Menu */ "./resources/js/components/Menu.js");
+/* harmony import */ var _Games__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Games */ "./resources/js/components/Games.js");
+
 
 
 
@@ -74190,10 +74230,107 @@ var App = function App() {
     path: "/menu",
     exact: true,
     component: _Menu__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/games/:league",
+    component: _Games__WEBPACK_IMPORTED_MODULE_8__["default"]
   }))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
+
+/***/ }),
+
+/***/ "./resources/js/components/Games.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Games.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions */ "./resources/js/actions/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var Games =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Games, _React$Component);
+
+  function Games(props) {
+    var _this;
+
+    _classCallCheck(this, Games);
+
+    console.log(props);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Games).call(this, props));
+
+    if (!sessionStorage.getItem("id")) {
+      history.push("/");
+    }
+
+    return _this;
+  }
+
+  _createClass(Games, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchUpcomingNFLGames();
+    }
+  }, {
+    key: "renderUpcomingGames",
+    value: function renderUpcomingGames() {
+      return this.props.nfl.upcoming.map(function (game) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: game.id
+        }, game.away_team, " at ", game.home_team);
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.match.params.league), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.nfl.upcoming ? this.renderUpcomingGames() : "Loading..."));
+    }
+  }]);
+
+  return Games;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    nfl: {
+      upcoming: state.games.nfl.upcoming,
+      completed: state.games.nfl.completed
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, {
+  fetchUpcomingNFLGames: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchUpcomingNFLGames"]
+})(Games));
 
 /***/ }),
 
@@ -74290,11 +74427,14 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "two wide column sports-league"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "two wide column sports-league",
-        onClick: this.logOut
-      }, "NFL"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "two wide column sports-league"
-      }, "NBA"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/games/nfl"
+      }, "NFL")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "two wide column sports-league"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/games/nba"
+      }, "NBA")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "two wide column sports-league"
       }, "MLB"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "two wide column sports-league"
@@ -74329,7 +74469,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions */ "./resources/js/actions/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../history */ "./resources/js/history.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -74355,7 +74494,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
 var Home =
 /*#__PURE__*/
 function (_React$Component) {
@@ -74373,7 +74511,7 @@ function (_React$Component) {
     });
 
     if (!sessionStorage.getItem('id')) {
-      _history__WEBPACK_IMPORTED_MODULE_4__["default"].push('/');
+      history.push('/');
     }
 
     return _this;
@@ -74798,6 +74936,67 @@ var INITIAL_STATE = {
 
 /***/ }),
 
+/***/ "./resources/js/reducers/gamesReducer.js":
+/*!***********************************************!*\
+  !*** ./resources/js/reducers/gamesReducer.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ "./resources/js/actions/types.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var INITIAL_STATE = {
+  nfl: {
+    upcoming: null,
+    completed: null
+  },
+  nba: {
+    upcoming: null,
+    completed: null
+  },
+  mlb: {
+    upcoming: null,
+    completed: null
+  },
+  nhl: {
+    upcoming: null,
+    completed: null
+  },
+  cfb: {
+    upcoming: null,
+    completed: null
+  },
+  cbb: {
+    upcoming: null,
+    completed: null
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["FETCH_UPCOMING_NFL_GAMES"]:
+      var newState = _objectSpread({}, state);
+
+      newState.nfl.upcoming = action.payload;
+      return newState;
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/reducers/index.js":
 /*!****************************************!*\
   !*** ./resources/js/reducers/index.js ***!
@@ -74810,12 +75009,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _authReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./authReducer */ "./resources/js/reducers/authReducer.js");
 /* harmony import */ var _userReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userReducer */ "./resources/js/reducers/userReducer.js");
+/* harmony import */ var _gamesReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./gamesReducer */ "./resources/js/reducers/gamesReducer.js");
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   auth: _authReducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  user: _userReducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  user: _userReducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  games: _gamesReducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
 
 /***/ }),

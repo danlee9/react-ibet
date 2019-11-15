@@ -15,8 +15,8 @@ class Header extends React.Component {
         return (
             <div className="ui grid leagues">
                 <div className="two wide column sports-league"></div>
-                <div className="two wide column sports-league" onClick={this.logOut}>NFL</div>
-                <div className="two wide column sports-league">NBA</div>
+                <div className="two wide column sports-league"><Link to="/games/nfl">NFL</Link></div>
+                <div className="two wide column sports-league"><Link to="/games/nba">NBA</Link></div>
                 <div className="two wide column sports-league">MLB</div>
                 <div className="two wide column sports-league">NHL</div>
                 <div className="two wide column sports-league">CFB</div>

@@ -10,7 +10,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
         <div id="root"></div>
@@ -19,6 +19,6 @@
             sessionStorage.setItem('id', {{ auth()->id() }});
         </script>
         @endauth
-        <script src="js/index.js"></script>
+        <script src="/js/index.js"></script>
     </body>
 </html>

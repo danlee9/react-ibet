@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT, FETCH_USER_INFO } from "./types";
+import { LOG_IN, LOG_OUT, FETCH_USER_INFO, FETCH_UPCOMING_NFL_GAMES } from "./types";
 import history from '../history';
 
 export const logIn = (email, password) => async (dispatch) => {
@@ -25,6 +25,10 @@ export const fetchUserInfo = id => async (dispatch) => {
     const response = await axios.get(`/api/user/${id}?api_token=${token}`);
     let { name, email, bankroll } = response.data;
     const payload = { name, email, bankroll };
-    console.log(payload);
     dispatch({type: FETCH_USER_INFO, payload});
+}
+
+export const fetchUpcomingNFLGames = () => async dispatch => {
+    const response = await axios.get('/api/games/nfl/upcoming');
+    dispatch({type: FETCH_UPCOMING_NFL_GAMES, payload: response.data});
 }

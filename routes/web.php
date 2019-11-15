@@ -26,11 +26,17 @@ Auth::routes();
 Route::get('/oddstest', 'GameController@updateNFLMoneylines');
 Route::get('/points', 'GameController@updateNFLPointSpreads');
 Route::get('/totals', 'GameController@updateNFLOverUnders');
+Route::get('/scores', 'GameController@updateNFLScores');
+Route::get('blah', 'GameController@getUpcomingNFLGames');
 
 /*
 | All other urls will get redirected to the welcome page then will be handled with react's router
 */
 Route::get('{catchall}', function() {
+    return view('welcome');
+});
+
+Route::get('games/{league}', function() {
     return view('welcome');
 });
 

@@ -6,6 +6,7 @@ import Test from './Test';
 import history from "../history";
 import Header from './Header';
 import Menu from './Menu';
+import Games from './Games';
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                     <Route path="/home" exact component={Home} />
                     <Route path="/test" exact component={Test} />
                     <Route path="/menu" exact component={Menu} />
+                    <Route path="/games/:league" component={Games} />
                 </Switch>
             </Router>
         </div>

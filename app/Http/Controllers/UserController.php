@@ -29,7 +29,8 @@ class UserController extends Controller
         return [
             'name' => $user->name,
             'email' => $user->email,
-            'bankroll' => $user->bankroll
+            'bankroll' => $user->bankroll,
+            'money_in_play' => $user->money_in_play
         ];
         // dd(User::findOrFail($id));
     }

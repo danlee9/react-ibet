@@ -23,11 +23,12 @@ Route::get('/', function () {
 */
 Auth::routes();
 
-Route::get('/oddstest', 'GameController@updateNFLMoneylines');
+Route::get('/moneyline', 'GameController@updateNFLMoneylines');
 Route::get('/points', 'GameController@updateNFLPointSpreads');
 Route::get('/totals', 'GameController@updateNFLOverUnders');
 Route::get('/scores', 'GameController@updateNFLScores');
 Route::get('blah', 'GameController@getUpcomingNFLGames');
+Route::get('asdf', 'GameController@getCompletedNFLGames');
 
 /*
 | All other urls will get redirected to the welcome page then will be handled with react's router

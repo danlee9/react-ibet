@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchUpcomingNFLGames } from "../actions";
+import { fetchUpcomingNFLGames, fetchCompletedNFLGames } from "../actions";
+import GameBlock from './GameBlock';
+import { Link } from "react-router-dom";
+import history from '../history';
 
 class Games extends React.Component {
     constructor(props) {
@@ -13,6 +16,7 @@ class Games extends React.Component {
 
     componentDidMount() {
         this.props.fetchUpcomingNFLGames();
+        this.props.fetchCompletedNFLGames();
     }
 
     renderUpcomingGames() {
@@ -23,11 +27,30 @@ class Games extends React.Component {
         });
     }
 
+    renderCompletedGames() {
+        return this.props.nfl.completed.map(game => {
+            return (
+                <div key={game.id}>{game.away_team} at {game.home_team}</div>
+            );
+        });
+    }
+
+    renderGames(status) {
+        return this.props.nfl[status].map(game => {
+            return (
+                // <div key={game.id}>{game.away_team} at {game.home_team}</div>
+                <GameBlock key={game.id} game={game} />
+            );
+        });
+    }
+
     render() {
         return (
             <div>
+                <Link to="/home">HOME PAGE</Link>
                 <div>{this.props.match.params.league}</div>
-                <div>{this.props.nfl.upcoming ? this.renderUpcomingGames() : "Loading..."}</div>
+                <div><strong>UPCOMING GAMES</strong></div>
+                <div>{this.props.nfl.upcoming ? this.renderGames('upcoming') : "Loading..."}</div>
             </div>
         );
     }
@@ -42,4 +65,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { fetchUpcomingNFLGames })(Games);
+export default connect(mapStateToProps, { fetchUpcomingNFLGames, fetchCompletedNFLGames })(Games);

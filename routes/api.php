@@ -21,3 +21,8 @@ Route::get('token/{id}', 'ApiTokenController@update');
 
 Route::get('test', 'UserController@test');
 Route::get('games/nfl/upcoming', 'GameController@getUpcomingNFLGames');
+Route::get('games/nfl/completed', 'GameController@getCompletedNFLGames');
+Route::middleware('auth:api')->get('bets', 'BetController@index');
+Route::middleware('auth:api')->get('transactions', 'TransactionController@index');
+// Route::get('bets', 'BetController@index');
+Route::middleware('auth:api')->post('bets', 'BetController@store');

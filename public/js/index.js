@@ -6378,6 +6378,25 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/GameBlock.css":
+/*!*******************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/GameBlock.css ***!
+  \*******************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".game-block {\r\n    border: 2px solid black;\r\n}\r\n\r\n.hidden {\r\n    display: none;\r\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Header.css":
 /*!****************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/Header.css ***!
@@ -6390,7 +6409,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".leagues {\r\n    padding-top: 1vw;\r\n}\r\n\r\n.sports-league {\r\n    font-family: 'Khand', sans-serif;\r\n    font-size: 2.2vw;\r\n    /* text-align: center; */\r\n}\r\n\r\n.sports-league:hover {\r\n    color: deepskyblue;\r\n    font-weight: bold;\r\n    cursor: pointer;\r\n}\r\n\r\ndiv.two.wide.column.sports-league {\r\n    text-align: center;\r\n}", ""]);
+exports.push([module.i, ".app-container {\r\n    padding-top: 20px;\r\n}\r\n\r\n.leagues {\r\n    padding-top: 1vw;\r\n    margin-top: 30px;\r\n}\r\n\r\n.sports-league {\r\n    font-family: 'Khand', sans-serif;\r\n    font-size: 2.2vw;\r\n    /* text-align: center; */\r\n}\r\n\r\n.sports-league:hover {\r\n    color: deepskyblue;\r\n    font-weight: bold;\r\n    cursor: pointer;\r\n}\r\n\r\ndiv.two.wide.column.sports-league {\r\n    text-align: center;\r\n}", ""]);
 
 // exports
 
@@ -6410,25 +6429,6 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 // module
 exports.push([module.i, "body {\r\n    /* background-color: #DADADA; */\r\n    background-color: white;\r\n}\r\nbody > .grid {\r\n    height: 100%;\r\n}\r\n.image {\r\n    margin-top: -100px;\r\n}\r\n.column {\r\n    max-width: 450px;\r\n}\r\n.ui.stacked.segment {\r\n    background-color: dodgerblue;\r\n}", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Test.css":
-/*!**************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/Test.css ***!
-  \**************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".test {\r\n    color: dodgerblue;\r\n}", ""]);
 
 // exports
 
@@ -73926,7 +73926,7 @@ module.exports = function(module) {
 /*!***************************************!*\
   !*** ./resources/js/actions/index.js ***!
   \***************************************/
-/*! exports provided: logIn, logOut, fetchUserInfo, fetchUpcomingNFLGames */
+/*! exports provided: logIn, logOut, fetchUserInfo, fetchUpcomingNFLGames, fetchCompletedNFLGames, fetchBets, placeBet, getTransactions, addTransaction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -73935,6 +73935,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logOut", function() { return logOut; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserInfo", function() { return fetchUserInfo; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUpcomingNFLGames", function() { return fetchUpcomingNFLGames; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCompletedNFLGames", function() { return fetchCompletedNFLGames; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBets", function() { return fetchBets; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "placeBet", function() { return placeBet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTransactions", function() { return getTransactions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addTransaction", function() { return addTransaction; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types */ "./resources/js/actions/types.js");
@@ -74039,7 +74044,7 @@ var fetchUserInfo = function fetchUserInfo(id) {
       var _ref3 = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(dispatch) {
-        var token, response, _response$data, name, email, bankroll, payload;
+        var token, response, _response$data, name, email, bankroll, money_in_play, payload;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
@@ -74051,11 +74056,12 @@ var fetchUserInfo = function fetchUserInfo(id) {
 
               case 3:
                 response = _context3.sent;
-                _response$data = response.data, name = _response$data.name, email = _response$data.email, bankroll = _response$data.bankroll;
+                _response$data = response.data, name = _response$data.name, email = _response$data.email, bankroll = _response$data.bankroll, money_in_play = _response$data.money_in_play;
                 payload = {
                   name: name,
                   email: email,
-                  bankroll: bankroll
+                  bankroll: bankroll,
+                  money_in_play: money_in_play
                 };
                 dispatch({
                   type: _types__WEBPACK_IMPORTED_MODULE_1__["FETCH_USER_INFO"],
@@ -74112,6 +74118,184 @@ var fetchUpcomingNFLGames = function fetchUpcomingNFLGames() {
     }()
   );
 };
+var fetchCompletedNFLGames = function fetchCompletedNFLGames() {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref5 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(dispatch) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return axios.get('/api/games/nfl/completed');
+
+              case 2:
+                response = _context5.sent;
+                dispatch({
+                  type: _types__WEBPACK_IMPORTED_MODULE_1__["FETCH_COMPLETED_NFL_GAMES"],
+                  payload: response.data
+                });
+
+              case 4:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }));
+
+      return function (_x5) {
+        return _ref5.apply(this, arguments);
+      };
+    }()
+  );
+};
+var fetchBets = function fetchBets() {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref6 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee6(dispatch) {
+        var token, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                token = sessionStorage.getItem('token'); // const response = {data: ['test message', 'blah']};
+
+                _context6.next = 3;
+                return axios.get("/api/bets?api_token=".concat(token));
+
+              case 3:
+                response = _context6.sent;
+                dispatch({
+                  type: _types__WEBPACK_IMPORTED_MODULE_1__["FETCH_BETS"],
+                  payload: response.data
+                });
+                console.log('hello from the actions');
+
+              case 6:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }));
+
+      return function (_x6) {
+        return _ref6.apply(this, arguments);
+      };
+    }()
+  );
+};
+var placeBet = function placeBet(data) {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref7 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee7(dispatch) {
+        var token, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                token = sessionStorage.getItem('token');
+                _context7.next = 3;
+                return axios.post("/api/bets?api_token=".concat(token), data);
+
+              case 3:
+                response = _context7.sent;
+                console.log(response.data);
+                dispatch({
+                  type: _types__WEBPACK_IMPORTED_MODULE_1__["PLACE_BET"],
+                  payload: response.data
+                });
+
+              case 6:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }));
+
+      return function (_x7) {
+        return _ref7.apply(this, arguments);
+      };
+    }()
+  );
+};
+var getTransactions = function getTransactions() {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref8 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee8(dispatch) {
+        var token, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                token = sessionStorage.getItem('token');
+                _context8.next = 3;
+                return axios.get("/api/transactions?api_token=".concat(token));
+
+              case 3:
+                response = _context8.sent;
+                dispatch({
+                  type: _types__WEBPACK_IMPORTED_MODULE_1__["GET_TRANSACTIONS"],
+                  payload: response.data
+                });
+
+              case 5:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
+      }));
+
+      return function (_x8) {
+        return _ref8.apply(this, arguments);
+      };
+    }()
+  );
+};
+var addTransaction = function addTransaction(data) {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref9 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee9(dispatch) {
+        var token;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                token = sessionStorage.getItem('token');
+
+              case 1:
+              case "end":
+                return _context9.stop();
+            }
+          }
+        }, _callee9);
+      }));
+
+      return function (_x9) {
+        return _ref9.apply(this, arguments);
+      };
+    }()
+  );
+};
 
 /***/ }),
 
@@ -74119,7 +74303,7 @@ var fetchUpcomingNFLGames = function fetchUpcomingNFLGames() {
 /*!***************************************!*\
   !*** ./resources/js/actions/types.js ***!
   \***************************************/
-/*! exports provided: LOG_IN, LOG_OUT, FETCH_USER_INFO, FETCH_UPCOMING_NFL_GAMES */
+/*! exports provided: LOG_IN, LOG_OUT, FETCH_USER_INFO, FETCH_UPCOMING_NFL_GAMES, FETCH_COMPLETED_NFL_GAMES, FETCH_BETS, PLACE_BET, GET_TRANSACTIONS, ADD_TRANSACTION */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74128,10 +74312,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_OUT", function() { return LOG_OUT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_USER_INFO", function() { return FETCH_USER_INFO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_UPCOMING_NFL_GAMES", function() { return FETCH_UPCOMING_NFL_GAMES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_COMPLETED_NFL_GAMES", function() { return FETCH_COMPLETED_NFL_GAMES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_BETS", function() { return FETCH_BETS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PLACE_BET", function() { return PLACE_BET; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GET_TRANSACTIONS", function() { return GET_TRANSACTIONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_TRANSACTION", function() { return ADD_TRANSACTION; });
 var LOG_IN = 'LOG_IN';
 var LOG_OUT = 'LOG_OUT';
 var FETCH_USER_INFO = 'FETCH_USER_INFO';
 var FETCH_UPCOMING_NFL_GAMES = 'FETCH_UPCOMING_NFL_GAMES';
+var FETCH_COMPLETED_NFL_GAMES = 'FETCH_COMPLETED_NFL_GAMES';
+var FETCH_BETS = 'FETCH_BETS';
+var PLACE_BET = 'PLACE_BET';
+var GET_TRANSACTIONS = 'GET_TRANSACTIONS';
+var ADD_TRANSACTION = 'ADD_TRANSACTION';
 
 /***/ }),
 
@@ -74194,11 +74388,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Login */ "./resources/js/components/Login.js");
 /* harmony import */ var _Home__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Home */ "./resources/js/components/Home.js");
-/* harmony import */ var _Test__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Test */ "./resources/js/components/Test.js");
-/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../history */ "./resources/js/history.js");
-/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Header */ "./resources/js/components/Header.js");
-/* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Menu */ "./resources/js/components/Menu.js");
-/* harmony import */ var _Games__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Games */ "./resources/js/components/Games.js");
+/* harmony import */ var _Bets__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Bets */ "./resources/js/components/Bets.js");
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Header */ "./resources/js/components/Header.js");
+/* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Menu */ "./resources/js/components/Menu.js");
+/* harmony import */ var _Games__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Games */ "./resources/js/components/Games.js");
+/* harmony import */ var _Transactions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Transactions */ "./resources/js/components/Transactions.js");
+/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../history */ "./resources/js/history.js");
+
 
 
 
@@ -74213,8 +74409,8 @@ var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "ui container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Router"], {
-    history: _history__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_6__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    history: _history__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/",
     exact: true,
     component: _Login__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -74223,16 +74419,20 @@ var App = function App() {
     exact: true,
     component: _Home__WEBPACK_IMPORTED_MODULE_3__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-    path: "/test",
+    path: "/bets",
     exact: true,
-    component: _Test__WEBPACK_IMPORTED_MODULE_4__["default"]
+    component: _Bets__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/transactions",
+    exact: true,
+    component: _Transactions__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/menu",
     exact: true,
-    component: _Menu__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _Menu__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/games/:league",
-    component: _Games__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _Games__WEBPACK_IMPORTED_MODULE_7__["default"]
   }))));
 };
 
@@ -74240,10 +74440,10 @@ var App = function App() {
 
 /***/ }),
 
-/***/ "./resources/js/components/Games.js":
-/*!******************************************!*\
-  !*** ./resources/js/components/Games.js ***!
-  \******************************************/
+/***/ "./resources/js/components/Bets.js":
+/*!*****************************************!*\
+  !*** ./resources/js/components/Bets.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -74275,6 +74475,496 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+var Bets =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Bets, _React$Component);
+
+  function Bets(props) {
+    var _this;
+
+    _classCallCheck(this, Bets);
+
+    console.log(props);
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Bets).call(this, props));
+
+    if (!sessionStorage.getItem("id")) {
+      history.push("/");
+    }
+
+    return _this;
+  }
+
+  _createClass(Bets, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchBets();
+    }
+  }, {
+    key: "renderBets",
+    value: function renderBets() {
+      var _this2 = this;
+
+      console.log(this.props.bets);
+
+      if (this.props.bets) {
+        return this.props.bets.map(function (bet) {
+          var game = "".concat(bet.game.away_team, " at ").concat(bet.game.home_team);
+          var side, rubric;
+
+          var odds = _this2.convertEuroOdds(bet.odds);
+
+          var bet_type = {
+            bet: bet
+          };
+
+          if (bet_type == 'moneyline' || bet_type == 'point_spread') {
+            side = bet.team;
+            if (bet_type == 'moneyline') rubric = 'ML';else rubric = bet.point_spread;
+          } else {
+            side = bet.position;
+            rubric = bet.over_under;
+          }
+
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            key: bet.id
+          }, game, " ", side, " ", rubric, " ", odds);
+        });
+      } else {
+        return "Loading...";
+      }
+    }
+  }, {
+    key: "convertEuroOdds",
+    value: function convertEuroOdds(odds) {
+      if (odds < 2) {
+        var num = odds - 1;
+        return '-' + Math.round(1 / num * 100);
+      } else {
+        return '+' + Math.round((odds - 1) * 100);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderBets());
+    }
+  }]);
+
+  return Bets;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    bets: state.bets
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, {
+  fetchBets: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchBets"]
+})(Bets));
+
+/***/ }),
+
+/***/ "./resources/js/components/GameBlock.css":
+/*!***********************************************!*\
+  !*** ./resources/js/components/GameBlock.css ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/postcss-loader/src??ref--6-2!./GameBlock.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/GameBlock.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/js/components/GameBlock.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/GameBlock.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _GameBlock_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GameBlock.css */ "./resources/js/components/GameBlock.css");
+/* harmony import */ var _GameBlock_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_GameBlock_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Modal */ "./resources/js/components/Modal.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions */ "./resources/js/actions/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+var GameBlock =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(GameBlock, _React$Component);
+
+  function GameBlock(props) {
+    var _this;
+
+    _classCallCheck(this, GameBlock);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(GameBlock).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_this), "toggleBlock", function () {
+      console.log('toggling');
+      var wrapper = document.querySelector(".id-".concat(_this.props.game.id));
+      wrapper.classList.toggle('hidden');
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "wagerInput", function (e, odds) {
+      var betAmount = e.target.value;
+      var toWin;
+
+      if (betAmount != '') {
+        betAmount = +betAmount;
+        toWin = betAmount * (odds - 1);
+      } else {
+        toWin = '';
+      } // betAmount = betAmount.toFixed(2);
+      // toWin = toWin.toFixed(2);
+
+
+      _this.setState({
+        betAmount: betAmount,
+        toWin: toWin
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "winInput", function (e, odds) {
+      var toWin = e.target.value;
+      var betAmount;
+
+      if (toWin != '') {
+        toWin = +toWin;
+        betAmount = toWin * (odds - 1);
+      } else {
+        betAmount = '';
+      } // betAmount = betAmount.toFixed(2);
+      // toWin = toWin.toFixed(2);
+
+
+      _this.setState({
+        betAmount: betAmount,
+        toWin: toWin
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "showBetModal", function (id, side, rubric, odds) {
+      var bet = {
+        id: id,
+        side: side,
+        rubric: rubric,
+        odds: odds
+      };
+
+      _this.setState({
+        showModal: true,
+        selectedBet: bet
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "hideBetModal", function () {
+      _this.setState({
+        showModal: false,
+        selectedBet: {
+          id: null,
+          side: null,
+          rubric: null,
+          odds: null
+        }
+      });
+    });
+
+    _this.state = {
+      showModal: false,
+      data: {},
+      betAmount: '',
+      toWin: '',
+      selectedBet: {
+        id: null,
+        side: null,
+        rubric: null,
+        odds: null
+      }
+    };
+    return _this;
+  }
+
+  _createClass(GameBlock, [{
+    key: "renderBetModal",
+    value: function renderBetModal(bet) {
+      var side = bet.side,
+          rubric = bet.rubric,
+          odds = bet.odds;
+      var title = "".concat(side, " ").concat(rubric, " (").concat(this.convertEuroOdds(odds), ")");
+
+      if (this.state.showModal) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Modal__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          title: title,
+          content: this.renderContent(odds),
+          actions: this.renderActions(bet),
+          onDismiss: this.hideBetModal
+        });
+      }
+    }
+  }, {
+    key: "renderContent",
+    value: function renderContent(odds) {
+      var _this2 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Risk ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "number",
+        value: this.state.betAmount,
+        onChange: function onChange(e) {
+          return _this2.wagerInput(e, odds);
+        }
+      }), "to Win ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "number",
+        value: this.state.toWin,
+        onChange: function onChange(e) {
+          return _this2.winInput(e, odds);
+        }
+      }));
+    }
+  }, {
+    key: "renderActions",
+    value: function renderActions(bet) {
+      var _this3 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return _this3.placeBet(bet, _this3.state.betAmount);
+        },
+        className: "ui primary button"
+      }, "BET!!!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "ui button",
+        onClick: this.hideBetModal
+      }, "Cancel"));
+    }
+  }, {
+    key: "placeBet",
+    value: function placeBet(bet, wager) {
+      var id = bet.id,
+          side = bet.side,
+          rubric = bet.rubric,
+          odds = bet.odds;
+      var data;
+
+      if (side === "over" || side === "under") {
+        data = {
+          id: id,
+          bet_type: 'over_under',
+          over_under: rubric,
+          position: side,
+          odds: odds,
+          wager: wager
+        };
+      } else if (rubric === 'ML') {
+        data = {
+          id: id,
+          bet_type: 'moneyline',
+          team: side,
+          odds: odds,
+          wager: wager
+        };
+      } else {
+        data = {
+          id: id,
+          bet_type: 'point_spread',
+          team: side,
+          spread: rubric,
+          odds: odds,
+          wager: wager
+        };
+      }
+
+      console.log(data); // let token = sessionStorage.getItem('token');
+      // axios.post(`/api/bets?api_token=${token}`, data).then(res => {
+      //     console.log(res);
+      // });
+
+      this.props.placeBet(data);
+    }
+  }, {
+    key: "renderDate",
+    value: function renderDate(time) {
+      var date = new Date(time * 1000);
+      return date.toLocaleString();
+    }
+  }, {
+    key: "renderPointSpread",
+    value: function renderPointSpread(id, team, spread, odds) {
+      var formattedSpread = this.formatPointSpread(spread);
+      var convertedOdds = this.convertEuroOdds(odds);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, team, " ", formattedSpread, " (", convertedOdds, ") ", this.renderBetArea(id, team, spread, odds));
+    }
+  }, {
+    key: "formatPointSpread",
+    value: function formatPointSpread(spread) {
+      if (spread && spread[0] !== '-') {
+        return "+".concat(spread);
+      } else if (spread) {
+        return spread;
+      } else {
+        return "N/A";
+      }
+    }
+  }, {
+    key: "renderMoneyline",
+    value: function renderMoneyline(id, team, odds) {
+      var convertedOdds = this.convertEuroOdds(odds);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, team, " ML (", convertedOdds, ") ", this.renderBetArea(id, team, 'ML', odds));
+    }
+  }, {
+    key: "renderOverUnder",
+    value: function renderOverUnder(id, position) {
+      var total = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "N/A";
+      var odds = arguments.length > 3 ? arguments[3] : undefined;
+      var convertedOdds = this.convertEuroOdds(odds);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, position, " ", total, " (", convertedOdds, ") ", this.renderBetArea(id, position, total, odds));
+    }
+  }, {
+    key: "renderBetArea",
+    value: function renderBetArea(id, side, rubric, odds) {
+      var _this4 = this;
+
+      var disabled = !odds; // will return true if no odds
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        disabled: disabled,
+        onClick: function onClick() {
+          return _this4.showBetModal(id, side, rubric, odds);
+        }
+      }, "BET!");
+    }
+  }, {
+    key: "convertEuroOdds",
+    value: function convertEuroOdds(odds) {
+      if (!odds) {
+        return "N/A";
+      }
+
+      if (odds < 2) {
+        var num = odds - 1;
+        return '-' + Math.round(1 / num * 100);
+      } else {
+        return '+' + Math.round((odds - 1) * 100);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var game = this.props.game;
+      var id = game.id;
+      var convert = this.convertEuroOdds;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "game-block"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "game-info",
+        onClick: this.toggleBlock
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderDate(game.unix_start_time)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, game.away_team), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, game.home_team)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "ui divider"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "bet-info hidden id-".concat(id)
+      }, this.renderPointSpread(id, game.away_team, game.away_point_spread, game.away_point_odds), this.renderPointSpread(id, game.home_team, game.home_point_spread, game.home_point_odds), this.renderMoneyline(id, game.away_team, game.away_moneyline), this.renderMoneyline(id, game.home_team, game.home_moneyline), this.renderOverUnder(id, "over", game.over_under, game.over_odds), this.renderOverUnder(id, "under", game.over_under, game.under_odds), this.renderBetModal(this.state.selectedBet)));
+    }
+  }]);
+
+  return GameBlock;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, {
+  placeBet: _actions__WEBPACK_IMPORTED_MODULE_4__["placeBet"]
+})(GameBlock));
+
+/***/ }),
+
+/***/ "./resources/js/components/Games.js":
+/*!******************************************!*\
+  !*** ./resources/js/components/Games.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions */ "./resources/js/actions/index.js");
+/* harmony import */ var _GameBlock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./GameBlock */ "./resources/js/components/GameBlock.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../history */ "./resources/js/history.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
 var Games =
 /*#__PURE__*/
 function (_React$Component) {
@@ -74289,7 +74979,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Games).call(this, props));
 
     if (!sessionStorage.getItem("id")) {
-      history.push("/");
+      _history__WEBPACK_IMPORTED_MODULE_5__["default"].push("/");
     }
 
     return _this;
@@ -74299,6 +74989,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchUpcomingNFLGames();
+      this.props.fetchCompletedNFLGames();
     }
   }, {
     key: "renderUpcomingGames",
@@ -74310,9 +75001,32 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "renderCompletedGames",
+    value: function renderCompletedGames() {
+      return this.props.nfl.completed.map(function (game) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: game.id
+        }, game.away_team, " at ", game.home_team);
+      });
+    }
+  }, {
+    key: "renderGames",
+    value: function renderGames(status) {
+      return this.props.nfl[status].map(function (game) {
+        return (// <div key={game.id}>{game.away_team} at {game.home_team}</div>
+          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GameBlock__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            key: game.id,
+            game: game
+          })
+        );
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.match.params.league), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.nfl.upcoming ? this.renderUpcomingGames() : "Loading..."));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
+        to: "/home"
+      }, "HOME PAGE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.match.params.league), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "UPCOMING GAMES")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.nfl.upcoming ? this.renderGames('upcoming') : "Loading..."));
     }
   }]);
 
@@ -74329,7 +75043,8 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, {
-  fetchUpcomingNFLGames: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchUpcomingNFLGames"]
+  fetchUpcomingNFLGames: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchUpcomingNFLGames"],
+  fetchCompletedNFLGames: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchCompletedNFLGames"]
 })(Games));
 
 /***/ }),
@@ -74469,6 +75184,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions */ "./resources/js/actions/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../history */ "./resources/js/history.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -74494,6 +75210,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var Home =
 /*#__PURE__*/
 function (_React$Component) {
@@ -74511,7 +75228,7 @@ function (_React$Component) {
     });
 
     if (!sessionStorage.getItem('id')) {
-      history.push('/');
+      _history__WEBPACK_IMPORTED_MODULE_4__["default"].push('/');
     }
 
     return _this;
@@ -74524,12 +75241,13 @@ function (_React$Component) {
     }
   }, {
     key: "render",
+    // className="ui center aligned grid"
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "ui center aligned grid"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello ", this.props.name, "!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello ", this.props.name, "!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your bankroll is $", this.props.bankroll, " and have $", this.props.money_in_play, " in play"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/bets"
-      }, "Bet History"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, "Bet History"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+        to: "/transactions"
+      }, "Transactions"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.onLogOut
       }, "Log Out"));
     }
@@ -74544,7 +75262,8 @@ var mapStateToProps = function mapStateToProps(state) {
     token: state.auth.token,
     name: state.user.name,
     email: state.user.email,
-    bankroll: state.user.bankroll
+    bankroll: state.user.bankroll,
+    money_in_play: state.user.money_in_play
   };
 };
 
@@ -74772,40 +75491,10 @@ var Menu = function Menu() {
 
 /***/ }),
 
-/***/ "./resources/js/components/Test.css":
+/***/ "./resources/js/components/Modal.js":
 /*!******************************************!*\
-  !*** ./resources/js/components/Test.css ***!
+  !*** ./resources/js/components/Modal.js ***!
   \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/postcss-loader/src??ref--6-2!./Test.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Test.css");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./resources/js/components/Test.js":
-/*!*****************************************!*\
-  !*** ./resources/js/components/Test.js ***!
-  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -74813,18 +75502,129 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Test_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Test.css */ "./resources/js/components/Test.css");
-/* harmony import */ var _Test_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Test_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 
 
 
-var Test = function Test() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "test"
-  }, "TESTTTTTTTTTTTTTTTTTTTT");
+var Modal = function Modal(props) {
+  return react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.createPortal(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: props.onDismiss,
+    className: "ui dimmer modals visible active"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick(e) {
+      return e.stopPropagation();
+    },
+    className: "ui standard modal visible active"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "header"
+  }, props.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "content"
+  }, props.content), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "actions"
+  }, props.actions))), document.querySelector('#modal'));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Test);
+/* harmony default export */ __webpack_exports__["default"] = (Modal);
+
+/***/ }),
+
+/***/ "./resources/js/components/Transactions.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/Transactions.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions */ "./resources/js/actions/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var Transactions =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Transactions, _React$Component);
+
+  function Transactions(props) {
+    var _this;
+
+    _classCallCheck(this, Transactions);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Transactions).call(this, props));
+
+    if (!sessionStorage.getItem('id')) {
+      history.push('/');
+    }
+
+    return _this;
+  }
+
+  _createClass(Transactions, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchUserInfo(sessionStorage.getItem('id'));
+      this.props.getTransactions();
+    }
+  }, {
+    key: "renderTransactions",
+    value: function renderTransactions() {
+      if (this.props.transactions.length) {
+        return this.props.transactions.map(function (transaction) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, transaction.amount);
+        });
+      } else {
+        return "Loading...";
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Bankroll: ", this.props.bankroll), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Money in Play: ", this.props.money_in_play), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "ui divider"
+      }), this.renderTransactions());
+    }
+  }]);
+
+  return Transactions;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    transactions: state.transactions,
+    bankroll: state.user.bankroll,
+    money_in_play: state.user.money_in_play
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, {
+  fetchUserInfo: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchUserInfo"],
+  getTransactions: _actions__WEBPACK_IMPORTED_MODULE_2__["getTransactions"],
+  addTransaction: _actions__WEBPACK_IMPORTED_MODULE_2__["addTransaction"]
+})(Transactions));
 
 /***/ }),
 
@@ -74936,6 +75736,43 @@ var INITIAL_STATE = {
 
 /***/ }),
 
+/***/ "./resources/js/reducers/betsReducer.js":
+/*!**********************************************!*\
+  !*** ./resources/js/reducers/betsReducer.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ "./resources/js/actions/types.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["FETCH_BETS"]:
+      return action.payload;
+
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["PLACE_BET"]:
+      return [].concat(_toConsumableArray(state), [action.payload]);
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/reducers/gamesReducer.js":
 /*!***********************************************!*\
   !*** ./resources/js/reducers/gamesReducer.js ***!
@@ -74983,11 +75820,15 @@ var INITIAL_STATE = {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
+  var newState = _objectSpread({}, state);
+
   switch (action.type) {
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__["FETCH_UPCOMING_NFL_GAMES"]:
-      var newState = _objectSpread({}, state);
-
       newState.nfl.upcoming = action.payload;
+      return newState;
+
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["FETCH_COMPLETED_NFL_GAMES"]:
+      newState.nfl.completed = action.payload;
       return newState;
 
     default:
@@ -75010,6 +75851,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _authReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./authReducer */ "./resources/js/reducers/authReducer.js");
 /* harmony import */ var _userReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userReducer */ "./resources/js/reducers/userReducer.js");
 /* harmony import */ var _gamesReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./gamesReducer */ "./resources/js/reducers/gamesReducer.js");
+/* harmony import */ var _betsReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./betsReducer */ "./resources/js/reducers/betsReducer.js");
+/* harmony import */ var _transactionsReducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./transactionsReducer */ "./resources/js/reducers/transactionsReducer.js");
+
+
 
 
 
@@ -75017,8 +75862,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   auth: _authReducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   user: _userReducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  games: _gamesReducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  games: _gamesReducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  bets: _betsReducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  transactions: _transactionsReducer__WEBPACK_IMPORTED_MODULE_5__["default"]
 }));
+
+/***/ }),
+
+/***/ "./resources/js/reducers/transactionsReducer.js":
+/*!******************************************************!*\
+  !*** ./resources/js/reducers/transactionsReducer.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ "./resources/js/actions/types.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["GET_TRANSACTIONS"]:
+      return action.payload;
+
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["ADD_TRANSACTION"]:
+      return [].concat(_toConsumableArray(state), [action.payload]);
+
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["PLACE_BET"]:
+      var transaction = {
+        id: action.payload.transaction_id,
+        user_id: action.payload.user_id,
+        bet_id: action.payload.id,
+        type: action.payload.bet_type,
+        amount: action.payload.wager,
+        in_play: true,
+        created_at: action.payload.created_at
+      };
+      return [].concat(_toConsumableArray(state), [transaction]);
+
+    default:
+      return state;
+  }
+});
 
 /***/ }),
 
@@ -75042,7 +75938,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var INITIAL_STATE = {
   name: '',
   email: '',
-  bankroll: 0
+  bankroll: 0,
+  money_in_play: 0
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
@@ -75050,15 +75947,14 @@ var INITIAL_STATE = {
 
   switch (action.type) {
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__["FETCH_USER_INFO"]:
-      var _action$payload = action.payload,
-          name = _action$payload.name,
-          email = _action$payload.email,
-          bankroll = _action$payload.bankroll;
-      return _objectSpread({}, state, {
-        name: name,
-        email: email,
-        bankroll: bankroll
-      });
+      return action.payload;
+
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["PLACE_BET"]:
+      var newState = _objectSpread({}, state);
+
+      newState.bankroll -= action.payload.wager;
+      newState.money_in_play += action.payload.wager;
+      return newState;
 
     default:
       return state;

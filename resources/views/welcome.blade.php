@@ -10,10 +10,11 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-        <link rel="stylesheet" href="/css/app.css">
+        {{-- <link rel="stylesheet" href="/css/app.css"> --}}
     </head>
     <body>
         <div id="root"></div>
+        <div id="modal"></div>
         @auth
         <script>
             sessionStorage.setItem('id', {{ auth()->id() }});

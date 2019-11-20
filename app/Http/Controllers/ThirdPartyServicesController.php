@@ -105,7 +105,7 @@ class ThirdPartyServicesController extends Controller
         return $games;
     }
 
-    public function getNFLScores()
+    public function getNFLCompletedGames()
     {
         $endpoint = 'https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=4391';
         $data = $this->get($endpoint);

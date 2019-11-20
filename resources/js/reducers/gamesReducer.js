@@ -1,4 +1,4 @@
-import { FETCH_UPCOMING_NFL_GAMES } from "../actions/types";
+import { FETCH_UPCOMING_NFL_GAMES, FETCH_COMPLETED_NFL_GAMES } from "../actions/types";
 
 const INITIAL_STATE = {
     nfl: {
@@ -28,10 +28,13 @@ const INITIAL_STATE = {
 }
 
 export default (state = INITIAL_STATE, action) => {
+    let newState = {...state};
     switch (action.type) {
         case FETCH_UPCOMING_NFL_GAMES:
-            let newState = {...state};
             newState.nfl.upcoming = action.payload;
+            return newState;
+        case FETCH_COMPLETED_NFL_GAMES:
+            newState.nfl.completed = action.payload;
             return newState;
         default:
             return state;

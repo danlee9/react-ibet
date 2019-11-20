@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Game extends Model
+class Transaction extends Model
 {
     protected $guarded = [];
 
-    public function bets()
+    public function bet()
     {
-        return $this->hasMany('App\Bet');
+        return $this->belongsTo('App\Bet');
     }
 }

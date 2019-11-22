@@ -74514,9 +74514,7 @@ function (_React$Component) {
 
           var odds = _this2.convertEuroOdds(bet.odds);
 
-          var bet_type = {
-            bet: bet
-          };
+          var bet_type = bet.bet_type;
 
           if (bet_type == 'moneyline' || bet_type == 'point_spread') {
             side = bet.team;
@@ -74526,9 +74524,12 @@ function (_React$Component) {
             rubric = bet.over_under;
           }
 
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-            key: bet.id
-          }, game, " ", side, " ", rubric, " ", odds);
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            key: bet.id,
+            style: {
+              border: '1px solid black'
+            }
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, game)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, side, " ", rubric, " (", odds, ") status: ", bet.status));
         });
       } else {
         return "Loading...";
@@ -75138,7 +75139,9 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "ui grid leagues"
+        className: "ui padded grid leagues"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "two wide column sports-league"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -75159,7 +75162,7 @@ function (_React$Component) {
         className: "two wide column sports-league"
       }, "CBB"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "two wide column sports-league"
-      }));
+      })));
     }
   }]);
 

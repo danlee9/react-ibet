@@ -22,7 +22,7 @@ class Bets extends React.Component {
                 let game = `${bet.game.away_team} at ${bet.game.home_team}`;
                 let side, rubric;
                 let odds = this.convertEuroOdds(bet.odds);
-                let bet_type = { bet };
+                let { bet_type } = bet;
                 if (bet_type == 'moneyline' || bet_type =='point_spread') {
                     side = bet.team;
                     if (bet_type == 'moneyline')
@@ -33,7 +33,12 @@ class Bets extends React.Component {
                     side = bet.position;
                     rubric = bet.over_under;
                 }
-                return <p key={bet.id}>{game} {side} {rubric} {odds}</p>
+                return (
+                    <div key={bet.id} style={{border: '1px solid black'}}>
+                        <p><strong>{game}</strong></p>
+                        <p>{side} {rubric} ({odds}) status: {bet.status}</p>
+                    </div>
+                );
             });
         } else {
             return "Loading...";

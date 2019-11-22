@@ -36,19 +36,11 @@ class BetController extends Controller
             'wager' => request('wager'),
             'status' => 'pending'
         ]);
-        $bet->game; // adds game data to response
-        $transaction = Transaction::create([
-            'user_id' => $userId,
-            'bet_id' => $bet->id,
-            'type' => 'wager',
-            'amount' => -1 * $bet->wager,
-            'in_play' => 1
-        ]);
-        $bet->transaction_id = $transaction->id;
+        $bet->game; // adds game data to bet response
         $user = User::find(+$userId);
-        $user->bankroll = $user->bankroll - $bet->wager;
-        $user->money_in_play = $user->money_in_play + $bet->wager;
-        $user->save();
+        $user->placeWager($bet->wager);
+        $transaction = Transaction::placeWager($userId, $bet->id, $bet->wager);
+        $bet->transaction_id = $transaction->id;
         return json_encode($bet);
     }
 }

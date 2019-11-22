@@ -11,9 +11,10 @@ class ThirdPartyServicesController extends Controller
         $this->key = config('services.odds-api.key');
     }
 
-    public function getNFLMoneyLines()
+    public function getMoneyLines($league)
     {
-        $endpoint = "https://api.the-odds-api.com/v3/odds?api_key={$this->key}&sport=americanfootball_nfl&region=us&mkt=h2h";
+        $leagueKey = $this->getOddsApiLeagueKey($league);
+        $endpoint = "https://api.the-odds-api.com/v3/odds?api_key={$this->key}&sport={$leagueKey}&region=us&mkt=h2h";
         $data = $this->get($endpoint);
         $games = [];
         foreach ($data->data as $game) {
@@ -38,9 +39,10 @@ class ThirdPartyServicesController extends Controller
         return $games;
     }
 
-    public function getNFLPointSpreads()
+    public function getPointSpreads($league)
     {
-        $endpoint = "https://api.the-odds-api.com/v3/odds?api_key={$this->key}&sport=americanfootball_nfl&region=us&mkt=spreads";
+        $leagueKey = $this->getOddsApiLeagueKey($league);
+        $endpoint = "https://api.the-odds-api.com/v3/odds?api_key={$this->key}&sport={$leagueKey}&region=us&mkt=spreads";
         $data = $this->get($endpoint);
         $games = [];
         foreach ($data->data as $game) {
@@ -70,9 +72,10 @@ class ThirdPartyServicesController extends Controller
         return $games;
     }
 
-    public function getNFLOverUnders()
+    public function getOverUnders($league)
     {
-        $endpoint = "https://api.the-odds-api.com/v3/odds?api_key={$this->key}&sport=americanfootball_nfl&region=us&mkt=totals";
+        $leagueKey = $this->getOddsApiLeagueKey($league);
+        $endpoint = "https://api.the-odds-api.com/v3/odds?api_key={$this->key}&sport={$leagueKey}&region=us&mkt=totals";
         $data = $this->get($endpoint);
         $games = [];
         foreach ($data->data as $game) {
@@ -105,9 +108,10 @@ class ThirdPartyServicesController extends Controller
         return $games;
     }
 
-    public function getNFLCompletedGames()
+    public function getCompletedGames($league)
     {
-        $endpoint = 'https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=4391';
+        $leagueKey = $this->getSportsDBLeagueKey($league);
+        $endpoint = "https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id={$leagueKey}";
         $data = $this->get($endpoint);
         $games = [];
         foreach ($data->events as $game) {
@@ -119,6 +123,26 @@ class ThirdPartyServicesController extends Controller
             ];
         }
         return $games;
+    }
+
+    public function getOddsApiLeagueKey($league)
+    {
+        switch ($league) {
+            case 'nfl':
+                return 'americanfootball_nfl';
+            case 'nba':
+                return 'basketball_nba';
+        }
+    }
+
+    public function getSportsDBLeagueKey($league)
+    {
+        switch ($league) {
+            case 'nfl':
+                return '4391';
+            case 'nba':
+                return '4387';
+        }
     }
 
     public static function get($endpoint)

@@ -41,4 +41,24 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Bet');
     }
+
+    public function placeWager($wager)
+    {
+        $this->bankroll = $this->bankroll - $wager;
+        $this->money_in_play = $this->money_in_play + $wager;
+        $this->save();
+    }
+
+    public function addMoneyWon($money_won, $wager)
+    {
+        $this->bankroll = $this->bankroll + $money_won;
+        $this->money_in_play = $this->money_in_play - $wager;
+        $this->save();
+    }
+
+    public function removeMoneyInPlay($wager)
+    {
+        $this->money_in_play = $this->money_in_play - $wager;
+        $this->save();
+    }
 }

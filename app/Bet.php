@@ -22,4 +22,45 @@ class Bet extends Model
     {
         return $this->hasMany('App\Transaction');
     }
+
+    public function gradeBet()
+    {
+        $game = $this->game;
+        $home_score = $game->home_score;
+        $away_score = $game->away_score;
+        if ($this->team === $game->home_team) {
+            $chosen_score = $home_score;
+            $opposing_score = $away_score;
+        } else {
+            $chosen_score = $away_score;
+            $opposing_score = $home_score;
+        }
+        if ($this->bet_type === 'moneyline') {
+            if ($chosen_score > $opposing_score) {
+                $status = 'win';
+            } else if ($chosen_score === $opposing_score) {
+                $status = 'push';
+            } else {
+                $status = 'loss';
+            }
+        } else if ($this->bet_type === 'point_spread') {
+            if ($chosen_score + +$this->point_spread > $opposing_score) {
+                $status = 'win';
+            } else if ($chosen_score + +$this->point_spread === $opposing_score) {
+                $status = 'push';
+            } else {
+                $status = 'loss';
+            }
+        } else {
+            if ($home_score + $away_score > +$this->over_under) {
+                $status = 'win';
+            } else if ($home_score + $away_score === +$this->over_under) {
+                $status = 'push';
+            } else {
+                $status = 'loss';
+            }
+        }
+        $this->status = $status;
+        $this->save();
+    }
 }

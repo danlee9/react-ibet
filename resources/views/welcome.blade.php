@@ -13,6 +13,8 @@
         {{-- <link rel="stylesheet" href="/css/app.css"> --}}
     </head>
     <body>
+        <div id="sidebar"></div>
+        <div id="overlay"></div>
         <div id="root"></div>
         <div id="modal"></div>
         @auth

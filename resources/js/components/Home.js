@@ -23,14 +23,19 @@ class Home extends React.Component {
     // className="ui center aligned grid"
     render() {
         return (
-            <div>
-                <h1>Hello {this.props.name}!</h1>
-                <p>Your bankroll is ${this.props.bankroll} and have ${this.props.money_in_play} in play</p>
-                <Link to="/bets">Bet History</Link>
-                <br/>
-                <Link to="/transactions">Transactions</Link>
-                <br/>
-                <button onClick={this.onLogOut}>Log Out</button>
+            <div className="ui centered grid">
+                <div className="twelve wide center aligned column">
+                    <div className="ui raised segment">
+                        <h1><i class="icon user outline"></i> Hello {this.props.name}!</h1>
+                        <h3>Your bankroll is ${this.props.bankroll} and have ${this.props.money_in_play} in play</h3>
+                        <div>
+                            <Link to="/bets" className="ui button primary">Bet History</Link> <Link to="/transactions" className="ui button positive">Transactions</Link>
+                        </div>
+                        <div>
+                            <button onClick={this.onLogOut} className="ui button">Log Out</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

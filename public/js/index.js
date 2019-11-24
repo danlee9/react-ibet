@@ -6409,7 +6409,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".app-container {\r\n    padding-top: 20px;\r\n}\r\n\r\n.leagues {\r\n    padding-top: 1vw;\r\n    margin-top: 30px;\r\n}\r\n\r\n.sports-league {\r\n    font-family: 'Khand', sans-serif;\r\n    font-size: 2.2vw;\r\n    /* text-align: center; */\r\n}\r\n\r\n.sports-league:hover {\r\n    color: deepskyblue;\r\n    font-weight: bold;\r\n    cursor: pointer;\r\n}\r\n\r\ndiv.two.wide.column.sports-league {\r\n    text-align: center;\r\n}", ""]);
+exports.push([module.i, ".app-container {\r\n    padding-top: 20px;\r\n}\r\n\r\n.leagues {\r\n    padding-top: 1vw;\r\n    margin-top: 30px;\r\n}\r\n\r\n.sports-league {\r\n    font-family: 'Khand', sans-serif;\r\n    font-size: 2.2vw;\r\n    color: black;\r\n    /* text-align: center; */\r\n    /* text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135; */\r\n    /* text-shadow: 2px 4px 3px rgba(0,0,0,0.3); */\r\n}\r\n\r\n/* .sports-league a {\r\n    color: black;\r\n} */\r\n\r\n.sports-league:hover {\r\n    font-weight: bold;\r\n    cursor: pointer;\r\n}\r\n\r\n.sports-league a:hover {\r\n    color: deepskyblue;\r\n}\r\n\r\ndiv.two.wide.column.sports-league {\r\n    text-align: center;\r\n}", ""]);
 
 // exports
 
@@ -6428,7 +6428,45 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "body {\r\n    /* background-color: #DADADA; */\r\n    background-color: white;\r\n}\r\nbody > .grid {\r\n    height: 100%;\r\n}\r\n.image {\r\n    margin-top: -100px;\r\n}\r\n.column {\r\n    max-width: 450px;\r\n}\r\n.ui.stacked.segment {\r\n    background-color: dodgerblue;\r\n}", ""]);
+exports.push([module.i, "body {\r\n    /* background-color: #DADADA; */\r\n    background-color: white;\r\n}\r\nbody > .grid {\r\n    height: 100%;\r\n}\r\n.image {\r\n    margin-top: -100px;\r\n}\r\n.login {\r\n    max-width: 450px;\r\n}\r\n.ui.stacked.segment {\r\n    background-color: dodgerblue;\r\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Overlay.css":
+/*!*****************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/Overlay.css ***!
+  \*****************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".overlay {\r\n    opacity:    0; \r\n    background: #000; \r\n    width:      100%;\r\n    height:     100%; \r\n    z-index:    10;\r\n    top:        0; \r\n    left:       0; \r\n    position:   fixed;\r\n    display: none;\r\n    transition: all 3s;\r\n}\r\n\r\n.overlay.show {\r\n    display: block;\r\n    opacity: 0.5;\r\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/TopRow.css":
+/*!****************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/TopRow.css ***!
+  \****************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".hamburger {\r\n    height: 35px;\r\n    cursor: pointer;\r\n}", ""]);
 
 // exports
 
@@ -74394,6 +74432,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Games__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Games */ "./resources/js/components/Games.js");
 /* harmony import */ var _Transactions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Transactions */ "./resources/js/components/Transactions.js");
 /* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../history */ "./resources/js/history.js");
+/* harmony import */ var _TopRow__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./TopRow */ "./resources/js/components/TopRow.js");
+/* harmony import */ var _Sidebar__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Sidebar */ "./resources/js/components/Sidebar.js");
+/* harmony import */ var _Overlay__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Overlay */ "./resources/js/components/Overlay.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -74405,36 +74465,109 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var App = function App() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "ui container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Router"], {
-    history: _history__WEBPACK_IMPORTED_MODULE_9__["default"]
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-    path: "/",
-    exact: true,
-    component: _Login__WEBPACK_IMPORTED_MODULE_2__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-    path: "/home",
-    exact: true,
-    component: _Home__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-    path: "/bets",
-    exact: true,
-    component: _Bets__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-    path: "/transactions",
-    exact: true,
-    component: _Transactions__WEBPACK_IMPORTED_MODULE_8__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-    path: "/menu",
-    exact: true,
-    component: _Menu__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-    path: "/games/:league",
-    component: _Games__WEBPACK_IMPORTED_MODULE_7__["default"]
-  }))));
-};
+
+
+ // const App = () => {
+//     return (
+//         <div>
+//             <TopRow />
+//             <div className="ui container" id="main">
+//                 <Router history={history}>
+//                     <Header />
+//                     <Switch>
+//                         <Route path="/" exact component={Login} />
+//                         <Route path="/home" exact component={Home} />
+//                         <Route path="/bets" exact component={Bets} />
+//                         <Route path="/transactions" exact component={Transactions} />
+//                         <Route path="/menu" exact component={Menu} />
+//                         <Route path="/games/:league" component={Games} />
+//                     </Switch>
+//                 </Router>
+//             </div>
+//         </div>
+//     );
+// };
+
+var App =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(App, _React$Component);
+
+  function App(props) {
+    var _this;
+
+    _classCallCheck(this, App);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_this), "openSidebar", function () {
+      if (_this.state.open) {
+        _this.setState({
+          open: false
+        });
+      } else {
+        _this.setState({
+          open: true
+        });
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "close", function () {
+      _this.setState({
+        open: false
+      });
+    });
+
+    _this.state = {
+      open: false
+    };
+    return _this;
+  }
+
+  _createClass(App, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Sidebar__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        open: this.state.open
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Overlay__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        open: this.state.open,
+        close: this.close
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TopRow__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        open: this.openSidebar
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "ui container",
+        id: "main"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Router"], {
+        history: _history__WEBPACK_IMPORTED_MODULE_9__["default"]
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        path: "/",
+        exact: true,
+        component: _Login__WEBPACK_IMPORTED_MODULE_2__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        path: "/home",
+        exact: true,
+        component: _Home__WEBPACK_IMPORTED_MODULE_3__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        path: "/bets",
+        exact: true,
+        component: _Bets__WEBPACK_IMPORTED_MODULE_4__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        path: "/transactions",
+        exact: true,
+        component: _Transactions__WEBPACK_IMPORTED_MODULE_8__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        path: "/menu",
+        exact: true,
+        component: _Menu__WEBPACK_IMPORTED_MODULE_6__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        path: "/games/:league",
+        component: _Games__WEBPACK_IMPORTED_MODULE_7__["default"]
+      }))))));
+    }
+  }]);
+
+  return App;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
 
@@ -75139,30 +75272,34 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "ui padded grid leagues"
+        className: "ui centered padded grid leagues"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "two wide column sports-league"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "two wide column sports-league"
+        className: "two wide center aligned column sports-league"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/games/nfl"
       }, "NFL")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "two wide column sports-league"
+        className: "two wide center aligned column sports-league"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/games/nba"
       }, "NBA")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "two wide column sports-league"
-      }, "MLB"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "two wide column sports-league"
-      }, "NHL"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "two wide column sports-league"
-      }, "CFB"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "two wide column sports-league"
-      }, "CBB"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "two wide column sports-league"
-      })));
+        className: "two wide center aligned column sports-league"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/"
+      }, "MLB")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "two wide center aligned column sports-league"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/"
+      }, "NHL")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "two wide center aligned column sports-league"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/"
+      }, "CFB")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "two wide center aligned column sports-league"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/"
+      }, "CBB"))));
     }
   }]);
 
@@ -75246,13 +75383,24 @@ function (_React$Component) {
     key: "render",
     // className="ui center aligned grid"
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello ", this.props.name, "!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your bankroll is $", this.props.bankroll, " and have $", this.props.money_in_play, " in play"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
-        to: "/bets"
-      }, "Bet History"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
-        to: "/transactions"
-      }, "Transactions"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.onLogOut
-      }, "Log Out"));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "ui centered grid"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "twelve wide center aligned column"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "ui raised segment"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        "class": "icon user outline"
+      }), " Hello ", this.props.name, "!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your bankroll is $", this.props.bankroll, " and have $", this.props.money_in_play, " in play"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+        to: "/bets",
+        className: "ui button primary"
+      }, "Bet History"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+        to: "/transactions",
+        className: "ui button positive"
+      }, "Transactions")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.onLogOut,
+        className: "ui button"
+      }, "Log Out")))));
     }
   }]);
 
@@ -75398,12 +75546,12 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "ui center aligned grid"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "column"
+        className: "column login"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "ui teal image header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "content"
-      }, "Log-in to your account!!!!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, "Log-in to your account")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "ui large form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "ui stacked segment"
@@ -75529,6 +75677,209 @@ var Modal = function Modal(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Modal);
+
+/***/ }),
+
+/***/ "./resources/js/components/Overlay.css":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Overlay.css ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/postcss-loader/src??ref--6-2!./Overlay.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Overlay.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/js/components/Overlay.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/Overlay.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Overlay_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Overlay.css */ "./resources/js/components/Overlay.css");
+/* harmony import */ var _Overlay_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Overlay_css__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var Overlay = function Overlay(props) {
+  var classes = "overlay ".concat(props.open ? 'show' : '');
+  return react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.createPortal(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classes,
+    onClick: props.close
+  }), document.querySelector('#overlay'));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Overlay);
+
+/***/ }),
+
+/***/ "./resources/js/components/Sidebar.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/Sidebar.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var Sidebar = function Sidebar(props) {
+  var classes = "ui left demo vertical inverted sidebar push labeled icon menu ".concat(props.open ? 'visible' : '');
+  return react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.createPortal(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classes
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "home icon"
+  }), "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "block layout icon"
+  }), "Topics"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "smile icon"
+  }), "Friends")), document.querySelector('#sidebar'));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Sidebar);
+
+/***/ }),
+
+/***/ "./resources/js/components/TopRow.css":
+/*!********************************************!*\
+  !*** ./resources/js/components/TopRow.css ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/postcss-loader/src??ref--6-2!./TopRow.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/TopRow.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/js/components/TopRow.js":
+/*!*******************************************!*\
+  !*** ./resources/js/components/TopRow.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _TopRow_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TopRow.css */ "./resources/js/components/TopRow.css");
+/* harmony import */ var _TopRow_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_TopRow_css__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var TopRow =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(TopRow, _React$Component);
+
+  function TopRow(props) {
+    _classCallCheck(this, TopRow);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(TopRow).call(this, props));
+  }
+
+  _createClass(TopRow, [{
+    key: "renderButton",
+    value: function renderButton() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "/img/hamburger-button.png",
+        alt: "",
+        className: "hamburger",
+        onClick: this.props.open
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          padding: '10px'
+        }
+      }, this.renderButton());
+    }
+  }]);
+
+  return TopRow;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (TopRow);
 
 /***/ }),
 

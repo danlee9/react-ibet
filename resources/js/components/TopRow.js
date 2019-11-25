@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from "react-redux";
 import './TopRow.css';
 
 class TopRow extends React.Component {
@@ -7,7 +8,15 @@ class TopRow extends React.Component {
     }
 
     renderButton() {
-        return <img src="/img/hamburger-button.png" alt="" className="hamburger" onClick={this.props.open}/>;
+        let style, clickFunction;
+        if (!this.props.loggedIn) {
+            style = { opacity: 0.5 };
+            clickFunction = () => {};
+        } else {
+            style = { opacity: 1 };
+            clickFunction = this.props.open;
+        }
+        return <img src="/img/hamburger-button.png" alt="" className="hamburger" onClick={clickFunction} style={style}/>;
     }
 
     render() {
@@ -19,4 +28,8 @@ class TopRow extends React.Component {
     }
 }
 
-export default TopRow;
+const mapStateToProps = state => {
+    return { loggedIn: state.auth.loggedIn };
+};
+
+export default connect(mapStateToProps)(TopRow);

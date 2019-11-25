@@ -6390,7 +6390,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".game-block {\r\n    border: 2px solid black;\r\n}\r\n\r\n.hidden {\r\n    display: none;\r\n}", ""]);
+exports.push([module.i, "/* .game-block {\r\n    border: 2px solid black;\r\n} */\r\n\r\n.hidden {\r\n    display: none;\r\n}", ""]);
 
 // exports
 
@@ -6409,7 +6409,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".app-container {\r\n    padding-top: 20px;\r\n}\r\n\r\n.leagues {\r\n    padding-top: 1vw;\r\n    margin-top: 30px;\r\n}\r\n\r\n.sports-league {\r\n    font-family: 'Khand', sans-serif;\r\n    font-size: 2.2vw;\r\n    color: black;\r\n    /* text-align: center; */\r\n    /* text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135; */\r\n    /* text-shadow: 2px 4px 3px rgba(0,0,0,0.3); */\r\n}\r\n\r\n/* .sports-league a {\r\n    color: black;\r\n} */\r\n\r\n.sports-league:hover {\r\n    font-weight: bold;\r\n    cursor: pointer;\r\n}\r\n\r\n.sports-league a:hover {\r\n    color: deepskyblue;\r\n}\r\n\r\ndiv.two.wide.column.sports-league {\r\n    text-align: center;\r\n}", ""]);
+exports.push([module.i, ".app-container {\r\n    padding-top: 20px;\r\n}\r\n\r\n.leagues {\r\n    padding-top: 1vw;\r\n    margin-top: 30px;\r\n}\r\n\r\n.sports-league {\r\n    font-family: 'Khand', sans-serif;\r\n    font-size: 2.2vw;\r\n    color: black;\r\n    /* text-align: center; */\r\n    /* text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135; */\r\n    /* text-shadow: 2px 4px 3px rgba(0,0,0,0.3); */\r\n}\r\n\r\n/* .sports-league a {\r\n    color: black;\r\n} */\r\n\r\n.sports-league:hover {\r\n    font-weight: bold;\r\n    cursor: pointer;\r\n}\r\n\r\n.sports-league a:hover, .sports-league a.selected {\r\n    color: deepskyblue;\r\n}\r\n\r\ndiv.two.wide.column.sports-league {\r\n    text-align: center;\r\n}", ""]);
 
 // exports
 
@@ -73964,16 +73964,19 @@ module.exports = function(module) {
 /*!***************************************!*\
   !*** ./resources/js/actions/index.js ***!
   \***************************************/
-/*! exports provided: logIn, logOut, fetchUserInfo, fetchUpcomingNFLGames, fetchCompletedNFLGames, fetchBets, placeBet, getTransactions, addTransaction */
+/*! exports provided: setLoggedIn, logIn, logOut, fetchUserInfo, selectLeague, deselectLeagues, fetchUpcomingGames, fetchCompletedGames, fetchBets, placeBet, getTransactions, addTransaction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setLoggedIn", function() { return setLoggedIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logIn", function() { return logIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logOut", function() { return logOut; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserInfo", function() { return fetchUserInfo; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUpcomingNFLGames", function() { return fetchUpcomingNFLGames; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCompletedNFLGames", function() { return fetchCompletedNFLGames; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectLeague", function() { return selectLeague; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deselectLeagues", function() { return deselectLeagues; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUpcomingGames", function() { return fetchUpcomingGames; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCompletedGames", function() { return fetchCompletedGames; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBets", function() { return fetchBets; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "placeBet", function() { return placeBet; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTransactions", function() { return getTransactions; });
@@ -73990,6 +73993,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+var setLoggedIn = function setLoggedIn(id, token) {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_1__["LOG_IN"],
+    payload: {
+      id: id,
+      token: token
+    }
+  };
+};
 var logIn = function logIn(email, password) {
   return (
     /*#__PURE__*/
@@ -74120,7 +74132,18 @@ var fetchUserInfo = function fetchUserInfo(id) {
     }()
   );
 };
-var fetchUpcomingNFLGames = function fetchUpcomingNFLGames() {
+var selectLeague = function selectLeague(league) {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_1__["SELECT_LEAGUE"],
+    payload: league
+  };
+};
+var deselectLeagues = function deselectLeagues() {
+  return {
+    type: _types__WEBPACK_IMPORTED_MODULE_1__["DESELECT_LEAGUES"]
+  };
+};
+var fetchUpcomingGames = function fetchUpcomingGames(league) {
   return (
     /*#__PURE__*/
     function () {
@@ -74133,7 +74156,7 @@ var fetchUpcomingNFLGames = function fetchUpcomingNFLGames() {
             switch (_context4.prev = _context4.next) {
               case 0:
                 _context4.next = 2;
-                return axios.get('/api/games/nfl/upcoming');
+                return axios.get("/api/games/".concat(league, "/upcoming"));
 
               case 2:
                 response = _context4.sent;
@@ -74156,7 +74179,7 @@ var fetchUpcomingNFLGames = function fetchUpcomingNFLGames() {
     }()
   );
 };
-var fetchCompletedNFLGames = function fetchCompletedNFLGames() {
+var fetchCompletedGames = function fetchCompletedGames(league) {
   return (
     /*#__PURE__*/
     function () {
@@ -74169,7 +74192,7 @@ var fetchCompletedNFLGames = function fetchCompletedNFLGames() {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return axios.get('/api/games/nfl/completed');
+                return axios.get("/api/games/".concat(league, "/upcoming"));
 
               case 2:
                 response = _context5.sent;
@@ -74341,7 +74364,7 @@ var addTransaction = function addTransaction(data) {
 /*!***************************************!*\
   !*** ./resources/js/actions/types.js ***!
   \***************************************/
-/*! exports provided: LOG_IN, LOG_OUT, FETCH_USER_INFO, FETCH_UPCOMING_NFL_GAMES, FETCH_COMPLETED_NFL_GAMES, FETCH_BETS, PLACE_BET, GET_TRANSACTIONS, ADD_TRANSACTION */
+/*! exports provided: LOG_IN, LOG_OUT, FETCH_USER_INFO, SELECT_LEAGUE, DESELECT_LEAGUES, FETCH_UPCOMING_NFL_GAMES, FETCH_COMPLETED_NFL_GAMES, FETCH_BETS, PLACE_BET, GET_TRANSACTIONS, ADD_TRANSACTION */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -74349,6 +74372,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_IN", function() { return LOG_IN; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOG_OUT", function() { return LOG_OUT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_USER_INFO", function() { return FETCH_USER_INFO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SELECT_LEAGUE", function() { return SELECT_LEAGUE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DESELECT_LEAGUES", function() { return DESELECT_LEAGUES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_UPCOMING_NFL_GAMES", function() { return FETCH_UPCOMING_NFL_GAMES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_COMPLETED_NFL_GAMES", function() { return FETCH_COMPLETED_NFL_GAMES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_BETS", function() { return FETCH_BETS; });
@@ -74358,6 +74383,8 @@ __webpack_require__.r(__webpack_exports__);
 var LOG_IN = 'LOG_IN';
 var LOG_OUT = 'LOG_OUT';
 var FETCH_USER_INFO = 'FETCH_USER_INFO';
+var SELECT_LEAGUE = 'SELECT_LEAGUE';
+var DESELECT_LEAGUES = 'DESELECT_LEAGUES';
 var FETCH_UPCOMING_NFL_GAMES = 'FETCH_UPCOMING_NFL_GAMES';
 var FETCH_COMPLETED_NFL_GAMES = 'FETCH_COMPLETED_NFL_GAMES';
 var FETCH_BETS = 'FETCH_BETS';
@@ -74527,19 +74554,19 @@ function (_React$Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Sidebar__WEBPACK_IMPORTED_MODULE_11__["default"], {
-        open: this.state.open
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Overlay__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Overlay__WEBPACK_IMPORTED_MODULE_12__["default"], {
         open: this.state.open,
         close: this.close
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TopRow__WEBPACK_IMPORTED_MODULE_10__["default"], {
         open: this.openSidebar
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "ui container",
         id: "main"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Router"], {
         history: _history__WEBPACK_IMPORTED_MODULE_9__["default"]
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Sidebar__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        open: this.state.open
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/",
         exact: true,
         component: _Login__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -74562,7 +74589,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/games/:league",
         component: _Games__WEBPACK_IMPORTED_MODULE_7__["default"]
-      }))))));
+      })))));
     }
   }]);
 
@@ -74623,6 +74650,13 @@ function (_React$Component) {
 
     if (!sessionStorage.getItem("id")) {
       history.push("/");
+    } else {
+      if (!_this.props.loggedIn) {
+        var id = sessionStorage.getItem('id');
+        var token = sessionStorage.getItem('token');
+
+        _this.props.setLoggedIn(id, token);
+      }
     }
 
     return _this;
@@ -74631,6 +74665,7 @@ function (_React$Component) {
   _createClass(Bets, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.props.deselectLeagues();
       this.props.fetchBets();
     }
   }, {
@@ -74690,12 +74725,15 @@ function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    bets: state.bets
+    bets: state.bets,
+    loggedIn: state.auth.loggedIn
   };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, {
-  fetchBets: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchBets"]
+  deselectLeagues: _actions__WEBPACK_IMPORTED_MODULE_2__["deselectLeagues"],
+  fetchBets: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchBets"],
+  setLoggedIn: _actions__WEBPACK_IMPORTED_MODULE_2__["setLoggedIn"]
 })(Bets));
 
 /***/ }),
@@ -74785,20 +74823,21 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(GameBlock).call(this, props));
 
     _defineProperty(_assertThisInitialized(_this), "toggleBlock", function () {
-      console.log('toggling');
-      var wrapper = document.querySelector(".id-".concat(_this.props.game.id));
-      wrapper.classList.toggle('hidden');
+      var wrapper = document.querySelector(".bet-info-".concat(_this.props.game.id));
+      wrapper.classList.toggle("hidden");
+      var wrapper2 = document.querySelector(".game-block-".concat(_this.props.game.id));
+      wrapper2.classList.toggle("stacked");
     });
 
-    _defineProperty(_assertThisInitialized(_this), "wagerInput", function (e, odds) {
+    _defineProperty(_assertThisInitialized(_this), "wagerInputPress", function (e, odds) {
       var betAmount = e.target.value;
       var toWin;
 
-      if (betAmount != '') {
+      if (betAmount != "") {
         betAmount = +betAmount;
         toWin = betAmount * (odds - 1);
       } else {
-        toWin = '';
+        toWin = "";
       } // betAmount = betAmount.toFixed(2);
       // toWin = toWin.toFixed(2);
 
@@ -74809,15 +74848,15 @@ function (_React$Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "winInput", function (e, odds) {
+    _defineProperty(_assertThisInitialized(_this), "winInputPress", function (e, odds) {
       var toWin = e.target.value;
       var betAmount;
 
-      if (toWin != '') {
+      if (toWin != "") {
         toWin = +toWin;
         betAmount = toWin * (odds - 1);
       } else {
-        betAmount = '';
+        betAmount = "";
       } // betAmount = betAmount.toFixed(2);
       // toWin = toWin.toFixed(2);
 
@@ -74857,8 +74896,8 @@ function (_React$Component) {
     _this.state = {
       showModal: false,
       data: {},
-      betAmount: '',
-      toWin: '',
+      betAmount: "",
+      toWin: "",
       selectedBet: {
         id: null,
         side: null,
@@ -74880,34 +74919,34 @@ function (_React$Component) {
       if (this.state.showModal) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Modal__WEBPACK_IMPORTED_MODULE_2__["default"], {
           title: title,
-          content: this.renderContent(odds),
-          actions: this.renderActions(bet),
+          content: this.renderModalContent(odds),
+          actions: this.renderModalActions(bet),
           onDismiss: this.hideBetModal
         });
       }
     }
   }, {
-    key: "renderContent",
-    value: function renderContent(odds) {
+    key: "renderModalContent",
+    value: function renderModalContent(odds) {
       var _this2 = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Risk ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Risk", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
         value: this.state.betAmount,
         onChange: function onChange(e) {
-          return _this2.wagerInput(e, odds);
+          return _this2.wagerInputPress(e, odds);
         }
-      }), "to Win ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), "to Win", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "number",
         value: this.state.toWin,
         onChange: function onChange(e) {
-          return _this2.winInput(e, odds);
+          return _this2.winInputPress(e, odds);
         }
       }));
     }
   }, {
-    key: "renderActions",
-    value: function renderActions(bet) {
+    key: "renderModalActions",
+    value: function renderModalActions(bet) {
       var _this3 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -74932,16 +74971,16 @@ function (_React$Component) {
       if (side === "over" || side === "under") {
         data = {
           id: id,
-          bet_type: 'over_under',
+          bet_type: "over_under",
           over_under: rubric,
           position: side,
           odds: odds,
           wager: wager
         };
-      } else if (rubric === 'ML') {
+      } else if (rubric === "ML") {
         data = {
           id: id,
-          bet_type: 'moneyline',
+          bet_type: "moneyline",
           team: side,
           odds: odds,
           wager: wager
@@ -74949,7 +74988,7 @@ function (_React$Component) {
       } else {
         data = {
           id: id,
-          bet_type: 'point_spread',
+          bet_type: "point_spread",
           team: side,
           spread: rubric,
           odds: odds,
@@ -74957,64 +74996,90 @@ function (_React$Component) {
         };
       }
 
-      console.log(data); // let token = sessionStorage.getItem('token');
-      // axios.post(`/api/bets?api_token=${token}`, data).then(res => {
-      //     console.log(res);
-      // });
-
+      console.log(data);
       this.props.placeBet(data);
     }
   }, {
     key: "renderDate",
     value: function renderDate(time) {
-      var date = new Date(time * 1000);
-      return date.toLocaleString();
+      var dateObj = new Date(time * 1000);
+      var weekdayStr = dateObj.toLocaleDateString(undefined, {
+        weekday: "short"
+      }).toUpperCase();
+      var dateStr = dateObj.toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+      });
+      var timeStr = dateObj.toLocaleTimeString(undefined, {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "".concat(weekdayStr, " ").concat(dateStr), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, timeStr));
     }
   }, {
     key: "renderPointSpread",
     value: function renderPointSpread(id, team, spread, odds) {
       var formattedSpread = this.formatPointSpread(spread);
       var convertedOdds = this.convertEuroOdds(odds);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, team, " ", formattedSpread, " (", convertedOdds, ") ", this.renderBetArea(id, team, spread, odds));
+      var pointSpread = "".concat(team, " ").concat(formattedSpread, " (").concat(convertedOdds, ")");
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "eight wide column"
+      }, pointSpread);
     }
   }, {
     key: "formatPointSpread",
     value: function formatPointSpread(spread) {
-      if (spread && spread[0] !== '-') {
+      if (spread && spread[0] !== "-") {
         return "+".concat(spread);
       } else if (spread) {
         return spread;
       } else {
-        return "N/A";
+        return "PS";
       }
     }
   }, {
     key: "renderMoneyline",
     value: function renderMoneyline(id, team, odds) {
       var convertedOdds = this.convertEuroOdds(odds);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, team, " ML (", convertedOdds, ") ", this.renderBetArea(id, team, 'ML', odds));
+      var moneyline = "".concat(team, " ML (").concat(convertedOdds, ")");
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "eight wide column"
+      }, moneyline);
     }
   }, {
     key: "renderOverUnder",
-    value: function renderOverUnder(id, position) {
-      var total = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "N/A";
-      var odds = arguments.length > 3 ? arguments[3] : undefined;
+    value: function renderOverUnder(id, position, total, odds) {
+      position = position[0].toUpperCase() + position.slice(1);
+      if (!total) total = '';
       var convertedOdds = this.convertEuroOdds(odds);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, position, " ", total, " (", convertedOdds, ") ", this.renderBetArea(id, position, total, odds));
+      var overUnder = "".concat(position, " ").concat(total, " (").concat(convertedOdds, ")");
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "eight wide column"
+      }, overUnder);
     }
   }, {
-    key: "renderBetArea",
-    value: function renderBetArea(id, side, rubric, odds) {
+    key: "renderBetButtonArea",
+    value: function renderBetButtonArea(id, side, rubric, odds, bettingOpen) {
       var _this4 = this;
 
-      var disabled = !odds; // will return true if no odds
+      var disabled = true;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      if (odds && bettingOpen) {
+        disabled = false;
+      }
+
+      var classes = "ui button primary ".concat(disabled ? "disabled" : "");
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "eight wide right aligned column"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         disabled: disabled,
+        className: classes,
         onClick: function onClick() {
           return _this4.showBetModal(id, side, rubric, odds);
         }
-      }, "BET!");
+      }, "BET!"));
     }
   }, {
     key: "convertEuroOdds",
@@ -75025,27 +75090,89 @@ function (_React$Component) {
 
       if (odds < 2) {
         var num = odds - 1;
-        return '-' + Math.round(1 / num * 100);
+        return "-" + Math.round(1 / num * 100);
       } else {
-        return '+' + Math.round((odds - 1) * 100);
+        return "+" + Math.round((odds - 1) * 100);
       }
     }
   }, {
     key: "render",
     value: function render() {
       var game = this.props.game;
-      var id = game.id;
-      var convert = this.convertEuroOdds;
+      var id = game.id,
+          away_team = game.away_team,
+          home_team = game.home_team,
+          away_moneyline = game.away_moneyline,
+          home_moneyline = game.home_moneyline,
+          away_point_spread = game.away_point_spread,
+          home_point_spread = game.home_point_spread,
+          away_point_odds = game.away_point_odds,
+          home_point_odds = game.home_point_odds,
+          over_under = game.over_under,
+          over_odds = game.over_odds,
+          under_odds = game.under_odds;
+      var topText = "N/A";
+      var bottomText = "N/A";
+
+      if (away_point_spread) {
+        if (+away_point_spread < 0) {
+          topText = away_point_spread;
+          if (over_under) bottomText = "T:".concat(over_under);
+        } else {
+          if (over_under) topText = "T:".concat(over_under);
+          bottomText = home_point_spread;
+        }
+      }
+
+      var date = new Date();
+      var bettingOpen = true;
+
+      if (game.unix_start_time * 1000 < date.getTime()) {
+        bettingOpen = false;
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "game-block"
+        className: "game-block game-block-".concat(id, " ui stacked segments")
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "game-info",
+        className: "game-info ui ".concat(bettingOpen ? 'blue' : 'black', " segment"),
         onClick: this.toggleBlock
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderDate(game.unix_start_time)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, game.away_team), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, game.home_team)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "ui divider"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "bet-info hidden id-".concat(id)
-      }, this.renderPointSpread(id, game.away_team, game.away_point_spread, game.away_point_odds), this.renderPointSpread(id, game.home_team, game.home_point_spread, game.home_point_odds), this.renderMoneyline(id, game.away_team, game.away_moneyline), this.renderMoneyline(id, game.home_team, game.home_moneyline), this.renderOverUnder(id, "over", game.over_under, game.over_odds), this.renderOverUnder(id, "under", game.over_under, game.under_odds), this.renderBetModal(this.state.selectedBet)));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "ui grid"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "eight wide column"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, bettingOpen ? 'Betting Open' : 'Betting Closed')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "right aligned eight wide column"
+      }, this.renderDate(game.unix_start_time))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "eight wide column"
+      }, away_team), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "eight wide right aligned column"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, topText))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "eight wide column"
+      }, home_team), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "eight wide right aligned column"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, bottomText))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "bet-info hidden bet-info-".concat(id, " ui segment")
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "ui middle aligned grid"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, this.renderPointSpread(id, away_team, away_point_spread, away_point_odds), this.renderBetButtonArea(id, away_team, away_point_spread, away_point_odds, bettingOpen)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, this.renderPointSpread(id, home_team, home_point_spread, home_point_odds), this.renderBetButtonArea(id, home_team, home_point_spread, home_point_odds, bettingOpen)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, this.renderMoneyline(id, away_team, away_moneyline), this.renderBetButtonArea(id, away_team, 'ML', away_moneyline, bettingOpen)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, this.renderMoneyline(id, home_team, home_moneyline), this.renderBetButtonArea(id, home_team, 'ML', home_moneyline, bettingOpen)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, this.renderOverUnder(id, "over", over_under, over_odds), this.renderBetButtonArea(id, "over", over_under, over_odds, bettingOpen)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, this.renderOverUnder(id, "under", over_under, under_odds), this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen)), this.renderBetModal(this.state.selectedBet))));
     }
   }]);
 
@@ -75114,6 +75241,13 @@ function (_React$Component) {
 
     if (!sessionStorage.getItem("id")) {
       _history__WEBPACK_IMPORTED_MODULE_5__["default"].push("/");
+    } else {
+      if (!_this.props.loggedIn) {
+        var id = sessionStorage.getItem('id');
+        var token = sessionStorage.getItem('token');
+
+        _this.props.setLoggedIn(id, token);
+      }
     }
 
     return _this;
@@ -75122,13 +75256,15 @@ function (_React$Component) {
   _createClass(Games, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchUpcomingNFLGames();
-      this.props.fetchCompletedNFLGames();
+      var league = this.props.match.params.league;
+      this.props.selectLeague(league);
+      this.props.fetchUpcomingGames(league);
+      this.props.fetchCompletedGames(league);
     }
   }, {
     key: "renderUpcomingGames",
-    value: function renderUpcomingGames() {
-      return this.props.nfl.upcoming.map(function (game) {
+    value: function renderUpcomingGames(league) {
+      return this.props[league].upcoming.map(function (game) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: game.id
         }, game.away_team, " at ", game.home_team);
@@ -75136,8 +75272,8 @@ function (_React$Component) {
     }
   }, {
     key: "renderCompletedGames",
-    value: function renderCompletedGames() {
-      return this.props.nfl.completed.map(function (game) {
+    value: function renderCompletedGames(league) {
+      return this.props[league].completed.map(function (game) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: game.id
         }, game.away_team, " at ", game.home_team);
@@ -75145,8 +75281,8 @@ function (_React$Component) {
     }
   }, {
     key: "renderGames",
-    value: function renderGames(status) {
-      return this.props.nfl[status].map(function (game) {
+    value: function renderGames(league, status) {
+      return this.props[league][status].map(function (game) {
         return (// <div key={game.id}>{game.away_team} at {game.home_team}</div>
           react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GameBlock__WEBPACK_IMPORTED_MODULE_3__["default"], {
             key: game.id,
@@ -75158,9 +75294,24 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Link"], {
-        to: "/home"
-      }, "HOME PAGE"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.match.params.league), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "UPCOMING GAMES")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.nfl.upcoming ? this.renderGames('upcoming') : "Loading..."));
+      var league = this.props.league;
+      var gamesRetrieved = false;
+
+      if (league && this.props[league].upcoming) {
+        gamesRetrieved = true;
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "ui centered grid"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "eight wide column center aligned"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "ui blue segment"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "UPCOMING GAMES")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "twelve wide column"
+      }, gamesRetrieved ? this.renderGames(league, 'upcoming') : "Loading..."));
     }
   }]);
 
@@ -75169,16 +75320,40 @@ function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    league: state.games.league,
     nfl: {
       upcoming: state.games.nfl.upcoming,
       completed: state.games.nfl.completed
-    }
+    },
+    nba: {
+      upcoming: state.games.nba.upcoming,
+      completed: state.games.nba.completed
+    },
+    mlb: {
+      upcoming: state.games.mlb.upcoming,
+      completed: state.games.mlb.completed
+    },
+    nhl: {
+      upcoming: state.games.nhl.upcoming,
+      completed: state.games.nhl.completed
+    },
+    cfb: {
+      upcoming: state.games.cfb.upcoming,
+      completed: state.games.cfb.completed
+    },
+    cbb: {
+      upcoming: state.games.cbb.upcoming,
+      completed: state.games.cbb.completed
+    },
+    loggedIn: state.auth.loggedIn
   };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, {
-  fetchUpcomingNFLGames: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchUpcomingNFLGames"],
-  fetchCompletedNFLGames: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchCompletedNFLGames"]
+  selectLeague: _actions__WEBPACK_IMPORTED_MODULE_2__["selectLeague"],
+  fetchUpcomingGames: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchUpcomingGames"],
+  fetchCompletedGames: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchCompletedGames"],
+  setLoggedIn: _actions__WEBPACK_IMPORTED_MODULE_2__["setLoggedIn"]
 })(Games));
 
 /***/ }),
@@ -75225,8 +75400,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _Header_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header.css */ "./resources/js/components/Header.css");
-/* harmony import */ var _Header_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Header_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _Header_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Header.css */ "./resources/js/components/Header.css");
+/* harmony import */ var _Header_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Header_css__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -75249,28 +75425,29 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Header =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(Header, _React$Component);
 
-  function Header() {
+  function Header(props) {
+    var _this;
+
     _classCallCheck(this, Header);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Header).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Header).call(this, props));
+    console.log(_this.props);
+    _this.state = {
+      league: null
+    };
+    return _this;
   }
 
   _createClass(Header, [{
-    key: "logOut",
-    value: function logOut() {
-      axios.post('/logout').then(function (res) {
-        console.log(res);
-        location.reload();
-      }); // console.log('hello');
-    }
-  }, {
     key: "render",
     value: function render() {
+      var league = this.props.league;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "ui centered padded grid leagues"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -75278,11 +75455,13 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "two wide center aligned column sports-league"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/games/nfl"
+        to: "/games/nfl",
+        className: league == 'nfl' ? 'selected' : ''
       }, "NFL")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "two wide center aligned column sports-league"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/games/nba"
+        to: "/games/nba",
+        className: league == 'nba' ? 'selected' : ''
       }, "NBA")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "two wide center aligned column sports-league"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -75306,7 +75485,13 @@ function (_React$Component) {
   return Header;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Header);
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    league: state.games.league
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps)(Header));
 
 /***/ }),
 
@@ -75369,6 +75554,15 @@ function (_React$Component) {
 
     if (!sessionStorage.getItem('id')) {
       _history__WEBPACK_IMPORTED_MODULE_4__["default"].push('/');
+    } else {
+      if (!_this.props.loggedIn) {
+        var id = sessionStorage.getItem('id');
+        var token = sessionStorage.getItem('token');
+
+        _this.props.setLoggedIn(id, token);
+
+        console.log('setting logged in');
+      }
     }
 
     return _this;
@@ -75377,6 +75571,7 @@ function (_React$Component) {
   _createClass(Home, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.props.deselectLeagues();
       this.props.fetchUserInfo(sessionStorage.getItem('id'));
     }
   }, {
@@ -75390,7 +75585,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "ui raised segment"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        "class": "icon user outline"
+        className: "icon user outline"
       }), " Hello ", this.props.name, "!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Your bankroll is $", this.props.bankroll, " and have $", this.props.money_in_play, " in play"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/bets",
         className: "ui button primary"
@@ -75419,8 +75614,10 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, {
+  deselectLeagues: _actions__WEBPACK_IMPORTED_MODULE_2__["deselectLeagues"],
   logOut: _actions__WEBPACK_IMPORTED_MODULE_2__["logOut"],
-  fetchUserInfo: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchUserInfo"]
+  fetchUserInfo: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchUserInfo"],
+  setLoggedIn: _actions__WEBPACK_IMPORTED_MODULE_2__["setLoggedIn"]
 })(Home));
 
 /***/ }),
@@ -75754,15 +75951,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 
 var Sidebar = function Sidebar(props) {
-  var classes = "ui left demo vertical inverted sidebar push labeled icon menu ".concat(props.open ? 'visible' : '');
+  var classes = "ui left demo vertical inverted sidebar push pull labeled icon menu ".concat(props.open ? 'visible' : '');
   return react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.createPortal(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    className: "item",
+    to: "/home"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "home icon"
   }), "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -75821,8 +76021,9 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _TopRow_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TopRow.css */ "./resources/js/components/TopRow.css");
-/* harmony import */ var _TopRow_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_TopRow_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _TopRow_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TopRow.css */ "./resources/js/components/TopRow.css");
+/* harmony import */ var _TopRow_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_TopRow_css__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -75844,6 +76045,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var TopRow =
 /*#__PURE__*/
 function (_React$Component) {
@@ -75858,11 +76060,27 @@ function (_React$Component) {
   _createClass(TopRow, [{
     key: "renderButton",
     value: function renderButton() {
+      var style, clickFunction;
+
+      if (!this.props.loggedIn) {
+        style = {
+          opacity: 0.5
+        };
+
+        clickFunction = function clickFunction() {};
+      } else {
+        style = {
+          opacity: 1
+        };
+        clickFunction = this.props.open;
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "/img/hamburger-button.png",
         alt: "",
         className: "hamburger",
-        onClick: this.props.open
+        onClick: clickFunction,
+        style: style
       });
     }
   }, {
@@ -75879,7 +76097,13 @@ function (_React$Component) {
   return TopRow;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (TopRow);
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    loggedIn: state.auth.loggedIn
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(TopRow));
 
 /***/ }),
 
@@ -75932,6 +76156,13 @@ function (_React$Component) {
 
     if (!sessionStorage.getItem('id')) {
       history.push('/');
+    } else {
+      if (!_this.props.loggedIn) {
+        var id = sessionStorage.getItem('id');
+        var token = sessionStorage.getItem('token');
+
+        _this.props.setLoggedIn(id, token);
+      }
     }
 
     return _this;
@@ -75940,6 +76171,7 @@ function (_React$Component) {
   _createClass(Transactions, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.props.deselectLeagues();
       this.props.fetchUserInfo(sessionStorage.getItem('id'));
       this.props.getTransactions();
     }
@@ -75970,14 +76202,17 @@ var mapStateToProps = function mapStateToProps(state) {
   return {
     transactions: state.transactions,
     bankroll: state.user.bankroll,
-    money_in_play: state.user.money_in_play
+    money_in_play: state.user.money_in_play,
+    loggedIn: state.auth.loggedIn
   };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, {
+  deselectLeagues: _actions__WEBPACK_IMPORTED_MODULE_2__["deselectLeagues"],
   fetchUserInfo: _actions__WEBPACK_IMPORTED_MODULE_2__["fetchUserInfo"],
   getTransactions: _actions__WEBPACK_IMPORTED_MODULE_2__["getTransactions"],
-  addTransaction: _actions__WEBPACK_IMPORTED_MODULE_2__["addTransaction"]
+  addTransaction: _actions__WEBPACK_IMPORTED_MODULE_2__["addTransaction"],
+  setLoggedIn: _actions__WEBPACK_IMPORTED_MODULE_2__["setLoggedIn"]
 })(Transactions));
 
 /***/ }),
@@ -76145,6 +76380,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var INITIAL_STATE = {
+  league: '',
   nfl: {
     upcoming: null,
     completed: null
@@ -76177,6 +76413,14 @@ var INITIAL_STATE = {
   var newState = _objectSpread({}, state);
 
   switch (action.type) {
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SELECT_LEAGUE"]:
+      newState.league = action.payload;
+      return newState;
+
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["DESELECT_LEAGUES"]:
+      newState.league = '';
+      return newState;
+
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__["FETCH_UPCOMING_NFL_GAMES"]:
       newState.nfl.upcoming = action.payload;
       return newState;

@@ -1,6 +1,7 @@
-import { FETCH_UPCOMING_NFL_GAMES, FETCH_COMPLETED_NFL_GAMES } from "../actions/types";
+import { SELECT_LEAGUE, DESELECT_LEAGUES, FETCH_UPCOMING_NFL_GAMES, FETCH_COMPLETED_NFL_GAMES } from "../actions/types";
 
 const INITIAL_STATE = {
+    league: '',
     nfl: {
         upcoming: null,
         completed: null
@@ -30,6 +31,12 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     let newState = {...state};
     switch (action.type) {
+        case SELECT_LEAGUE:
+            newState.league = action.payload;
+            return newState;
+        case DESELECT_LEAGUES:
+            newState.league = '';
+            return newState;
         case FETCH_UPCOMING_NFL_GAMES:
             newState.nfl.upcoming = action.payload;
             return newState;

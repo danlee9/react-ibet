@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { logOut, fetchUserInfo } from "../actions";
+import { deselectLeagues, logOut, fetchUserInfo, setLoggedIn } from "../actions";
 import { Link } from "react-router-dom";
 import history from '../history';
 
@@ -9,10 +9,18 @@ class Home extends React.Component {
         super(props);
         if (!sessionStorage.getItem('id')) {
             history.push('/');
+        } else {
+            if (!this.props.loggedIn) {
+                let id = sessionStorage.getItem('id');
+                let token = sessionStorage.getItem('token');
+                this.props.setLoggedIn(id, token);
+                console.log('setting logged in');
+            }
         }
     }
 
     componentDidMount() {
+        this.props.deselectLeagues();
         this.props.fetchUserInfo(sessionStorage.getItem('id'));
     }
 
@@ -26,7 +34,7 @@ class Home extends React.Component {
             <div className="ui centered grid">
                 <div className="twelve wide center aligned column">
                     <div className="ui raised segment">
-                        <h1><i class="icon user outline"></i> Hello {this.props.name}!</h1>
+                        <h1><i className="icon user outline"></i> Hello {this.props.name}!</h1>
                         <h3>Your bankroll is ${this.props.bankroll} and have ${this.props.money_in_play} in play</h3>
                         <div>
                             <Link to="/bets" className="ui button primary">Bet History</Link> <Link to="/transactions" className="ui button positive">Transactions</Link>
@@ -54,5 +62,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { logOut, fetchUserInfo }
+    { deselectLeagues, logOut, fetchUserInfo, setLoggedIn }
 )(Home);

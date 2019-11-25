@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { fetchBets } from "../actions";
+import { deselectLeagues, fetchBets, setLoggedIn } from "../actions";
 
 class Bets extends React.Component {
     constructor(props) {
@@ -8,10 +8,17 @@ class Bets extends React.Component {
         super(props);
         if (!sessionStorage.getItem("id")) {
             history.push("/");
+        } else {
+            if (!this.props.loggedIn) {
+                let id = sessionStorage.getItem('id');
+                let token = sessionStorage.getItem('token');
+                this.props.setLoggedIn(id, token);
+            }
         }
     }
 
     componentDidMount() {
+        this.props.deselectLeagues();
         this.props.fetchBets();
     }
 
@@ -64,7 +71,10 @@ class Bets extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { bets: state.bets };
+    return { 
+        bets: state.bets,
+        loggedIn: state.auth.loggedIn 
+    };
 };
 
-export default connect(mapStateToProps, {fetchBets})(Bets);
+export default connect(mapStateToProps, {deselectLeagues, fetchBets, setLoggedIn})(Bets);

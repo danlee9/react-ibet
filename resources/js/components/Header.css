@@ -25,7 +25,7 @@
     cursor: pointer;
 }
 
-.sports-league a:hover {
+.sports-league a:hover, .sports-league a.selected {
     color: deepskyblue;
 }
 

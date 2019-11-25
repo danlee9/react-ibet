@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from "react-router-dom";
 
 const Sidebar = props => {
-    let classes = `ui left demo vertical inverted sidebar push labeled icon menu ${props.open ? 'visible' : ''}`;
+    let classes = `ui left demo vertical inverted sidebar push pull labeled icon menu ${props.open ? 'visible' : ''}`;
     return ReactDOM.createPortal(
         <div className={classes}>
-            <a className="item">
+            <Link className="item" to="/home">
                 <i className="home icon"></i>
                 Home
-            </a>
+            </Link>
             <a className="item">
                 <i className="block layout icon"></i>
                 Topics

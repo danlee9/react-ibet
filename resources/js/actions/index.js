@@ -1,7 +1,9 @@
 import { 
     LOG_IN, 
     LOG_OUT, 
-    FETCH_USER_INFO, 
+    FETCH_USER_INFO,
+    SELECT_LEAGUE,
+    DESELECT_LEAGUES,
     FETCH_UPCOMING_NFL_GAMES, 
     FETCH_COMPLETED_NFL_GAMES, 
     FETCH_BETS,
@@ -10,6 +12,16 @@ import {
     ADD_TRANSACTION
 } from "./types";
 import history from '../history';
+
+export const setLoggedIn = (id, token) =>  {
+    return {
+        type: LOG_IN,
+        payload: {
+            id,
+            token
+        }
+    }
+}
 
 export const logIn = (email, password) => async (dispatch) => {
     const user = await axios.post('/login', {email, password});
@@ -38,13 +50,26 @@ export const fetchUserInfo = id => async (dispatch) => {
     dispatch({type: FETCH_USER_INFO, payload});
 }
 
-export const fetchUpcomingNFLGames = () => async dispatch => {
-    const response = await axios.get('/api/games/nfl/upcoming');
+export const selectLeague = league => {
+    return {
+        type: SELECT_LEAGUE,
+        payload: league
+    };
+}
+
+export const deselectLeagues = () => {
+    return {
+        type: DESELECT_LEAGUES
+    };
+}
+
+export const fetchUpcomingGames = league => async dispatch => {
+    const response = await axios.get(`/api/games/${league}/upcoming`);
     dispatch({type: FETCH_UPCOMING_NFL_GAMES, payload: response.data});
 }
 
-export const fetchCompletedNFLGames = () => async dispatch => {
-    const response = await axios.get('/api/games/nfl/completed');
+export const fetchCompletedGames = league => async dispatch => {
+    const response = await axios.get(`/api/games/${league}/upcoming`);
     dispatch({type: FETCH_COMPLETED_NFL_GAMES, payload: response.data});
 }
 

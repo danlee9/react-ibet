@@ -11,7 +11,14 @@
     transition: all 3s;
 }
 
-.overlay.show {
+/* .overlay.show {
     display: block;
-    opacity: 0.5;
+    opacity: 0.7;
+}
+.ui.overlay .loader {
+    display: block;
+} */
+
+.ui.dimmer.overlay {
+    z-index: 10;
 }

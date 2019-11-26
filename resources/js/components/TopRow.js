@@ -13,7 +13,7 @@ class TopRow extends React.Component {
             style = { opacity: 0.5 };
             clickFunction = () => {};
         } else {
-            style = { opacity: 1 };
+            style = { opacity: 1, height: '34px' };
             clickFunction = this.props.open;
         }
         return <img src="/img/hamburger-button.png" alt="" className="hamburger" onClick={clickFunction} style={style}/>;
@@ -21,7 +21,7 @@ class TopRow extends React.Component {
 
     render() {
         return (
-            <div style={{padding: '10px'}}>
+            <div style={{padding: '10px', position: "fixed"}} className="ui compact image segment">
                 {this.renderButton()}
             </div>
         );

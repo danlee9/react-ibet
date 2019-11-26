@@ -34,6 +34,10 @@ class GameBlock extends React.Component {
 
     renderBetModal(bet) {
         let { side, rubric, odds } = bet;
+        if (side === 'over' || side === 'under')
+            side = side[0].toUpperCase() + side.slice(1);
+        else if (rubric !== 'ML')
+            rubric = this.formatPointSpread(rubric);
         let title = `${side} ${rubric} (${this.convertEuroOdds(odds)})`;
         if (this.state.showModal) {
             return (
@@ -49,18 +53,20 @@ class GameBlock extends React.Component {
 
     renderModalContent(odds) {
         return (
-            <span>
-                Risk{" "}
+            <span className="ui labeled input">
+                <label htmlFor="risk" className="ui label">Risk $</label>
                 <input
                     type="number"
                     value={this.state.betAmount}
                     onChange={e => this.wagerInputPress(e, odds)}
+                    id="risk"
                 />
-                to Win{" "}
+                <label htmlFor="toWin" className="ui label">To Win $</label>
                 <input
                     type="number"
                     value={this.state.toWin}
                     onChange={e => this.winInputPress(e, odds)}
+                    id="toWin"
                 />
             </span>
         );
@@ -97,15 +103,14 @@ class GameBlock extends React.Component {
     renderModalActions(bet) {
         return (
             <>
+                <button className="ui button" onClick={this.hideBetModal}>
+                    Cancel
+                </button>
                 <button
                     onClick={() => this.placeBet(bet, this.state.betAmount)}
                     className="ui primary button"
                 >
-                    BET!!!
-                </button>
-                {/* <Link to="/" className="ui button">Cancel</Link> */}
-                <button className="ui button" onClick={this.hideBetModal}>
-                    Cancel
+                    BET <i className="right chevron icon"></i>
                 </button>
             </>
         );
@@ -180,7 +185,7 @@ class GameBlock extends React.Component {
         );
     }
 
-    renderPointSpread(id, team, spread, odds) {
+    renderPointSpread(team, spread, odds) {
         let formattedSpread = this.formatPointSpread(spread);
         let convertedOdds = this.convertEuroOdds(odds);
         let pointSpread = `${team} ${formattedSpread} (${convertedOdds})`;
@@ -197,13 +202,13 @@ class GameBlock extends React.Component {
         }
     }
 
-    renderMoneyline(id, team, odds) {
+    renderMoneyline(team, odds) {
         let convertedOdds = this.convertEuroOdds(odds);
         let moneyline = `${team} ML (${convertedOdds})`;
         return <div className="eight wide column">{moneyline}</div>;
     }
 
-    renderOverUnder(id, position, total, odds) {
+    renderOverUnder(position, total, odds) {
         position = position[0].toUpperCase() + position.slice(1);
         if (!total) total = '';
         let convertedOdds = this.convertEuroOdds(odds);
@@ -306,27 +311,27 @@ class GameBlock extends React.Component {
                 <div className={`bet-info hidden bet-info-${id} ui segment`}>
                     <div className="ui middle aligned grid">
                         <div className="row">
-                            {this.renderPointSpread(id, away_team, away_point_spread, away_point_odds)}
+                            {this.renderPointSpread(away_team, away_point_spread, away_point_odds)}
                             {this.renderBetButtonArea(id, away_team, away_point_spread, away_point_odds, bettingOpen)}
                         </div>
                         <div className="row">
-                            {this.renderPointSpread(id, home_team, home_point_spread, home_point_odds)}
+                            {this.renderPointSpread(home_team, home_point_spread, home_point_odds)}
                             {this.renderBetButtonArea(id, home_team, home_point_spread, home_point_odds, bettingOpen)}
                         </div>
                         <div className="row">
-                            {this.renderMoneyline(id, away_team, away_moneyline)}
+                            {this.renderMoneyline(away_team, away_moneyline)}
                             {this.renderBetButtonArea(id, away_team, 'ML', away_moneyline, bettingOpen)}
                         </div>
                         <div className="row">
-                            {this.renderMoneyline(id, home_team, home_moneyline)}
+                            {this.renderMoneyline(home_team, home_moneyline)}
                             {this.renderBetButtonArea(id, home_team, 'ML', home_moneyline, bettingOpen)}
                         </div>
                         <div className="row">
-                            {this.renderOverUnder(id, "over", over_under, over_odds)}
+                            {this.renderOverUnder("over", over_under, over_odds)}
                             {this.renderBetButtonArea(id, "over", over_under, over_odds, bettingOpen)}
                         </div>
                         <div className="row">
-                            {this.renderOverUnder(id, "under", over_under, under_odds)}
+                            {this.renderOverUnder("under", over_under, under_odds)}
                             {this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen)}
                         </div>
                         {this.renderBetModal(this.state.selectedBet)}

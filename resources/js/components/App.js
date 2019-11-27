@@ -1,6 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Router, Route, Switch } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+
+import { logOut } from "../actions";
 
 import Login from "./Login";
 import Home from './Home';
@@ -16,11 +19,15 @@ import Overlay from './Overlay';
 import './App.css';
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            open: false
-        };
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         open: false
+    //     };
+    // }
+
+    state = {
+        open: false
     }
 
     openSidebar = () => {
@@ -41,18 +48,28 @@ class App extends React.Component {
         wrapper.classList.toggle('dimmer');
     }
 
+    logOut = () => {
+        this.props.logOut();
+    }
+
     render() {
         return (
             <div>
-                <Overlay open={this.state.open} close={this.close}/>
                 <TopRow open={this.openSidebar}/>
+                <TransitionGroup>
+                    <CSSTransition timeout={300} classNames='fade'>
+                        <Overlay open={this.state.open} close={this.close}/>
+                    </CSSTransition>
+                </TransitionGroup>
+                {/* <Overlay open={this.state.open} close={this.close}/> */}
+                
                 <div className="ui container" id="main" style={{paddingTop: '60px'}}>
                     <Router history={history}>
                         <Route render={({location}) => (
                             <div>
-                                <Sidebar open={this.state.open}/>
+                                <Sidebar open={this.state.open} logOut={this.logOut}/>
                                 <Header />
-                                <TransitionGroup className="transition-group">
+                                <TransitionGroup className="transition-group">  
                                     <CSSTransition key={location.key} timeout={300} classNames='fade'>
                                         <div className="route-section">
                                             <Switch location={location}>                                            
@@ -88,4 +105,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default connect(null, { logOut })(App);

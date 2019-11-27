@@ -76453,21 +76453,23 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_transition_group__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-transition-group */ "./node_modules/react-transition-group/esm/index.js");
-/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Login */ "./resources/js/components/Login.js");
-/* harmony import */ var _Home__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Home */ "./resources/js/components/Home.js");
-/* harmony import */ var _Bets__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Bets */ "./resources/js/components/Bets.js");
-/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Header */ "./resources/js/components/Header.js");
-/* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Menu */ "./resources/js/components/Menu.js");
-/* harmony import */ var _Games__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Games */ "./resources/js/components/Games.js");
-/* harmony import */ var _Transactions__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Transactions */ "./resources/js/components/Transactions.js");
-/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../history */ "./resources/js/history.js");
-/* harmony import */ var _TopRow__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./TopRow */ "./resources/js/components/TopRow.js");
-/* harmony import */ var _Sidebar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Sidebar */ "./resources/js/components/Sidebar.js");
-/* harmony import */ var _Overlay__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Overlay */ "./resources/js/components/Overlay.js");
-/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./App.css */ "./resources/js/components/App.css");
-/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_transition_group__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-transition-group */ "./node_modules/react-transition-group/esm/index.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions */ "./resources/js/actions/index.js");
+/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Login */ "./resources/js/components/Login.js");
+/* harmony import */ var _Home__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Home */ "./resources/js/components/Home.js");
+/* harmony import */ var _Bets__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Bets */ "./resources/js/components/Bets.js");
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Header */ "./resources/js/components/Header.js");
+/* harmony import */ var _Menu__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Menu */ "./resources/js/components/Menu.js");
+/* harmony import */ var _Games__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Games */ "./resources/js/components/Games.js");
+/* harmony import */ var _Transactions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Transactions */ "./resources/js/components/Transactions.js");
+/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../history */ "./resources/js/history.js");
+/* harmony import */ var _TopRow__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./TopRow */ "./resources/js/components/TopRow.js");
+/* harmony import */ var _Sidebar__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Sidebar */ "./resources/js/components/Sidebar.js");
+/* harmony import */ var _Overlay__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Overlay */ "./resources/js/components/Overlay.js");
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./App.css */ "./resources/js/components/App.css");
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_16__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -76504,17 +76506,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
+
 var App =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(App, _React$Component);
 
-  function App(props) {
+  function App() {
+    var _getPrototypeOf2;
+
     var _this;
 
     _classCallCheck(this, App);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(App)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      open: false
+    });
 
     _defineProperty(_assertThisInitialized(_this), "openSidebar", function () {
       if (_this.state.open) {
@@ -76542,9 +76556,10 @@ function (_React$Component) {
       wrapper.classList.toggle('dimmer');
     });
 
-    _this.state = {
-      open: false
-    };
+    _defineProperty(_assertThisInitialized(_this), "logOut", function () {
+      _this.props.logOut();
+    });
+
     return _this;
   }
 
@@ -76553,57 +76568,61 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Overlay__WEBPACK_IMPORTED_MODULE_13__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TopRow__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        open: this.openSidebar
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_transition_group__WEBPACK_IMPORTED_MODULE_3__["TransitionGroup"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_transition_group__WEBPACK_IMPORTED_MODULE_3__["CSSTransition"], {
+        timeout: 300,
+        classNames: "fade"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Overlay__WEBPACK_IMPORTED_MODULE_15__["default"], {
         open: this.state.open,
         close: this.close
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TopRow__WEBPACK_IMPORTED_MODULE_11__["default"], {
-        open: this.openSidebar
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "ui container",
         id: "main",
         style: {
           paddingTop: '60px'
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Router"], {
-        history: _history__WEBPACK_IMPORTED_MODULE_10__["default"]
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Router"], {
+        history: _history__WEBPACK_IMPORTED_MODULE_12__["default"]
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         render: function render(_ref) {
           var location = _ref.location;
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Sidebar__WEBPACK_IMPORTED_MODULE_12__["default"], {
-            open: _this2.state.open
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_6__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_transition_group__WEBPACK_IMPORTED_MODULE_2__["TransitionGroup"], {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Sidebar__WEBPACK_IMPORTED_MODULE_14__["default"], {
+            open: _this2.state.open,
+            logOut: _this2.logOut
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_8__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_transition_group__WEBPACK_IMPORTED_MODULE_3__["TransitionGroup"], {
             className: "transition-group"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_transition_group__WEBPACK_IMPORTED_MODULE_2__["CSSTransition"], {
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_transition_group__WEBPACK_IMPORTED_MODULE_3__["CSSTransition"], {
             key: location.key,
             timeout: 300,
             classNames: "fade"
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "route-section"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], {
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], {
             location: location
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
             path: "/",
             exact: true,
-            component: _Login__WEBPACK_IMPORTED_MODULE_3__["default"]
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+            component: _Login__WEBPACK_IMPORTED_MODULE_5__["default"]
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
             path: "/home",
             exact: true,
-            component: _Home__WEBPACK_IMPORTED_MODULE_4__["default"]
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+            component: _Home__WEBPACK_IMPORTED_MODULE_6__["default"]
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
             path: "/bets",
             exact: true,
-            component: _Bets__WEBPACK_IMPORTED_MODULE_5__["default"]
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+            component: _Bets__WEBPACK_IMPORTED_MODULE_7__["default"]
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
             path: "/transactions",
             exact: true,
-            component: _Transactions__WEBPACK_IMPORTED_MODULE_9__["default"]
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+            component: _Transactions__WEBPACK_IMPORTED_MODULE_11__["default"]
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
             path: "/menu",
             exact: true,
-            component: _Menu__WEBPACK_IMPORTED_MODULE_7__["default"]
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+            component: _Menu__WEBPACK_IMPORTED_MODULE_9__["default"]
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
             path: "/games/:league",
-            component: _Games__WEBPACK_IMPORTED_MODULE_8__["default"]
+            component: _Games__WEBPACK_IMPORTED_MODULE_10__["default"]
           }))))));
         }
       }))));
@@ -76613,7 +76632,9 @@ function (_React$Component) {
   return App;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (App);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(null, {
+  logOut: _actions__WEBPACK_IMPORTED_MODULE_4__["logOut"]
+})(App));
 
 /***/ }),
 
@@ -77953,15 +77974,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Overlay_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Overlay.css */ "./resources/js/components/Overlay.css");
-/* harmony import */ var _Overlay_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Overlay_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_transition_group__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-transition-group */ "./node_modules/react-transition-group/esm/index.js");
+/* harmony import */ var _Overlay_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Overlay.css */ "./resources/js/components/Overlay.css");
+/* harmony import */ var _Overlay_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Overlay_css__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
 
 var Overlay = function Overlay(props) {
   var classes = "ui overlay ".concat(props.open ? 'show dimmer active' : '');
-  return react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.createPortal(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.createPortal(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_transition_group__WEBPACK_IMPORTED_MODULE_2__["TransitionGroup"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_transition_group__WEBPACK_IMPORTED_MODULE_2__["CSSTransition"], {
+    timeout: 300,
+    classNames: "fade"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes,
     onClick: props.close,
     style: {
@@ -77972,7 +77998,7 @@ var Overlay = function Overlay(props) {
     style: {
       color: 'dodgerblue'
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Loading"))), document.querySelector('#overlay'));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Loading"))))), document.querySelector('#overlay'));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Overlay);
@@ -78006,15 +78032,27 @@ var Sidebar = function Sidebar(props) {
     to: "/home"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "home icon"
-  }), "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "item"
+  }), "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    className: "item",
+    to: "/games/nfl"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "block layout icon"
-  }), "Topics"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "item"
+    "class": "football ball icon"
+  }), "Games"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    className: "item",
+    to: "/bets"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "smile icon"
-  }), "Friends")), document.querySelector('#sidebar'));
+    "class": "archive icon"
+  }), "Bets"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    className: "item",
+    to: "/transactions"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    "class": "credit card icon"
+  }), "Transactions"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "item",
+    onClick: props.logOut
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "sign-out icon"
+  }), "Sign Out")), document.querySelector('#sidebar'));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Sidebar);

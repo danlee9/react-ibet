@@ -10,13 +10,21 @@ const Sidebar = props => {
                 <i className="home icon"></i>
                 Home
             </Link>
-            <a className="item">
-                <i className="block layout icon"></i>
-                Topics
-            </a>
-            <a className="item">
-                <i className="smile icon"></i>
-                Friends
+            <Link className="item" to="/games/nfl">
+                <i class="football ball icon"></i>
+                Games
+            </Link>
+            <Link className="item" to="/bets">
+                <i class="archive icon"></i>
+                Bets
+            </Link>
+            <Link className="item" to="/transactions">
+                <i class="credit card icon"></i>
+                Transactions
+            </Link>
+            <a className="item" onClick={props.logOut}>
+                <i className="sign-out icon"></i>
+                Sign Out
             </a>
         </div>,
         document.querySelector('#sidebar')

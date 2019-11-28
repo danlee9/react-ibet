@@ -11,15 +11,15 @@ const Sidebar = props => {
                 Home
             </Link>
             <Link className="item" to="/games/nfl">
-                <i class="football ball icon"></i>
+                <i className="football ball icon"></i>
                 Games
             </Link>
             <Link className="item" to="/bets">
-                <i class="archive icon"></i>
+                <i className="archive icon"></i>
                 Bets
             </Link>
             <Link className="item" to="/transactions">
-                <i class="credit card icon"></i>
+                <i className="credit card icon"></i>
                 Transactions
             </Link>
             <a className="item" onClick={props.logOut}>

@@ -5,21 +5,18 @@ import { connect } from "react-redux";
 import { placeBet } from "../actions";
 
 class GameBlock extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showModal: false,
-            data: {},
-            betAmount: "",
-            toWin: "",
-            selectedBet: {
-                id: null,
-                side: null,
-                rubric: null,
-                odds: null
-            }
-        };
-    }
+    state = {
+        showModal: false,
+        data: {},
+        betAmount: "",
+        toWin: "",
+        selectedBet: {
+            id: null,
+            side: null,
+            rubric: null,
+            odds: null
+        }
+    };
 
     toggleBlock = () => {
         const wrapper = document.querySelector(

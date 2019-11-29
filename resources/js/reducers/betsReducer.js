@@ -1,6 +1,6 @@
 import { FETCH_BETS, PLACE_BET } from "../actions/types";
 
-export default (state = [], action) => {
+export default (state = null, action) => {
     switch (action.type) {
         case FETCH_BETS:
             return action.payload;

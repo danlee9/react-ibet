@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { Transition } from "semantic-ui-react";
 import { deselectLeagues, fetchBets, setLoggedIn } from "../actions";
 import BetBlock from './BetBlock';
+import './Bets.css';
 
 class Bets extends React.Component {
     constructor(props) {
@@ -67,6 +69,10 @@ class Bets extends React.Component {
     }
 
     render() {
+        let betsRetrieved = false;
+        if (this.props.bets) {
+            betsRetrieved = true;
+        }
         return (
             <div className="ui centered grid">
                 <div className="row">
@@ -77,8 +83,21 @@ class Bets extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="twelve wide column">
-                    {this.renderBets()}
+                <div className="twelve wide column bets-container">
+                    <Transition visible={!betsRetrieved} animation='fade' duration={300}>
+                        <div className="wrapper-div-that-disappears">
+                            <div class="absolute-position-container loader-container">
+                                <div className="ui active massive text loader" style={{color: 'dodgerblue'}}>
+                                    <strong>Loading</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </Transition>
+                    <Transition visible={betsRetrieved} animation='fade up' duration={300}>
+                        <div class="absolute-position-container">
+                            {this.renderBets()}
+                        </div>
+                    </Transition>
                 </div>
             </div>
         );

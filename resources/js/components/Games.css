@@ -1,0 +1,14 @@
+.games-container {
+    position: relative;
+}
+
+.absolute-position-container {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.loader-container {
+    height: 140px;
+}

@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Grid, Transition, Button } from "semantic-ui-react";
+import { Transition } from "semantic-ui-react";
 import { selectLeague, fetchUpcomingGames, fetchCompletedGames, setLoggedIn } from "../actions";
 import GameBlock from './GameBlock';
 import history from '../history';
+import './Games.css';
 
 class Games extends React.Component {
     constructor(props) {
@@ -68,27 +69,36 @@ class Games extends React.Component {
 
     render() {
         let { league } = this.props.match.params;
-        const { visible } = this.state
+        const { visible } = this.state;
+        let gamesRetrieved = false;
+        if (this.props[league].upcoming) {
+            gamesRetrieved = true;
+        }
         return (
             <div className="ui centered grid">
                 <div className="row">
-                    <div className="eight wide column center aligned">
+                    <div className="eight wide column center aligned" style={{marginTop: '1rem', marginBottom: '1rem'}}>
                         <div className="ui blue segment">
                             <strong>UPCOMING GAMES</strong>
                         </div>
                     </div>
                 </div>
-                {/* <div className="twelve wide column">{this.renderGames(league, 'upcoming')}</div> */}
-                <Transition.Group duration={500}>
-                    <div className="twelve wide column">{this.renderGames(league, 'upcoming')}</div>
-                </Transition.Group>
-                {/* <Button
-                content={visible ? 'Hide' : 'Show'}
-                onClick={this.toggleVisibility}
-                />
-                <Transition visible={visible} animation='scale' duration={500}>
-                    <Grid.Column>TEST</Grid.Column>
-                </Transition> */}
+                <div className="twelve wide column games-container">
+                    <Transition visible={!gamesRetrieved} animation='fade' duration={300}>
+                        <div className="wrapper-div-that-disappears">
+                            <div class="absolute-position-container loader-container">
+                                <div className="ui active massive text loader" style={{color: 'dodgerblue'}}>
+                                    <strong>Loading</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </Transition>
+                    <Transition visible={gamesRetrieved} animation='fade up' duration={300}>
+                        <div class="absolute-position-container">
+                            {this.renderGames(league, 'upcoming')}
+                        </div>
+                    </Transition>
+                </div>
             </div>
         );
     }

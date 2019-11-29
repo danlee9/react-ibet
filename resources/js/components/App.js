@@ -56,12 +56,12 @@ class App extends React.Component {
         return (
             <div>
                 <TopRow open={this.openSidebar}/>
-                <TransitionGroup>
+                {/* <TransitionGroup>
                     <CSSTransition timeout={300} classNames='fade'>
                         <Overlay open={this.state.open} close={this.close}/>
                     </CSSTransition>
-                </TransitionGroup>
-                {/* <Overlay open={this.state.open} close={this.close}/> */}
+                </TransitionGroup> */}
+                <Overlay open={this.state.open} close={this.close}/>
                 
                 <div className="ui container" id="main" style={{paddingTop: '60px'}}>
                     <Router history={history}>

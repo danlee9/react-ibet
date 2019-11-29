@@ -78,7 +78,6 @@ export const fetchBets = () => async dispatch => {
     // const response = {data: ['test message', 'blah']};
     const response = await axios.get(`/api/bets?api_token=${token}`);
     dispatch({type: FETCH_BETS, payload: response.data});
-    console.log('hello from the actions');
 }
 
 export const placeBet = data => async dispatch => {

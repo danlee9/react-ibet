@@ -40,13 +40,26 @@ const BetBlock = props => {
             rubric = bet.point_spread;
     } else {
         side = bet.position;
+        side = side[0].toUpperCase() + side.slice(1); // capitalizes over and under
         rubric = bet.over_under;
     }
     let status = bet.status[0].toUpperCase() + bet.status.slice(1);
+    let color = '';
+    switch (status) {
+        case 'Pending':
+            color = 'black';
+            break;
+        case 'Loss':
+            color = 'red';
+            break;
+        case 'Win':
+            color = 'blue';
+            break;
+    }
     let date = renderDate(bet.game.unix_start_time)
     return (
         <div className="ui segments" style={{marginBottom: '20px'}}>
-            <div className="ui secondary segment">
+            <div className={`ui secondary segment ${color}`}>
                 <div className="ui middle aligned grid">
                     <div className="row">
                         <div className="eight wide column"><strong>${bet.wager}</strong> {side} {rubric} ({odds})</div>

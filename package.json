@@ -34,6 +34,7 @@
         "react-router-transition": "^2.0.0",
         "react-transition-group": "^4.3.0",
         "redux": "^4.0.4",
-        "redux-thunk": "^2.3.0"
+        "redux-thunk": "^2.3.0",
+        "semantic-ui-react": "^0.88.1"
     }
 }

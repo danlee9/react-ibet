@@ -14,8 +14,13 @@ class BetController extends Controller
         $userId = auth()->id();
         $bets = Bet::where('user_id', $userId)->get();
         $response = [];
-        foreach ($bets as $bet) {
-            $bet->game; // adds game data to response
+        // foreach ($bets as $bet) {
+        //     $bet->game; // adds game data to response
+        //     $response[] = $bet;
+        // }
+        for ($i = count($bets) - 1; $i >= 0; $i--) {
+            $bet = $bets[$i];
+            $bet->game;
             $response[] = $bet;
         }
         return json_encode($response);

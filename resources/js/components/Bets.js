@@ -48,6 +48,7 @@ class Bets extends React.Component {
             //         </div>
             //     );
             // });
+            // this.props.bets.reverse();
             return this.props.bets.map(bet => {
                 return <BetBlock bet={bet} key={bet.id} />
             });

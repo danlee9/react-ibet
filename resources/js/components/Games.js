@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Grid, Transition, Button } from "semantic-ui-react";
 import { selectLeague, fetchUpcomingGames, fetchCompletedGames, setLoggedIn } from "../actions";
 import GameBlock from './GameBlock';
-import { Link } from "react-router-dom";
 import history from '../history';
 
 class Games extends React.Component {
@@ -18,6 +18,7 @@ class Games extends React.Component {
                 this.props.setLoggedIn(id, token);
             }
         }
+        this.state = { visible: true };
     }
 
     componentDidMount() {
@@ -44,20 +45,30 @@ class Games extends React.Component {
     }
 
     renderGames(league, status) {
-        return this.props[league][status].map(game => {
-            return (
-                // <div key={game.id}>{game.away_team} at {game.home_team}</div>
-                <GameBlock key={game.id} game={game} />
-            );
-        });
+        // if (league && this.props[league].upcoming) {
+        //     return this.props[league][status].map(game => {
+        //         return (
+        //             <GameBlock key={game.id} game={game} />
+        //         );
+        //     });
+        // }
+        // return "Loading...";
+        if (this.props[league].upcoming) {
+            console.log('rendering');
+            return this.props[league][status].map(game => {
+                return (
+                    <GameBlock key={game.id} game={game} />
+                );
+            });
+        }
     }
 
+    toggleVisibility = () =>
+        this.setState((prevState) => ({ visible: !prevState.visible }))
+
     render() {
-        let { league } = this.props;
-        let gamesRetrieved = false;
-        if (league && this.props[league].upcoming) {
-            gamesRetrieved = true;
-        }
+        let { league } = this.props.match.params;
+        const { visible } = this.state
         return (
             <div className="ui centered grid">
                 <div className="row">
@@ -67,7 +78,17 @@ class Games extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="twelve wide column">{gamesRetrieved ? this.renderGames(league, 'upcoming') : "Loading..."}</div>
+                {/* <div className="twelve wide column">{this.renderGames(league, 'upcoming')}</div> */}
+                <Transition.Group duration={500}>
+                    <div className="twelve wide column">{this.renderGames(league, 'upcoming')}</div>
+                </Transition.Group>
+                {/* <Button
+                content={visible ? 'Hide' : 'Show'}
+                onClick={this.toggleVisibility}
+                />
+                <Transition visible={visible} animation='scale' duration={500}>
+                    <Grid.Column>TEST</Grid.Column>
+                </Transition> */}
             </div>
         );
     }

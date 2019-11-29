@@ -6,19 +6,19 @@ const Sidebar = props => {
     let classes = `ui left demo vertical inverted sidebar push pull labeled icon menu ${props.open ? 'visible' : ''}`;
     return ReactDOM.createPortal(
         <div className={classes}>
-            <Link className="item" to="/home">
+            <Link className="item" to="/home" onClick={props.close}>
                 <i className="home icon"></i>
                 Home
             </Link>
-            <Link className="item" to="/games/nfl">
+            <Link className="item" to="/games/nfl" onClick={props.close}>
                 <i className="football ball icon"></i>
                 Games
             </Link>
-            <Link className="item" to="/bets">
+            <Link className="item" to="/bets" onClick={props.close}>
                 <i className="archive icon"></i>
                 Bets
             </Link>
-            <Link className="item" to="/transactions">
+            <Link className="item" to="/transactions" onClick={props.close}>
                 <i className="credit card icon"></i>
                 Transactions
             </Link>

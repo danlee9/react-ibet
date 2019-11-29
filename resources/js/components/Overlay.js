@@ -22,7 +22,7 @@ import './Overlay.css';
 const Overlay = props => {
     let classes = `ui overlay ${props.open ? 'show dimmer active' : ''}`;
     return ReactDOM.createPortal(
-        <Transition visible={props.open} animation='fade' duration={250}>
+        <Transition visible={props.open} animation='fade' duration={400}>
             <div className={classes} onClick={props.close} style={{position: 'fixed'}}>
                 {/* <div className="ui massive text loader" style={{color: 'dodgerblue'}}>
                     <strong>Loading</strong>

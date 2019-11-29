@@ -67,7 +67,7 @@ class App extends React.Component {
                     <Router history={history}>
                         <Route render={({location}) => (
                             <div>
-                                <Sidebar open={this.state.open} logOut={this.logOut}/>
+                                <Sidebar open={this.state.open} logOut={this.logOut} close={this.close}/>
                                 <Header />
                                 <TransitionGroup className="transition-group">  
                                     <CSSTransition key={location.key} timeout={300} classNames='fade'>

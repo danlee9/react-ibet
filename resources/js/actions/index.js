@@ -7,9 +7,12 @@ import {
     FETCH_UPCOMING_NFL_GAMES, 
     FETCH_COMPLETED_NFL_GAMES, 
     FETCH_BETS,
+    SELECT_BET,
+    SHOW_LOADING,
     PLACE_BET,
+    HIDE_BET_MODAL,
     GET_TRANSACTIONS,
-    ADD_TRANSACTION
+    ADD_TRANSACTION,
 } from "./types";
 import history from '../history';
 
@@ -80,11 +83,30 @@ export const fetchBets = () => async dispatch => {
     dispatch({type: FETCH_BETS, payload: response.data});
 }
 
+export const selectBet = bet => {
+    return {
+        type: SELECT_BET,
+        payload: bet
+    };
+}
+
+export const showLoading = () => {
+    return {
+        type: SHOW_LOADING
+    }
+}
+
 export const placeBet = data => async dispatch => {
     const token = sessionStorage.getItem('token');
     const response = await axios.post(`/api/bets?api_token=${token}`, data);
     console.log(response.data);
     dispatch({type: PLACE_BET, payload: response.data});
+}
+
+export const hideBetModal = () => {
+    return {
+        type: HIDE_BET_MODAL
+    }
 }
 
 export const getTransactions = () => async dispatch => {

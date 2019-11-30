@@ -26,37 +26,9 @@ class Bets extends React.Component {
     }
 
     renderBets() {
-        console.log(this.props.bets);
-        if (this.props.bets) {
-            // return this.props.bets.map(bet => {
-            //     let game = `${bet.game.away_team} at ${bet.game.home_team}`;
-            //     let side, rubric;
-            //     let odds = this.convertEuroOdds(bet.odds);
-            //     let { bet_type } = bet;
-            //     if (bet_type == 'moneyline' || bet_type =='point_spread') {
-            //         side = bet.team;
-            //         if (bet_type == 'moneyline')
-            //             rubric = 'ML';
-            //         else
-            //             rubric = bet.point_spread;
-            //     } else {
-            //         side = bet.position;
-            //         rubric = bet.over_under;
-            //     }
-            //     return (
-            //         <div key={bet.id} style={{border: '1px solid black'}}>
-            //             <p><strong>{game}</strong></p>
-            //             <p>{side} {rubric} ({odds}) status: {bet.status}</p>
-            //         </div>
-            //     );
-            // });
-            // this.props.bets.reverse();
-            return this.props.bets.map(bet => {
-                return <BetBlock bet={bet} key={bet.id} />
-            });
-        } else {
-            return "Loading...";
-        }
+        return this.props.bets.map(bet => {
+            return <BetBlock bet={bet} key={bet.id} />
+        });
     }
 
     convertEuroOdds(odds) {
@@ -69,10 +41,7 @@ class Bets extends React.Component {
     }
 
     render() {
-        let betsRetrieved = false;
-        if (this.props.bets) {
-            betsRetrieved = true;
-        }
+        let { betsRetrieved } = this.props;
         return (
             <div className="ui centered grid">
                 <div className="row">
@@ -86,7 +55,7 @@ class Bets extends React.Component {
                 <div className="twelve wide column bets-container">
                     <Transition visible={!betsRetrieved} animation='fade' duration={300}>
                         <div className="wrapper-div-that-disappears">
-                            <div class="absolute-position-container loader-container">
+                            <div className="absolute-position-container loader-container">
                                 <div className="ui active massive text loader" style={{color: 'dodgerblue'}}>
                                     <strong>Loading</strong>
                                 </div>
@@ -94,7 +63,7 @@ class Bets extends React.Component {
                         </div>
                     </Transition>
                     <Transition visible={betsRetrieved} animation='fade up' duration={300}>
-                        <div class="absolute-position-container">
+                        <div className="absolute-position-container">
                             {this.renderBets()}
                         </div>
                     </Transition>
@@ -106,8 +75,9 @@ class Bets extends React.Component {
 
 const mapStateToProps = state => {
     return { 
-        bets: state.bets,
-        loggedIn: state.auth.loggedIn 
+        bets: state.bets.bets,
+        betsRetrieved: state.bets.betsRetrieved,
+        loggedIn: state.auth.loggedIn
     };
 };
 

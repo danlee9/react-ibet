@@ -9,13 +9,13 @@ import Login from "./Login";
 import Home from './Home';
 import Bets from './Bets';
 import Header from './Header';
-import Menu from './Menu';
 import Games from './Games';
 import Transactions from './Transactions';
 import history from "../history";
 import TopRow from './TopRow';
 import Sidebar from './Sidebar';
 import Overlay from './Overlay';
+import Modal from './Modal';
 import './App.css';
 
 class App extends React.Component {
@@ -35,17 +35,17 @@ class App extends React.Component {
             this.setState({ open: false });
         } else {
             this.setState({ open: true });
-            let wrapper = document.querySelector('.overlay');
-            wrapper.classList.toggle('active');
-            wrapper.classList.toggle('dimmer');
+            // let wrapper = document.querySelector('.overlay');
+            // wrapper.classList.toggle('active');
+            // wrapper.classList.toggle('dimmer');
         }
     }
 
     close = () => {
         this.setState({ open: false });
-        let wrapper = document.querySelector('.overlay');
-        wrapper.classList.toggle('active');
-        wrapper.classList.toggle('dimmer');
+        // let wrapper = document.querySelector('.overlay');
+        // wrapper.classList.toggle('active');
+        // wrapper.classList.toggle('dimmer');
     }
 
     logOut = () => {
@@ -61,8 +61,8 @@ class App extends React.Component {
                         <Overlay open={this.state.open} close={this.close}/>
                     </CSSTransition>
                 </TransitionGroup> */}
-                <Overlay open={this.state.open} close={this.close}/>
-                
+                <Overlay open={this.state.open} close={this.close}/>   
+                <Modal showBetModal={this.props.showBetModal}/>
                 <div className="ui container" id="main" style={{paddingTop: '60px'}}>
                     <Router history={history}>
                         <Route render={({location}) => (
@@ -77,7 +77,6 @@ class App extends React.Component {
                                                 <Route path="/home" exact component={Home} />
                                                 <Route path="/bets" exact component={Bets} />
                                                 <Route path="/transactions" exact component={Transactions} />
-                                                <Route path="/menu" exact component={Menu} />
                                                 <Route path="/games/:league" component={Games} />
                                             </Switch>
                                         </div>
@@ -105,4 +104,8 @@ class App extends React.Component {
     }
 }
 
-export default connect(null, { logOut })(App);
+const mapStateToProps = state => {
+    return { showBetModal: state.bets.showBetModal };
+};
+
+export default connect(mapStateToProps, { logOut })(App);

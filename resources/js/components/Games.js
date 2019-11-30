@@ -86,7 +86,7 @@ class Games extends React.Component {
                 <div className="twelve wide column games-container">
                     <Transition visible={!gamesRetrieved} animation='fade' duration={300}>
                         <div className="wrapper-div-that-disappears">
-                            <div class="absolute-position-container loader-container">
+                            <div className="absolute-position-container loader-container">
                                 <div className="ui active massive text loader" style={{color: 'dodgerblue'}}>
                                     <strong>Loading</strong>
                                 </div>
@@ -94,7 +94,7 @@ class Games extends React.Component {
                         </div>
                     </Transition>
                     <Transition visible={gamesRetrieved} animation='fade up' duration={300}>
-                        <div class="absolute-position-container">
+                        <div className="absolute-position-container">
                             {this.renderGames(league, 'upcoming')}
                         </div>
                     </Transition>

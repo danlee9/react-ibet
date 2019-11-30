@@ -2,7 +2,7 @@ import React from "react";
 import "./GameBlock.css";
 import Modal from "./Modal";
 import { connect } from "react-redux";
-import { placeBet } from "../actions";
+import { selectBet, placeBet } from "../actions";
 
 class GameBlock extends React.Component {
     state = {
@@ -29,140 +29,11 @@ class GameBlock extends React.Component {
         wrapper2.classList.toggle("stacked");
     };
 
-    renderBetModal(bet) {
-        let { side, rubric, odds } = bet;
-        if (side === 'over' || side === 'under')
-            side = side[0].toUpperCase() + side.slice(1);
-        else if (rubric !== 'ML')
-            rubric = this.formatPointSpread(rubric);
-        let title = `${side} ${rubric} (${this.convertEuroOdds(odds)})`;
-        if (this.state.showModal) {
-            return (
-                <Modal
-                    title={title}
-                    content={this.renderModalContent(odds)}
-                    actions={this.renderModalActions(bet)}
-                    onDismiss={this.hideBetModal}
-                />
-            );
-        }
-    }
-
-    renderModalContent(odds) {
-        return (
-            <span className="ui labeled input">
-                <label htmlFor="risk" className="ui label">Risk $</label>
-                <input
-                    type="number"
-                    value={this.state.betAmount}
-                    onChange={e => this.wagerInputPress(e, odds)}
-                    id="risk"
-                />
-                <label htmlFor="toWin" className="ui label">To Win $</label>
-                <input
-                    type="number"
-                    value={this.state.toWin}
-                    onChange={e => this.winInputPress(e, odds)}
-                    id="toWin"
-                />
-            </span>
-        );
-    }
-
-    wagerInputPress = (e, odds) => {
-        let betAmount = e.target.value;
-        let toWin;
-        if (betAmount != "") {
-            betAmount = +betAmount;
-            toWin = betAmount * (odds - 1);
-        } else {
-            toWin = "";
-        }
-        // betAmount = betAmount.toFixed(2);
-        // toWin = toWin.toFixed(2);
-        this.setState({ betAmount, toWin });
-    };
-
-    winInputPress = (e, odds) => {
-        let toWin = e.target.value;
-        let betAmount;
-        if (toWin != "") {
-            toWin = +toWin;
-            betAmount = toWin * (odds - 1);
-        } else {
-            betAmount = "";
-        }
-        // betAmount = betAmount.toFixed(2);
-        // toWin = toWin.toFixed(2);
-        this.setState({ betAmount, toWin });
-    };
-
-    renderModalActions(bet) {
-        return (
-            <>
-                <button className="ui button" onClick={this.hideBetModal}>
-                    Cancel
-                </button>
-                <button
-                    onClick={() => this.placeBet(bet, this.state.betAmount)}
-                    className="ui primary button"
-                >
-                    BET <i className="right chevron icon"></i>
-                </button>
-            </>
-        );
-    }
-
     showBetModal = (id, side, rubric, odds) => {
         let bet = { id, side, rubric, odds };
-        this.setState({ showModal: true, selectedBet: bet });
+        this.props.selectBet(bet);
+        // this.setState({ showModal: true, selectedBet: bet });
     };
-
-    hideBetModal = () => {
-        this.setState({
-            showModal: false,
-            selectedBet: {
-                id: null,
-                side: null,
-                rubric: null,
-                odds: null
-            }
-        });
-    };
-
-    placeBet(bet, wager) {
-        let { id, side, rubric, odds } = bet;
-        let data;
-        if (side === "over" || side === "under") {
-            data = {
-                id,
-                bet_type: "over_under",
-                over_under: rubric,
-                position: side,
-                odds,
-                wager
-            };
-        } else if (rubric === "ML") {
-            data = {
-                id,
-                bet_type: "moneyline",
-                team: side,
-                odds,
-                wager
-            };
-        } else {
-            data = {
-                id,
-                bet_type: "point_spread",
-                team: side,
-                spread: rubric,
-                odds,
-                wager
-            };
-        }
-        console.log(data);
-        this.props.placeBet(data);
-    }
 
     renderDate(time) {
         let dateObj = new Date(time * 1000);
@@ -331,7 +202,6 @@ class GameBlock extends React.Component {
                             {this.renderOverUnder("under", over_under, under_odds)}
                             {this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen)}
                         </div>
-                        {this.renderBetModal(this.state.selectedBet)}
                     </div>
                 </div>
             </div>
@@ -339,4 +209,4 @@ class GameBlock extends React.Component {
     }
 }
 
-export default connect(null, { placeBet })(GameBlock);
+export default connect(null, { selectBet, placeBet })(GameBlock);

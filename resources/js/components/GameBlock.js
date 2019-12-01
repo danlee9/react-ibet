@@ -2,11 +2,14 @@ import React from "react";
 import "./GameBlock.css";
 import Modal from "./Modal";
 import { connect } from "react-redux";
+import { Transition } from "semantic-ui-react";
+import { CSSTransition } from "react-transition-group";
 import { selectBet, placeBet } from "../actions";
 
 class GameBlock extends React.Component {
     state = {
         showModal: false,
+        showBlock: false,
         data: {},
         betAmount: "",
         toWin: "",
@@ -19,14 +22,24 @@ class GameBlock extends React.Component {
     };
 
     toggleBlock = () => {
-        const wrapper = document.querySelector(
-            `.bet-info-${this.props.game.id}`
-        );
-        wrapper.classList.toggle("hidden");
-        const wrapper2 = document.querySelector(
-            `.game-block-${this.props.game.id}`
-        );
-        wrapper2.classList.toggle("stacked");
+        // const wrapper = document.querySelector(
+        //     `.bet-info-${this.props.game.id}`
+        // );
+        // wrapper.classList.toggle("hidden");
+        this.setState({
+            showBlock: !this.state.showBlock
+        });
+        // const gameBlock = document.querySelector(
+        //     `.game-block-${this.props.game.id}`
+        // );
+        // const { classList } = gameBlock;
+        // if (classList.contains('stacked')) {
+        //     classList.remove('stacked');
+        // } else {
+        //     setTimeout(() => {
+        //         classList.add("stacked");
+        //     }, 5000);
+        // }
     };
 
     showBetModal = (id, side, rubric, odds) => {
@@ -148,7 +161,7 @@ class GameBlock extends React.Component {
             bettingOpen = false;
         }
         return (
-            <div className={`game-block game-block-${id} ui stacked segments`}>
+            <div className={`game-block game-block-${id} ui segments`}>
                 <div
                     className={`game-info ui ${bettingOpen ? 'blue' : 'black'} segment`}
                     onClick={this.toggleBlock}
@@ -176,7 +189,7 @@ class GameBlock extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className={`bet-info hidden bet-info-${id} ui segment`}>
+                {/* <div className={`bet-info hidden bet-info-${id} ui segment`}>
                     <div className="ui middle aligned grid">
                         <div className="row">
                             {this.renderPointSpread(away_team, away_point_spread, away_point_odds)}
@@ -203,7 +216,67 @@ class GameBlock extends React.Component {
                             {this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen)}
                         </div>
                     </div>
-                </div>
+                </div> */}
+                {/* <Transition visible={this.state.showBlock} animation='slide down' duration={300}>
+                    <div className={`bet-info bet-info-${id} ui segment`}>
+                        <div className="ui middle aligned grid">
+                            <div className="row">
+                                {this.renderPointSpread(away_team, away_point_spread, away_point_odds)}
+                                {this.renderBetButtonArea(id, away_team, away_point_spread, away_point_odds, bettingOpen)}
+                            </div>
+                            <div className="row">
+                                {this.renderPointSpread(home_team, home_point_spread, home_point_odds)}
+                                {this.renderBetButtonArea(id, home_team, home_point_spread, home_point_odds, bettingOpen)}
+                            </div>
+                            <div className="row">
+                                {this.renderMoneyline(away_team, away_moneyline)}
+                                {this.renderBetButtonArea(id, away_team, 'ML', away_moneyline, bettingOpen)}
+                            </div>
+                            <div className="row">
+                                {this.renderMoneyline(home_team, home_moneyline)}
+                                {this.renderBetButtonArea(id, home_team, 'ML', home_moneyline, bettingOpen)}
+                            </div>
+                            <div className="row">
+                                {this.renderOverUnder("over", over_under, over_odds)}
+                                {this.renderBetButtonArea(id, "over", over_under, over_odds, bettingOpen)}
+                            </div>
+                            <div className="row">
+                                {this.renderOverUnder("under", over_under, under_odds)}
+                                {this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen)}
+                            </div>
+                        </div>
+                    </div>
+                </Transition> */}
+                <CSSTransition in={this.state.showBlock} classNames='slide' timeout={300}>
+                    <div className={`bet-info bet-info-${id} ui segment`}>
+                        <div className="ui middle aligned vertically padded grid">
+                            <div className="row">
+                                {this.renderPointSpread(away_team, away_point_spread, away_point_odds)}
+                                {this.renderBetButtonArea(id, away_team, away_point_spread, away_point_odds, bettingOpen)}
+                            </div>
+                            <div className="row">
+                                {this.renderPointSpread(home_team, home_point_spread, home_point_odds)}
+                                {this.renderBetButtonArea(id, home_team, home_point_spread, home_point_odds, bettingOpen)}
+                            </div>
+                            <div className="row">
+                                {this.renderMoneyline(away_team, away_moneyline)}
+                                {this.renderBetButtonArea(id, away_team, 'ML', away_moneyline, bettingOpen)}
+                            </div>
+                            <div className="row">
+                                {this.renderMoneyline(home_team, home_moneyline)}
+                                {this.renderBetButtonArea(id, home_team, 'ML', home_moneyline, bettingOpen)}
+                            </div>
+                            <div className="row">
+                                {this.renderOverUnder("over", over_under, over_odds)}
+                                {this.renderBetButtonArea(id, "over", over_under, over_odds, bettingOpen)}
+                            </div>
+                            <div className="row">
+                                {this.renderOverUnder("under", over_under, under_odds)}
+                                {this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen)}
+                            </div>
+                        </div>
+                    </div>
+                </CSSTransition>
             </div>
         );
     }

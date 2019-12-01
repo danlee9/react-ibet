@@ -73,7 +73,7 @@ class Modal extends React.Component {
         let betAmount;
         if (toWin != "") {
             toWin = +toWin;
-            betAmount = toWin * (odds - 1);
+            betAmount = toWin / (odds - 1);
         } else {
             betAmount = "";
         }
@@ -118,7 +118,7 @@ class Modal extends React.Component {
     }
 
     render() {
-        let { selectedBet, betLoading } = this.props;
+        let { selectedBet, betLoading, betPlaced } = this.props;
         let { betAmount, toWin } = this.state;
         let style = {
             left: '50%',
@@ -128,7 +128,9 @@ class Modal extends React.Component {
 
         //#a9d5de   #2185d0
         //rgb(169, 213, 222)
-        //rgb(26,105,164)
+        //rgb(26, 105, 164)
+        //#1a69a4
+        //rgb(73, 164, 232)
         return ReactDOM.createPortal(
             <>
                 <Transition visible={this.props.showBetModal} animation='fade' duration={400}>
@@ -137,10 +139,10 @@ class Modal extends React.Component {
                 <Transition visible={this.props.showBetModal} animation='scale' duration={400}>
                     <div onClick={this.hideBetModal} className="ui active" style={{position: 'fixed', width: '100%', height: '100%', zIndex: 1000}}>
                         <div onClick={e => e.stopPropagation()} className="ui small modal active" style={style}>
-                            <div className="header" style={{backgroundColor: 'rgba(26, 105, 164, 0.3)'}}>
+                            <div className="header" style={{backgroundColor: 'rgb(73, 164, 232)', color: 'white', padding: '1rem 1.5rem'}}>
                                 <div className="ui two column grid">
                                     <div className="column">{this.constructTitle(selectedBet)}</div>
-                                    <div className="column"><p>Test</p></div>
+                                    {/* <div className="column"><p>Test</p></div> */}
                                 </div>
                             </div>
                             <div className="content">
@@ -185,8 +187,9 @@ class Modal extends React.Component {
                                             onClick={() => this.placeBet(selectedBet, betAmount)}
                                             className={`ui primary button ${betLoading ? 'loading' : ''}`}
                                             style={{width: '95px', textAlign: 'center'}}
+                                            disabled={betPlaced}
                                         >                                    
-                                            Confirm!
+                                            {betPlaced ? 'Confirm' : 'Success!'}
                                         </button>
                                     </div>
                                 </Transition>

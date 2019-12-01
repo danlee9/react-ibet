@@ -10,7 +10,8 @@ const INITIAL_STATE = {
     },
     betsRetrieved: false,
     showBetModal: false,
-    betLoading: false
+    betLoading: false,
+    betPlaced: false
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -23,6 +24,7 @@ export default (state = INITIAL_STATE, action) => {
         case SELECT_BET:
             newState.selectedBet = action.payload;
             newState.showBetModal = true;
+            newState.betPlaced = false;
             return newState;
         case SHOW_LOADING:
             newState.betLoading = true;
@@ -30,6 +32,7 @@ export default (state = INITIAL_STATE, action) => {
         case PLACE_BET:
             newState.bets.push(action.payload);
             newState.betLoading = false;
+            newState.betPlaced = true;
             return newState;
         case HIDE_BET_MODAL:
             newState.showBetModal = false;

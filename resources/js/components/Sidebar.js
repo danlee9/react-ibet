@@ -15,7 +15,8 @@ const Sidebar = props => {
                 Games
             </Link>
             <Link className="item" to="/bets" onClick={props.close}>
-                <i className="archive icon"></i>
+                {/* <i className="archive icon"></i> */}
+                <i className="chart line icon"></i>
                 Bets
             </Link>
             <Link className="item" to="/transactions" onClick={props.close}>

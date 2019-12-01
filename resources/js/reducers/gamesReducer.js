@@ -32,7 +32,6 @@ export default (state = INITIAL_STATE, action) => {
     let newState = {...state};
     switch (action.type) {
         case SELECT_LEAGUE:
-            console.log('selecting league')
             newState.league = action.payload;
             return newState;
         case DESELECT_LEAGUES:

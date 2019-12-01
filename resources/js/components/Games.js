@@ -8,7 +8,6 @@ import './Games.css';
 
 class Games extends React.Component {
     constructor(props) {
-        console.log(props);
         super(props);
         if (!sessionStorage.getItem("id")) {
             history.push("/");
@@ -19,7 +18,6 @@ class Games extends React.Component {
                 this.props.setLoggedIn(id, token);
             }
         }
-        this.state = { visible: true };
     }
 
     componentDidMount() {
@@ -64,12 +62,8 @@ class Games extends React.Component {
         }
     }
 
-    toggleVisibility = () =>
-        this.setState((prevState) => ({ visible: !prevState.visible }))
-
     render() {
         let { league } = this.props.match.params;
-        const { visible } = this.state;
         let gamesRetrieved = false;
         if (this.props[league].upcoming) {
             gamesRetrieved = true;
@@ -83,8 +77,8 @@ class Games extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="twelve wide column games-container">
-                    <Transition visible={!gamesRetrieved} animation='fade' duration={300}>
+                <div className="twelve wide column games-section-container">
+                    <Transition visible={!gamesRetrieved} animation='fade' duration={500}>
                         <div className="wrapper-div-that-disappears">
                             <div className="absolute-position-container loader-container">
                                 <div className="ui active massive text loader" style={{color: 'dodgerblue'}}>
@@ -93,8 +87,8 @@ class Games extends React.Component {
                             </div>
                         </div>
                     </Transition>
-                    <Transition visible={gamesRetrieved} animation='fade up' duration={300}>
-                        <div className="absolute-position-container">
+                    <Transition visible={gamesRetrieved} animation='fade up' duration={500}>
+                        <div className="absolute-position-container game-blocks-container">
                             {this.renderGames(league, 'upcoming')}
                         </div>
                     </Transition>

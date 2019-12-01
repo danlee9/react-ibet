@@ -12,8 +12,13 @@ class TransactionController extends Controller
         $userId = auth()->id();
         $transactions = Transaction::where('user_id', $userId)->get();
         $response = [];
-        foreach ($transactions as $transaction) {
-            $transaction->game; // adds game data to response
+        // foreach ($transactions as $transaction) {
+        //     $transaction->game; // adds game data to response
+        //     $response[] = $transaction;
+        // }
+        for ($i = count($transactions) - 1; $i >= 0; $i--) {
+            $transaction = $transactions[$i];
+            $transaction->bet->game; // adds bet and game data to response
             $response[] = $transaction;
         }
         return json_encode($response);

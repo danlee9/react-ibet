@@ -1,5 +1,9 @@
-.games-container {
+.games-section-container {
     position: relative;
+}
+
+.game-blocks-container, .loader-container {
+    margin-bottom: 150px;
 }
 
 .absolute-position-container {

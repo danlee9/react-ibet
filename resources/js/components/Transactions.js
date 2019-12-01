@@ -25,8 +25,47 @@ class Transactions extends React.Component {
 
     renderTransactions() {
         if (this.props.transactions.length) {
+            console.log(this.props.transactions);
             return this.props.transactions.map(transaction => {
-                return <p>{transaction.amount}</p>
+                let { type } = transaction;
+                let title = '';
+                let icon = ''
+                switch (type) {
+                    case 'wager':
+                        title = 'Wager';
+                        icon = 'angle right';
+                        break;
+                    case 'bet_win':
+                        title = "Bet Winnings";
+                        icon = 'trophy';
+                        break;
+                }
+
+                // gift or shopping basket for withdrawal
+                // credit card for deposit
+                
+                return (
+                    <div className="item middle aligned" key={transaction.id}>
+                        {/* <div className="right floated middle aligned content">{transaction.amount}</div>
+                        <i className={`${icon} icon`}></i>
+                        <div className="content">
+                            <div className="header">Date</div>
+                            <div className="description">{title}</div>
+                        </div> */}
+                        
+                        {/* <div className="content">
+                            <div className="header"><div className="right floated middle aligned content">Date</div></div>
+                            <div className="description"><div className="right floated middle aligned content">{transaction.amount}</div><i className={`${icon} icon`}></i> {title}</div>
+                        </div> */}
+                        <div className="right floated content">
+                            <div className="header">Date</div>
+                            <div className="description">{transaction.amount}</div>
+                        </div>
+                        <div className="middle aligned content">
+                            <i className={`${icon} icon`}></i> {title}
+                        </div>
+                    </div>
+                )
             });
         } else {
             return "Loading...";
@@ -35,11 +74,32 @@ class Transactions extends React.Component {
 
     render() {
         return (
-            <div>
-                <p>Bankroll: {this.props.bankroll}</p>
-                <p>Money in Play: {this.props.money_in_play}</p>
-                <div className="ui divider"></div>
-                {this.renderTransactions()}
+            <div className="ui centered grid">
+                <div className="row">
+                    <div className="eight wide column center aligned" style={{marginTop: '1rem', marginBottom: '1rem'}}>
+                        <div className="ui blue segment">
+                            <strong>Transactions</strong>
+                        </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="twelve wide column">
+                    <p>Bankroll: {this.props.bankroll}</p>
+                    <p>Money in Play: {this.props.money_in_play}</p>
+                    </div>
+                </div>
+                <div className="row" style={{paddingTop: '0', paddingBottom: '0'}}>
+                    <div className="twelve wide column">
+                        <div className="ui divider"></div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="twelve wide column">
+                        <div className="ui huge divided list">
+                            {this.renderTransactions()}
+                        </div>
+                    </div>
+                </div>                
             </div>
         );
     }

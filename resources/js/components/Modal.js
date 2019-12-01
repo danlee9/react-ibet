@@ -126,6 +126,8 @@ class Modal extends React.Component {
             transform: 'translate(-50%, -50%)',
         };
 
+        console.log(betPlaced);
+
         //#a9d5de   #2185d0
         //rgb(169, 213, 222)
         //rgb(26, 105, 164)
@@ -209,7 +211,8 @@ class Modal extends React.Component {
 const mapStateToProps = state => {
     return { 
         selectedBet: state.bets.selectedBet,
-        betLoading: state.bets.betLoading
+        betLoading: state.bets.betLoading,
+        betPlaced: state.bets.betPlaced
     };
 };
 

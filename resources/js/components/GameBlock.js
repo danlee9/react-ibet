@@ -128,6 +128,75 @@ class GameBlock extends React.Component {
         }
     }
 
+    getTeamImgInitial(teamName) {
+        switch (teamName) {
+            case 'Buffalo Bills':
+                return 'BUF';
+            case 'Miami Dolphins':
+                return 'MIA';
+            case 'New England Patriots':
+                return 'NE';
+            case 'New York Jets':
+                return 'NYJ';
+            case 'Baltimore Ravens':
+                return 'BAL';
+            case 'Cincinnati Bengals':
+                return 'CIN';
+            case 'Cleveland Browns':
+                return 'CLE';
+            case 'Pittsburgh Steelers':
+                return 'PIT';
+            case 'Houston Texans':
+                return 'HOU';
+            case 'Indianapolis Colts':
+                return 'IND';
+            case 'Jacksonville Jaguars':
+                return 'JAC';
+            case 'Tennessee Titans':
+                return 'TEN';
+            case 'Denver Broncos':
+                return 'DEN';
+            case 'Kansas City Chiefs':
+                return 'KC';
+            case 'Los Angeles Chargers':
+                return 'LAC';
+            case 'Oakland Raiders':
+                return 'OAK';
+            case 'Dallas Cowboys':
+                return 'DAL';
+            case 'New York Giants':
+                return 'NYG';
+            case 'Philadelphia Eagles':
+                return 'PHI';
+            case 'Washington Redskins':
+                return 'WAS';
+            case 'Chicago Bears':
+                return 'CHI';
+            case 'Detroit Lions':
+                return 'DET';
+            case 'Green Bay Packers':
+                return 'GB';
+            case 'Minnesota Vikings':
+                return 'MIN';
+            case 'Atlanta Falcons':
+                return 'ATL';
+            case 'Carolina Panthers':
+                return 'CAR';
+            case 'New Orleans Saints':
+                return 'NO';
+            case 'Tampa Bay Buccaneers':
+                return 'TB';
+            case 'Arizona Cardinals':
+                return 'ARI';
+            case 'Los Angeles Rams':
+                return 'LAR';
+            case 'San Francisco 49ers':
+                return 'SF';
+            case 'Seattle Seahawks':
+                return 'SEA';
+        }
+    }
+
     render() {
         let { game } = this.props;
         let {
@@ -160,6 +229,11 @@ class GameBlock extends React.Component {
         if (game.unix_start_time * 1000 < date.getTime()) {
             bettingOpen = false;
         }
+        let awayImgSrc = '/img/nfl/' + this.getTeamImgInitial(away_team) + '.png';
+        let homeImgSrc = '/img/nfl/' + this.getTeamImgInitial(home_team) + '.png';
+        // let awayImgSrc = '/img/nfl/' + 'LAR' + '.png';
+        // let homeImgSrc = '/img/nfl/' + 'LAR' + '.png';
+
         return (
             <div className={`game-block game-block-${id} ui segments`}>
                 <div
@@ -176,15 +250,21 @@ class GameBlock extends React.Component {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="eight wide column">{away_team}</div>
+                            <div className="eight wide column">
+                                <img className="ui middle aligned image" src={awayImgSrc} style={{height: '40px', marginRight: '7px'}} />
+                                <span style={{fontSize: '16px', display: 'inline-block', height: '40px', lineHeight: '40px'}}>{away_team}</span>
+                            </div>
                             <div className="eight wide right aligned column">
-                                <strong>{topText}</strong>
+                                <strong style={{fontSize: '16px', display: 'inline-block', height: '40px', lineHeight: '40px'}}>{topText}</strong>
                             </div>
                         </div>
                         <div className="row">
-                            <div className="eight wide column">{home_team}</div>
+                            <div className="eight wide column">
+                                <img className="ui middle aligned image" src={homeImgSrc} style={{height: '40px', marginRight: '7px'}} />
+                                <span style={{fontSize: '16px', display: 'inline-block', height: '40px', lineHeight: '40px'}}>{home_team}</span>
+                            </div>
                             <div className="eight wide right aligned column">
-                                <strong>{bottomText}</strong>
+                                <strong style={{fontSize: '16px', display: 'inline-block', height: '40px', lineHeight: '40px'}}>{bottomText}</strong>
                             </div>
                         </div>
                     </div>

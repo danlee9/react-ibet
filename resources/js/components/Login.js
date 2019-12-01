@@ -33,7 +33,7 @@ class Login extends React.Component {
         return (
             <div className="ui center aligned grid">
                 <div className="column login">
-                    <h2 className="ui teal image header">
+                    <h2 className="ui teal image header reduce-margin-top">
                         <div className="content">Log-in to your account</div>
                     </h2>
                     <form className="ui large form">

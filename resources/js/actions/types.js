@@ -12,3 +12,6 @@ export const PLACE_BET = 'PLACE_BET';
 export const HIDE_BET_MODAL = 'HIDE_BET_MODAL';
 export const GET_TRANSACTIONS = 'GET_TRANSACTIONS';
 export const ADD_TRANSACTION = 'ADD_TRANSACTION';
+export const OPEN_SIDEBAR = 'OPEN_SIDEBAR';
+export const LOG_IN_LOADING = 'LOG_IN_LOADING';
+export const CLOSE_OVERLAY = 'CLOSE_OVERLAY';

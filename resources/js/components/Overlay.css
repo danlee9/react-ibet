@@ -19,6 +19,10 @@
     display: block;
 } */
 
+.hidden {
+    display: none;
+}
+
 .ui.dimmer.overlay {
     z-index: 10;
 }

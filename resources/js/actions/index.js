@@ -13,6 +13,9 @@ import {
     HIDE_BET_MODAL,
     GET_TRANSACTIONS,
     ADD_TRANSACTION,
+    OPEN_SIDEBAR,
+    LOG_IN_LOADING,
+    CLOSE_OVERLAY
 } from "./types";
 import history from '../history';
 
@@ -117,4 +120,22 @@ export const getTransactions = () => async dispatch => {
 
 export const addTransaction = data => async dispatch => {
     const token = sessionStorage.getItem('token');
+}
+
+export const openSidebar = () => {
+    return {
+        type: OPEN_SIDEBAR
+    }
+}
+
+export const loginLoading = () => {
+    return {
+        type: LOG_IN_LOADING
+    }
+}
+
+export const closeOverlay = () => {
+    return {
+        type: CLOSE_OVERLAY
+    }
 }

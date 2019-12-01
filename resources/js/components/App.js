@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Router, Route, Switch } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import { logOut } from "../actions";
+import { openSidebar, closeOverlay, logOut } from "../actions";
 
 import Login from "./Login";
 import Home from './Home';
@@ -31,21 +31,25 @@ class App extends React.Component {
     }
 
     openSidebar = () => {
-        if (this.state.open) {
-            this.setState({ open: false });
-        } else {
-            this.setState({ open: true });
-            // let wrapper = document.querySelector('.overlay');
-            // wrapper.classList.toggle('active');
-            // wrapper.classList.toggle('dimmer');
-        }
+        // if (this.state.open) {
+        //     this.setState({ open: false });
+        // } else {
+        //     this.setState({ open: true });
+        //     // let wrapper = document.querySelector('.overlay');
+        //     // wrapper.classList.toggle('active');
+        //     // wrapper.classList.toggle('dimmer');
+        // }
+        this.props.openSidebar();
     }
 
     close = () => {
-        this.setState({ open: false });
+        // this.setState({ open: false });
         // let wrapper = document.querySelector('.overlay');
         // wrapper.classList.toggle('active');
         // wrapper.classList.toggle('dimmer');
+        if (!this.props.showLoading) {
+            this.props.closeOverlay();
+        }
     }
 
     logOut = () => {
@@ -61,13 +65,13 @@ class App extends React.Component {
                         <Overlay open={this.state.open} close={this.close}/>
                     </CSSTransition>
                 </TransitionGroup> */}
-                <Overlay open={this.state.open} close={this.close}/>   
+                <Overlay open={this.props.showOverlay} loading={this.props.showLoading} close={this.close}/>
                 <Modal showBetModal={this.props.showBetModal}/>
                 <div className="ui container" id="main" style={{paddingTop: '60px'}}>
                     <Router history={history}>
                         <Route render={({location}) => (
                             <div>
-                                <Sidebar open={this.state.open} logOut={this.logOut} close={this.close}/>
+                                <Sidebar open={this.props.showSideBar} logOut={this.logOut} close={this.close}/>
                                 <Header />
                                 <TransitionGroup className="transition-group">  
                                     <CSSTransition key={location.key} timeout={300} classNames='fade'>
@@ -105,7 +109,12 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { showBetModal: state.bets.showBetModal };
+    return { 
+        showBetModal: state.bets.showBetModal,
+        showOverlay: state.modules.showOverlay,
+        showSideBar: state.modules.showSidebar,
+        showLoading: state.modules.showLoading
+    };
 };
 
-export default connect(mapStateToProps, { logOut })(App);
+export default connect(mapStateToProps, { openSidebar, closeOverlay, logOut })(App);

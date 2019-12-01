@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { logIn } from "../actions";
+import { logIn, loginLoading } from "../actions";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import history from '../history';
@@ -26,6 +26,7 @@ class Login extends React.Component {
 
     onLogin() {
         let {email, password} = this.state;
+        this.props.loginLoading();
         this.props.logIn(email, password);
     }
 
@@ -83,5 +84,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { logIn }
+    { logIn, loginLoading }
 )(Login);

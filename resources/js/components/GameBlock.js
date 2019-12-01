@@ -8,17 +8,15 @@ import { selectBet, placeBet } from "../actions";
 
 class GameBlock extends React.Component {
     state = {
-        showModal: false,
         showBlock: false,
-        data: {},
         betAmount: "",
         toWin: "",
-        selectedBet: {
-            id: null,
-            side: null,
-            rubric: null,
-            odds: null
-        }
+        btn1: <span>Test</span>,
+        btn2: <span>Test</span>,
+        btn3: <span>Test</span>,
+        btn4: <span>Test</span>,
+        btn5: <span>Test</span>,
+        btn6: <span>Test</span>,
     };
 
     toggleBlock = () => {
@@ -97,7 +95,7 @@ class GameBlock extends React.Component {
         return <div className="eight wide column">{overUnder}</div>
     }
 
-    renderBetButtonArea(id, side, rubric, odds, bettingOpen) {
+    renderBetButtonArea = (id, side, rubric, odds, bettingOpen) => {
         let disabled = true;
         if (odds && bettingOpen) {
             disabled = false;
@@ -197,6 +195,41 @@ class GameBlock extends React.Component {
         }
     }
 
+    // setAsyncTimeout = (cb, timeout = 0) => new Promise(resolve => {
+    //     setTimeout(() => {
+    //         cb();
+    //         resolve();
+    //     }, timeout);
+    // });
+
+    renderAllBets = async (game, bettingOpen) => {
+        let {
+            id,
+            away_team,
+            home_team,
+            away_moneyline,
+            home_moneyline,
+            away_point_spread,
+            home_point_spread,
+            away_point_odds,
+            home_point_odds,
+            over_under,
+            over_odds,
+            under_odds
+        } = game;
+        var btn1, btn2, btn3, btn4, btn5, btn6;
+        const btns = await new Promise(resolve => setTimeout(() => {
+            btn1 = this.renderBetButtonArea(id, away_team, away_point_spread, away_point_odds, bettingOpen);
+            btn2 = this.renderBetButtonArea(id, home_team, home_point_spread, home_point_odds, bettingOpen);
+            btn3 = this.renderBetButtonArea(id, away_team, 'ML', away_moneyline, bettingOpen);
+            btn4 = this.renderBetButtonArea(id, home_team, 'ML', home_moneyline, bettingOpen);
+            btn5 = this.renderBetButtonArea(id, "over", over_under, over_odds, bettingOpen);
+            btn6 = this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen);
+            resolve({btn1, btn2, btn3, btn4, btn5, btn6})
+        }, 750));
+        this.setState({...btns})
+    }
+
     render() {
         let { game } = this.props;
         let {
@@ -233,6 +266,8 @@ class GameBlock extends React.Component {
         let homeImgSrc = '/img/nfl/' + this.getTeamImgInitial(home_team) + '.png';
         // let awayImgSrc = '/img/nfl/' + 'LAR' + '.png';
         // let homeImgSrc = '/img/nfl/' + 'LAR' + '.png';
+
+        this.renderAllBets(game, bettingOpen);
 
         return (
             <div className={`game-block game-block-${id} ui segments`}>
@@ -330,7 +365,7 @@ class GameBlock extends React.Component {
                 <CSSTransition in={this.state.showBlock} classNames='slide' timeout={300}>
                     <div className={`bet-info bet-info-${id} ui segment`}>
                         <div className="ui middle aligned vertically padded grid">
-                            <div className="row">
+                            {/* <div className="row">
                                 {this.renderPointSpread(away_team, away_point_spread, away_point_odds)}
                                 {this.renderBetButtonArea(id, away_team, away_point_spread, away_point_odds, bettingOpen)}
                             </div>
@@ -353,6 +388,30 @@ class GameBlock extends React.Component {
                             <div className="row">
                                 {this.renderOverUnder("under", over_under, under_odds)}
                                 {this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen)}
+                            </div> */}
+                            <div className="row">
+                                {this.renderPointSpread(away_team, away_point_spread, away_point_odds)}
+                                {this.state.btn1}
+                            </div>
+                            <div className="row">
+                                {this.renderPointSpread(home_team, home_point_spread, home_point_odds)}
+                                {this.state.btn2}
+                            </div>
+                            <div className="row">
+                                {this.renderMoneyline(away_team, away_moneyline)}
+                                {this.state.btn3}
+                            </div>
+                            <div className="row">
+                                {this.renderMoneyline(home_team, home_moneyline)}
+                                {this.state.btn4}
+                            </div>
+                            <div className="row">
+                                {this.renderOverUnder("over", over_under, over_odds)}
+                                {this.state.btn5}
+                            </div>
+                            <div className="row">
+                                {this.renderOverUnder("under", over_under, under_odds)}
+                                {this.state.btn6}
                             </div>
                         </div>
                     </div>

@@ -189,7 +189,7 @@ class Modal extends React.Component {
                                             style={{width: '95px', textAlign: 'center'}}
                                             disabled={betPlaced}
                                         >                                    
-                                            {betPlaced ? 'Confirm' : 'Success!'}
+                                            {betPlaced ? 'Success!' : 'Confirm'}
                                         </button>
                                     </div>
                                 </Transition>

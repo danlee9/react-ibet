@@ -4,6 +4,7 @@ import { Transition } from "semantic-ui-react";
 import { deselectLeagues, fetchBets, setLoggedIn } from "../actions";
 import BetBlock from './BetBlock';
 import './Bets.css';
+import history from '../history';
 
 class Bets extends React.Component {
     constructor(props) {

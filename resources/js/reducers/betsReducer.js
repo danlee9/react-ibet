@@ -1,4 +1,4 @@
-import { FETCH_BETS, SELECT_BET, SHOW_LOADING, PLACE_BET, HIDE_BET_MODAL } from "../actions/types";
+import { FETCH_BETS, SELECT_BET, SHOW_BET_LOADING, PLACE_BET, HIDE_BET_MODAL } from "../actions/types";
 
 const INITIAL_STATE = {
     bets: [],
@@ -26,7 +26,7 @@ export default (state = INITIAL_STATE, action) => {
             newState.showBetModal = true;
             newState.betPlaced = false;
             return newState;
-        case SHOW_LOADING:
+        case SHOW_BET_LOADING:
             newState.betLoading = true;
             return newState;
         case PLACE_BET:

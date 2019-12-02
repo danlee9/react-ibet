@@ -1,11 +1,40 @@
-import { GET_TRANSACTIONS, ADD_TRANSACTION, PLACE_BET } from "../actions/types";
+import {
+    GET_TRANSACTIONS,
+    OPEN_TRANSACTION_MODAL,
+    SHOW_TRANSACTION_LOADING,
+    ADD_TRANSACTION,
+    PLACE_BET,
+    HIDE_TRANSACTION_MODAL
+} from "../actions/types";
 
-export default (state = [], action) => {
+const INITIAL_STATE = {
+    transactions: [],
+    retrieved: false,
+    showTransactionModal: false,
+    transactionLoading: false,
+    transactionPlaced: false
+};
+
+export default (state = INITIAL_STATE, action) => {
+    let newState = { ...state };
     switch (action.type) {
         case GET_TRANSACTIONS:
-            return action.payload;
+            newState.transactions = action.payload;
+            newState.retrieved = true;
+            return newState;
+        case OPEN_TRANSACTION_MODAL:
+            return {
+                ...state,
+                showTransactionModal: true,
+                transactionPlaced: false
+            };
+        case SHOW_TRANSACTION_LOADING:
+            return { ...state, transactionLoading: true };
         case ADD_TRANSACTION:
-            return [...state, action.payload];
+            newState.transactions.push(action.payload);
+            newState.transactionLoading = false;
+            newState.transactionPlaced = true;
+            return newState;
         case PLACE_BET:
             let transaction = {
                 id: action.payload.transaction_id,
@@ -16,8 +45,11 @@ export default (state = [], action) => {
                 in_play: true,
                 created_at: action.payload.created_at
             };
-            return [...state, transaction];    
+            newState.transactions.push(transaction);
+            return newState;
+        case HIDE_TRANSACTION_MODAL:
+            return { ...state, showTransactionModal: false };
         default:
             return state;
     }
-}
+};

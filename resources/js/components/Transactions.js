@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { Transition } from "semantic-ui-react";
 
 import { deselectLeagues, fetchUserInfo, getTransactions, addTransaction, setLoggedIn } from "../actions";
+import { convertEuroOdds, formatDate } from "../utilities";
+import history from '../history';
 
 class Transactions extends React.Component {
     constructor(props) {
@@ -23,11 +26,21 @@ class Transactions extends React.Component {
         this.props.getTransactions();
     }
 
+    getTransactionDate = (date, dateFunc) => {
+        let dateInput = `${date} UTC`;
+        return dateFunc(dateInput);
+    }
+
+    dateFormatShort = input => {
+        let date = new Date(input * 1000);
+        return date.toLocaleDateString();
+    }
+
     renderTransactions() {
         if (this.props.transactions.length) {
             console.log(this.props.transactions);
             return this.props.transactions.map(transaction => {
-                let { type } = transaction;
+                let { type, bet } = transaction;
                 let title = '';
                 let icon = ''
                 switch (type) {
@@ -41,38 +54,62 @@ class Transactions extends React.Component {
                         break;
                 }
 
+                if (bet) {
+                    var side, rubric;
+                    var odds = convertEuroOdds(bet.odds);
+                    var { bet_type } = bet;
+                    if (bet_type == 'moneyline' || bet_type =='point_spread') {
+                        side = bet.team;
+                        if (bet_type == 'moneyline')
+                            rubric = 'ML';
+                        else
+                            rubric = bet.point_spread;
+                    } else {
+                        side = bet.position;
+                        side = side[0].toUpperCase() + side.slice(1); // capitalizes over and under
+                        rubric = bet.over_under;
+                    }
+                    var gameDate = this.dateFormatShort(bet.game.unix_start_time);
+                }
+
                 // gift or shopping basket for withdrawal
                 // credit card for deposit
+
+                let transactionDate = this.getTransactionDate(transaction.created_at, formatDate);
                 
                 return (
-                    <div className="item middle aligned" key={transaction.id}>
-                        {/* <div className="right floated middle aligned content">{transaction.amount}</div>
-                        <i className={`${icon} icon`}></i>
-                        <div className="content">
-                            <div className="header">Date</div>
-                            <div className="description">{title}</div>
-                        </div> */}
-                        
-                        {/* <div className="content">
-                            <div className="header"><div className="right floated middle aligned content">Date</div></div>
-                            <div className="description"><div className="right floated middle aligned content">{transaction.amount}</div><i className={`${icon} icon`}></i> {title}</div>
-                        </div> */}
-                        <div className="right floated content">
-                            <div className="header">Date</div>
-                            <div className="description">{transaction.amount}</div>
+                    <div className="row" key={transaction.id}>
+                        <div className="column">
+                            <div className="ui list">
+                                <div className="item">
+                                    <i className={`${icon} icon`}></i>
+                                    <div className="content">
+                                        <div className="header" style={{marginBottom: '5px'}}>{title}</div>
+                                        <div className="description">{side} {rubric} ({odds}) {gameDate}</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="middle aligned content">
-                            <i className={`${icon} icon`}></i> {title}
+                        <div className="right aligned column">
+                            <div className="ui list">
+                                <div className="item">
+                                    <div className="content">
+                                        <div className="header" style={{marginBottom: '5px'}}>{transactionDate}</div>
+                                        <div className="description" style={{fontSize: '1.3em'}}>{transaction.amount}</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 )
             });
         } else {
-            return "Loading...";
+            return <div className="row">No Transactions</div>;
         }
     }
 
     render() {
+        let { retrieved } = this.props;
         return (
             <div className="ui centered grid">
                 <div className="row">
@@ -84,8 +121,10 @@ class Transactions extends React.Component {
                 </div>
                 <div className="row">
                     <div className="twelve wide column">
-                    <p>Bankroll: {this.props.bankroll}</p>
-                    <p>Money in Play: {this.props.money_in_play}</p>
+                        <div className="ui two column grid">
+                            <div className="column"><strong>Bankroll:</strong> ${this.props.bankroll}</div>
+                            <div className="right aligned column"><strong>Money in Play:</strong> ${this.props.money_in_play}</div>
+                        </div>
                     </div>
                 </div>
                 <div className="row" style={{paddingTop: '0', paddingBottom: '0'}}>
@@ -95,9 +134,22 @@ class Transactions extends React.Component {
                 </div>
                 <div className="row">
                     <div className="twelve wide column">
-                        <div className="ui huge divided list">
-                            {this.renderTransactions()}
-                        </div>
+                        <Transition visible={!retrieved} animation='fade' duration={300}>
+                            <div className="wrapper-div-that-disappears">
+                                <div className="absolute-position-container loader-container">
+                                    <div className="ui active massive text loader" style={{color: 'dodgerblue'}}>
+                                        <strong>Loading</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </Transition>
+                        <Transition visible={retrieved} animation='fade' duration={300}>
+                            <div className="absolute-position-container">
+                                <div className="ui vertically divided two column grid">
+                                    {this.renderTransactions()}
+                                </div>
+                            </div>
+                        </Transition>
                     </div>
                 </div>                
             </div>
@@ -107,7 +159,8 @@ class Transactions extends React.Component {
 
 const mapStateToProps = state => {
     return { 
-        transactions: state.transactions,
+        transactions: state.transactions.transactions,
+        retrieved: state.transactions.retrieved,
         bankroll: state.user.bankroll,
         money_in_play: state.user.money_in_play,
         loggedIn: state.auth.loggedIn

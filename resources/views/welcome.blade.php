@@ -13,10 +13,11 @@
         {{-- <link rel="stylesheet" href="/css/app.css"> --}}
     </head>
     <body>
-        <div id="sidebar"></div>
         <div id="overlay"></div>
+        <div id="sidebar"></div>
         <div id="root"></div>
-        <div id="modal"></div>
+        <div id="bet-modal"></div>
+        <div id="transaction-modal"></div>
         @auth
         <script>
             sessionStorage.setItem('id', {{ auth()->id() }});

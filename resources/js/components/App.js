@@ -15,7 +15,8 @@ import history from "../history";
 import TopRow from './TopRow';
 import Sidebar from './Sidebar';
 import Overlay from './Overlay';
-import Modal from './Modal';
+import BetModal from './BetModal';
+import TransactionModal from './TransactionModal';
 import './App.css';
 
 class App extends React.Component {
@@ -60,13 +61,7 @@ class App extends React.Component {
         return (
             <div>
                 <TopRow open={this.openSidebar}/>
-                {/* <TransitionGroup>
-                    <CSSTransition timeout={300} classNames='fade'>
-                        <Overlay open={this.state.open} close={this.close}/>
-                    </CSSTransition>
-                </TransitionGroup> */}
                 <Overlay open={this.props.showOverlay} loading={this.props.showLoading} close={this.close}/>
-                <Modal showBetModal={this.props.showBetModal}/>
                 <div className="ui container" id="main" style={{paddingTop: '60px'}}>
                     <Router history={history}>
                         <Route render={({location}) => (
@@ -90,19 +85,9 @@ class App extends React.Component {
                             )}
                         />
                     </Router>
-                    {/* <Router history={history}>
-                        <Sidebar open={this.state.open}/>
-                        <Header />
-                        <Switch location={location}>                                            
-                            <Route path="/" exact component={Login} />
-                            <Route path="/home" exact component={Home} />
-                            <Route path="/bets" exact component={Bets} />
-                            <Route path="/transactions" exact component={Transactions} />
-                            <Route path="/menu" exact component={Menu} />
-                            <Route path="/games/:league" component={Games} />
-                        </Switch>
-                    </Router> */}
                 </div>
+                <BetModal />
+                <TransactionModal />
             </div>
         );
     }
@@ -110,7 +95,6 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
     return { 
-        showBetModal: state.bets.showBetModal,
         showOverlay: state.modules.showOverlay,
         showSideBar: state.modules.showSidebar,
         showLoading: state.modules.showLoading

@@ -1,30 +1,14 @@
 import React from 'react';
+import { convertEuroOdds, formatDate } from "../utilities";
 
-const convertEuroOdds = odds => {
-    if (odds < 2) {
-        let num = odds - 1;
-        return '-' + Math.round((1/num) * 100);
-    } else {
-        return '+' + Math.round((odds - 1) * 100);
-    }
+const renderDateFromUnix = (time, dateFunc) => {
+    let dateInput = time * 1000;
+    return dateFunc(dateInput);
 }
 
-const renderDate = time => {
-    let dateObj = new Date(time * 1000);
-    let weekdayStr = dateObj
-        .toLocaleDateString(undefined, { weekday: "short" })
-        .toUpperCase();
-    let dateStr = dateObj.toLocaleDateString(undefined, {
-        year: "numeric",
-        month: "short",
-        day: "numeric"
-    });
-    let timeStr = dateObj.toLocaleTimeString(undefined, {hour: '2-digit', minute: '2-digit', hour12: true});
-    return (
-        <span>
-            {`${weekdayStr} ${dateStr}`} <strong>{timeStr}</strong>
-        </span>
-    );
+const renderDateFromUTC = (date, dateFunc) => {
+    let dateInput = `${date} UTC`;
+    return dateFunc(dateInput);
 }
 
 const BetBlock = props => {
@@ -56,7 +40,8 @@ const BetBlock = props => {
             color = 'blue';
             break;
     }
-    let date = renderDate(bet.game.unix_start_time)
+    let date = renderDateFromUnix(bet.game.unix_start_time, formatDate)
+    let betPlacedDate = renderDateFromUTC(bet.created_at, formatDate);
     return (
         <div className="ui segments" style={{marginBottom: '20px'}}>
             <div className={`ui secondary segment ${color}`}>
@@ -64,7 +49,7 @@ const BetBlock = props => {
                     <div className="row">
                         <div className="eight wide column"><strong>${bet.wager}</strong> {side} {rubric} ({odds})</div>
                         <div className="eight wide right aligned column">
-                            <strong>Bet placed: {bet.created_at}</strong>
+                            <strong>Bet placed: {betPlacedDate}</strong>
                         </div>
                     </div>
                 </div>

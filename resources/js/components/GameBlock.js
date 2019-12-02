@@ -1,10 +1,9 @@
 import React from "react";
 import "./GameBlock.css";
-import Modal from "./Modal";
 import { connect } from "react-redux";
-import { Transition } from "semantic-ui-react";
 import { CSSTransition } from "react-transition-group";
 import { selectBet, placeBet } from "../actions";
+import { formatDate } from "../utilities";
 
 class GameBlock extends React.Component {
     state = {
@@ -17,7 +16,10 @@ class GameBlock extends React.Component {
         btn4: <span>Test</span>,
         btn5: <span>Test</span>,
         btn6: <span>Test</span>,
+        loaded: false
     };
+
+    // timeOut = 'placeholder'; // no longer this time container to clear because you fixed the leak
 
     toggleBlock = () => {
         // const wrapper = document.querySelector(
@@ -43,25 +45,11 @@ class GameBlock extends React.Component {
     showBetModal = (id, side, rubric, odds) => {
         let bet = { id, side, rubric, odds };
         this.props.selectBet(bet);
-        // this.setState({ showModal: true, selectedBet: bet });
     };
 
-    renderDate(time) {
-        let dateObj = new Date(time * 1000);
-        let weekdayStr = dateObj
-            .toLocaleDateString(undefined, { weekday: "short" })
-            .toUpperCase();
-        let dateStr = dateObj.toLocaleDateString(undefined, {
-            year: "numeric",
-            month: "short",
-            day: "numeric"
-        });
-        let timeStr = dateObj.toLocaleTimeString(undefined, {hour: '2-digit', minute: '2-digit', hour12: true});
-        return (
-            <span>
-                {`${weekdayStr} ${dateStr}`} <strong>{timeStr}</strong>
-            </span>
-        );
+    renderDate(time, dateFunc) {
+        let dateInput = time * 1000;
+        return dateFunc(dateInput);
     }
 
     renderPointSpread(team, spread, odds) {
@@ -218,17 +206,34 @@ class GameBlock extends React.Component {
             under_odds
         } = game;
         var btn1, btn2, btn3, btn4, btn5, btn6;
-        const btns = await new Promise(resolve => setTimeout(() => {
-            btn1 = this.renderBetButtonArea(id, away_team, away_point_spread, away_point_odds, bettingOpen);
-            btn2 = this.renderBetButtonArea(id, home_team, home_point_spread, home_point_odds, bettingOpen);
-            btn3 = this.renderBetButtonArea(id, away_team, 'ML', away_moneyline, bettingOpen);
-            btn4 = this.renderBetButtonArea(id, home_team, 'ML', home_moneyline, bettingOpen);
-            btn5 = this.renderBetButtonArea(id, "over", over_under, over_odds, bettingOpen);
-            btn6 = this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen);
-            resolve({btn1, btn2, btn3, btn4, btn5, btn6})
-        }, 750));
-        this.setState({...btns})
+        // const btns = await new Promise(resolve => {
+        //     this.timeOut = setTimeout(() => {
+        //         btn1 = this.renderBetButtonArea(id, away_team, away_point_spread, away_point_odds, bettingOpen);
+        //         btn2 = this.renderBetButtonArea(id, home_team, home_point_spread, home_point_odds, bettingOpen);
+        //         btn3 = this.renderBetButtonArea(id, away_team, 'ML', away_moneyline, bettingOpen);
+        //         btn4 = this.renderBetButtonArea(id, home_team, 'ML', home_moneyline, bettingOpen);
+        //         btn5 = this.renderBetButtonArea(id, "over", over_under, over_odds, bettingOpen);
+        //         btn6 = this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen);
+        //         resolve({btn1, btn2, btn3, btn4, btn5, btn6})
+        //     }, 750)
+        // });
+        const btns = await new Promise(resolve => {
+            setTimeout(() => {
+                btn1 = this.renderBetButtonArea(id, away_team, away_point_spread, away_point_odds, bettingOpen);
+                btn2 = this.renderBetButtonArea(id, home_team, home_point_spread, home_point_odds, bettingOpen);
+                btn3 = this.renderBetButtonArea(id, away_team, 'ML', away_moneyline, bettingOpen);
+                btn4 = this.renderBetButtonArea(id, home_team, 'ML', home_moneyline, bettingOpen);
+                btn5 = this.renderBetButtonArea(id, "over", over_under, over_odds, bettingOpen);
+                btn6 = this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen);
+                resolve({btn1, btn2, btn3, btn4, btn5, btn6})
+            }, 1000)
+        });
+        this.setState({...btns, loaded: true})
     }
+
+    // componentWillUnMount() {
+    //     clearTimeout(this.timeOut); // no longer needed because you find the leak
+    // }
 
     render() {
         let { game } = this.props;
@@ -266,8 +271,8 @@ class GameBlock extends React.Component {
         let homeImgSrc = '/img/nfl/' + this.getTeamImgInitial(home_team) + '.png';
         // let awayImgSrc = '/img/nfl/' + 'LAR' + '.png';
         // let homeImgSrc = '/img/nfl/' + 'LAR' + '.png';
-
-        this.renderAllBets(game, bettingOpen);
+        if (!this.state.loaded)
+            this.renderAllBets(game, bettingOpen);
 
         return (
             <div className={`game-block game-block-${id} ui segments`}>
@@ -281,7 +286,7 @@ class GameBlock extends React.Component {
                                 <strong>{bettingOpen ? 'Betting Open' : 'Betting Closed'}</strong>
                             </div>
                             <div className="right aligned eight wide column">
-                                {this.renderDate(game.unix_start_time)}
+                                {this.renderDate(game.unix_start_time, formatDate)}
                             </div>
                         </div>
                         <div className="row">
@@ -332,36 +337,6 @@ class GameBlock extends React.Component {
                         </div>
                     </div>
                 </div> */}
-                {/* <Transition visible={this.state.showBlock} animation='slide down' duration={300}>
-                    <div className={`bet-info bet-info-${id} ui segment`}>
-                        <div className="ui middle aligned grid">
-                            <div className="row">
-                                {this.renderPointSpread(away_team, away_point_spread, away_point_odds)}
-                                {this.renderBetButtonArea(id, away_team, away_point_spread, away_point_odds, bettingOpen)}
-                            </div>
-                            <div className="row">
-                                {this.renderPointSpread(home_team, home_point_spread, home_point_odds)}
-                                {this.renderBetButtonArea(id, home_team, home_point_spread, home_point_odds, bettingOpen)}
-                            </div>
-                            <div className="row">
-                                {this.renderMoneyline(away_team, away_moneyline)}
-                                {this.renderBetButtonArea(id, away_team, 'ML', away_moneyline, bettingOpen)}
-                            </div>
-                            <div className="row">
-                                {this.renderMoneyline(home_team, home_moneyline)}
-                                {this.renderBetButtonArea(id, home_team, 'ML', home_moneyline, bettingOpen)}
-                            </div>
-                            <div className="row">
-                                {this.renderOverUnder("over", over_under, over_odds)}
-                                {this.renderBetButtonArea(id, "over", over_under, over_odds, bettingOpen)}
-                            </div>
-                            <div className="row">
-                                {this.renderOverUnder("under", over_under, under_odds)}
-                                {this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen)}
-                            </div>
-                        </div>
-                    </div>
-                </Transition> */}
                 <CSSTransition in={this.state.showBlock} classNames='slide' timeout={300}>
                     <div className={`bet-info bet-info-${id} ui segment`}>
                         <div className="ui middle aligned vertically padded grid">

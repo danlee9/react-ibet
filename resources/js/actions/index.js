@@ -8,14 +8,17 @@ import {
     FETCH_COMPLETED_NFL_GAMES, 
     FETCH_BETS,
     SELECT_BET,
-    SHOW_LOADING,
+    SHOW_BET_LOADING,
     PLACE_BET,
     HIDE_BET_MODAL,
     GET_TRANSACTIONS,
     ADD_TRANSACTION,
     OPEN_SIDEBAR,
     LOG_IN_LOADING,
-    CLOSE_OVERLAY
+    CLOSE_OVERLAY,
+    SHOW_TRANSACTION_LOADING,
+    OPEN_TRANSACTION_MODAL,
+    HIDE_TRANSACTION_MODAL
 } from "./types";
 import history from '../history';
 
@@ -41,8 +44,8 @@ export const logIn = (email, password) => async (dispatch) => {
 }
 
 export const logOut = () => async (dispatch) => {
-    await axios.post('/logout');
     dispatch({type: LOG_OUT});
+    await axios.post('/logout');
     sessionStorage.removeItem('id');
     sessionStorage.removeItem('token');
     location.reload('/'); // hard refresh because for someone weird reason laravel isn't liking multiple requests login from SPA
@@ -93,9 +96,9 @@ export const selectBet = bet => {
     };
 }
 
-export const showLoading = () => {
+export const showBetLoading = () => {
     return {
-        type: SHOW_LOADING
+        type: SHOW_BET_LOADING
     }
 }
 
@@ -118,8 +121,26 @@ export const getTransactions = () => async dispatch => {
     dispatch({type: GET_TRANSACTIONS, payload: response.data});
 }
 
+export const openTransactionModal = () => {
+    return {
+        type: OPEN_TRANSACTION_MODAL
+    }
+}
+
+export const showTransactionLoading = () => {
+    return {
+        type: SHOW_TRANSACTION_LOADING
+    };
+}
+
 export const addTransaction = data => async dispatch => {
     const token = sessionStorage.getItem('token');
+}
+
+export const hideTransactionModal = () => {
+    return {
+        type: HIDE_TRANSACTION_MODAL
+    }
 }
 
 export const openSidebar = () => {

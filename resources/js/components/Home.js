@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { deselectLeagues, logOut, fetchUserInfo, setLoggedIn } from "../actions";
+import { deselectLeagues, logOut, fetchUserInfo, setLoggedIn, openTransactionModal } from "../actions";
 import { Link } from "react-router-dom";
 import history from '../history';
 
@@ -30,6 +30,10 @@ class Home extends React.Component {
         this.props.logOut();
     }
 
+    openTransactionModal = () => {
+        this.props.openTransactionModal();
+    }
+
     // className="ui center aligned grid"
     render() {
         return (
@@ -39,8 +43,11 @@ class Home extends React.Component {
                         <div className="ibet-icon">iBet</div>
                         <h1><i className="icon user outline"></i> Hello {this.props.name}!</h1>
                         <h3>Your bankroll is ${this.props.bankroll} and have ${this.props.money_in_play} in play</h3>
-                        <div>
+                        {/* <div>
                             <Link to="/bets" className="ui button primary">Bet History</Link> <Link to="/transactions" className="ui button positive">Transactions</Link>
+                        </div> */}
+                        <div>
+                            <button onClick={this.openTransactionModal} className="ui button primary">Deposit</button> <button onClick={this.openTransactionModal} className="ui button positive">Withdraw</button>
                         </div>
                     </div>
                 </div>
@@ -62,5 +69,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { deselectLeagues, logOut, fetchUserInfo, setLoggedIn }
+    { deselectLeagues, logOut, fetchUserInfo, setLoggedIn, openTransactionModal }
 )(Home);

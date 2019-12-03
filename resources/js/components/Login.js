@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { logIn, loginLoading } from "../actions";
+import { logIn, loginLoading, hideMessage } from "../actions";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import history from '../history';
-import axios from "axios";
+import { Transition } from "semantic-ui-react";
 
 class Login extends React.Component {
     constructor(props) {
@@ -31,8 +31,12 @@ class Login extends React.Component {
         this.props.logIn(email, password);
     }
 
+    hideMessage = () => {
+        this.props.hideMessage();
+    }
+
     render() {
-        let { showLoginAlert } = this.props;
+        let { message } = this.props;
         return (
             <div className="ui center aligned grid">
                 <div className="column login">
@@ -40,7 +44,7 @@ class Login extends React.Component {
                         <div className="content">Log-in to your account</div>
                     </h2>
                     <form className="ui large form">
-                        <div className="ui stacked segment dodgerblue">
+                        <div className="ui stacked raised segment dodgerblue">
                             <div className="field">
                                 <div className="ui left icon input">
                                     <i className="user icon"></i>
@@ -73,22 +77,30 @@ class Login extends React.Component {
                     <div className="ui message">
                         New to us? <a href="#">Sign Up</a>
                     </div>
-                    <div class={`ui warning message ${showLoginAlert ? 'visible' : 'hidden'}`}>
-                        <i class="close icon"></i>
-                        <div class="header">
-                            You have to login before you can do that!
+                    <Transition visible={message.show} animation='fade' duration={300}>
+                        <div className="wrapper-div-that-disappears">
+                            <div className={`ui ${message.type} message`}>
+                                <i className="close icon" onClick={this.hideMessage}></i>
+                                <div className="header">
+                                    {message.content}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    {/* <div className="ui error message">
-                        <i class="close icon"></i>
-                        <div class="header">
-                            There were some errors with your submission
+                    </Transition>
+                    {/* <Transition visible={loginFail} animation='fade' duration={300}>
+                        <div className="wrapper-div-that-disappears">
+                            <div className="ui error message">
+                                <i class="close icon"></i>
+                                <div class="header">
+                                    There were some errors with your submission
+                                </div>
+                                <ul class="list">
+                                    <li>You must include both a upper and lower case letters in your password.</li>
+                                    <li>You need to select your home country.</li>
+                                </ul>
+                            </div>
                         </div>
-                        <ul class="list">
-                            <li>You must include both a upper and lower case letters in your password.</li>
-                            <li>You need to select your home country.</li>
-                        </ul>
-                    </div> */}
+                    </Transition> */}
                 </div>
             </div>
         );
@@ -98,11 +110,11 @@ class Login extends React.Component {
 const mapStateToProps = state => {
     return { 
         loggedIn: state.auth.loggedIn,
-        showLoginAlert: state.modules.showLoginAlert
+        message: state.modules.message
     };
 };
 
 export default connect(
     mapStateToProps,
-    { logIn, loginLoading }
+    { logIn, loginLoading, hideMessage }
 )(Login);

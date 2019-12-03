@@ -166,7 +166,7 @@ class BetModal extends React.Component {
                             <div className="actions" style={{position: 'relative', width: '100%', height: '4.5rem', padding: 0}}>
                                 <Transition visible={!this.state.confirmShown} animation='fade' duration={400}>
                                     <div style={{position: 'absolute', textAlign: 'right', width: '100%', padding: '1rem'}}>
-                                        <button className="ui button" onClick={this.hideBetModal}>
+                                        <button className="ui button" onClick={this.hideBetModal} style={{width: '84px'}}>
                                             Cancel
                                         </button>
                                         <button
@@ -180,8 +180,8 @@ class BetModal extends React.Component {
                                 </Transition>
                                 <Transition visible={this.state.confirmShown} animation='fade' duration={400}>
                                     <div style={{position: 'absolute', textAlign: 'right', width: '100%', padding: '1rem'}}>
-                                        <button className="ui button" onClick={this.hideBetModal}>
-                                            Cancel
+                                        <button className="ui button" onClick={this.hideBetModal} style={{width: '84px'}}>
+                                            {betPlaced ? 'Exit' : 'Cancel'}
                                         </button>
                                         <button
                                             onClick={() => this.placeBet(selectedBet, betAmount)}

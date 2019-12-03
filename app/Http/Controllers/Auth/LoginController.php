@@ -56,11 +56,29 @@ class LoginController extends Controller
         $updateToken = ApiTokenController::update($id);
 
         $user = [
+            'success' => true,
             'id' => $id,
             'token' => $updateToken['token']
         ];
 
         return json_encode($user);
+    }
+
+    /**
+     * Get the failed login response instance.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        // throw ValidationException::withMessages([
+        //     $this->username() => [trans('auth.failed')],
+        // ]);
+
+        return json_encode(['success' => false]);
     }
 
     /**

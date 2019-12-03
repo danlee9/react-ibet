@@ -1,4 +1,5 @@
 export const LOG_IN = 'LOG_IN';
+export const LOG_IN_FAIL = 'LOG_IN_FAIL';
 export const LOG_OUT = 'LOG_OUT';
 export const FETCH_USER_INFO = 'FETCH_USER_INFO';
 export const SELECT_LEAGUE = 'SELECT_LEAGUE';
@@ -18,4 +19,5 @@ export const HIDE_TRANSACTION_MODAL = 'HIDE_TRANSACTION_MODAL';
 export const OPEN_SIDEBAR = 'OPEN_SIDEBAR';
 export const LOG_IN_LOADING = 'LOG_IN_LOADING';
 export const CLOSE_OVERLAY = 'CLOSE_OVERLAY';
-export const LOG_IN_ALERT = 'LOG_IN_ALERT';
+export const SHOW_MESSAGE = 'SHOW_MESSAGE';
+export const HIDE_MESSAGE = 'HIDE_MESSAGE';

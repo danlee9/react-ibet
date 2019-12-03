@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import './Header.css'
 import history from '../history';
-import { loginAlert } from "../actions";
+import { showMessage } from "../actions";
 
 class Header extends React.Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class Header extends React.Component {
         if (this.props.loggedIn) {
             history.push(`/games/${league}`);
         } else {
-            this.props.loginAlert();
+            this.props.showMessage('warning', 'Must be logged in to access page');
         }
     }
 
@@ -58,4 +58,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { loginAlert })(Header);
+export default connect(mapStateToProps, { showMessage })(Header);

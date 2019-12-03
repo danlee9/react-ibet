@@ -19,7 +19,9 @@ import {
     SHOW_TRANSACTION_LOADING,
     OPEN_TRANSACTION_MODAL,
     HIDE_TRANSACTION_MODAL,
-    LOG_IN_ALERT
+    LOG_IN_FAIL,
+    SHOW_MESSAGE,
+    HIDE_MESSAGE
 } from "./types";
 import history from '../history';
 
@@ -35,13 +37,17 @@ export const setLoggedIn = (id, token) =>  {
 
 export const logIn = (email, password) => async (dispatch) => {
     const user = await axios.post('/login', {email, password});
-    const id = user.data.id;
-    const token = user.data.token;
-    const payload = { id, token };
-    dispatch({type: LOG_IN, payload});
-    sessionStorage.setItem('id', id);
-    sessionStorage.setItem('token', token); // for use with api authentication when retrieving user data
-    history.push('/home');
+    if (user.data.success) {
+        const id = user.data.id;
+        const token = user.data.token;
+        const payload = { id, token };
+        dispatch({type: LOG_IN, payload});
+        sessionStorage.setItem('id', id);
+        sessionStorage.setItem('token', token); // for use with api authentication when retrieving user data
+        history.push('/home');
+    } else {
+        dispatch({type: LOG_IN_FAIL});
+    }
 }
 
 export const logOut = () => async (dispatch) => {
@@ -162,8 +168,18 @@ export const closeOverlay = () => {
     }
 }
 
-export const loginAlert = () => {
+export const showMessage = (msgType, content) => {
     return {
-        type: LOG_IN_ALERT
+        type: SHOW_MESSAGE,
+        payload: {
+            type: msgType,
+            content
+        }
+    }
+}
+
+export const hideMessage = () => {
+    return {
+        type: HIDE_MESSAGE
     }
 }

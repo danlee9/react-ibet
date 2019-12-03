@@ -24,13 +24,15 @@ class Login extends React.Component {
         this.setState(obj);
     }
 
-    onLogin() {
+    onLogin(e) {
+        e.preventDefault();
         let {email, password} = this.state;
         this.props.loginLoading();
         this.props.logIn(email, password);
     }
 
     render() {
+        let { showLoginAlert } = this.props;
         return (
             <div className="ui center aligned grid">
                 <div className="column login">
@@ -38,7 +40,7 @@ class Login extends React.Component {
                         <div className="content">Log-in to your account</div>
                     </h2>
                     <form className="ui large form">
-                        <div className="ui stacked segment">
+                        <div className="ui stacked segment dodgerblue">
                             <div className="field">
                                 <div className="ui left icon input">
                                     <i className="user icon"></i>
@@ -63,15 +65,30 @@ class Login extends React.Component {
                                     />
                                 </div>
                             </div>
-                            <div className="ui fluid large teal submit button" onClick={() => this.onLogin()}>
+                            <button className="ui fluid large blue submit button" onClick={e => this.onLogin(e)}>
                                 Login
-                            </div>
+                            </button>
                         </div>
-                        <div className="ui error message"></div>
                     </form>
                     <div className="ui message">
                         New to us? <a href="#">Sign Up</a>
                     </div>
+                    <div class={`ui warning message ${showLoginAlert ? 'visible' : 'hidden'}`}>
+                        <i class="close icon"></i>
+                        <div class="header">
+                            You have to login before you can do that!
+                        </div>
+                    </div>
+                    {/* <div className="ui error message">
+                        <i class="close icon"></i>
+                        <div class="header">
+                            There were some errors with your submission
+                        </div>
+                        <ul class="list">
+                            <li>You must include both a upper and lower case letters in your password.</li>
+                            <li>You need to select your home country.</li>
+                        </ul>
+                    </div> */}
                 </div>
             </div>
         );
@@ -79,7 +96,10 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { loggedIn: state.auth.loggedIn };
+    return { 
+        loggedIn: state.auth.loggedIn,
+        showLoginAlert: state.modules.showLoginAlert
+    };
 };
 
 export default connect(

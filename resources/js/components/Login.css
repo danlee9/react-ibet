@@ -11,6 +11,6 @@ body > .grid {
 .login {
     max-width: 450px;
 }
-.ui.stacked.segment {
+.ui.stacked.segment.dodgerblue {
     background-color: dodgerblue;
 }

@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import './Header.css'
+import history from '../history';
+import { loginAlert } from "../actions";
 
 class Header extends React.Component {
     constructor(props) {
@@ -11,13 +13,22 @@ class Header extends React.Component {
         };
     }
 
+    goToPage = (e, league) => {
+        e.preventDefault();
+        if (this.props.loggedIn) {
+            history.push(`/games/${league}`);
+        } else {
+            this.props.loginAlert();
+        }
+    }
+
     render() {
         const { league } = this.props;
         return (
             <div className="ui centered padded grid leagues">
                 <div className="row">
                     <div className="two wide center aligned column sports-league">
-                        <Link to="/games/nfl" className={league == 'nfl' ? 'selected' : ''}>NFL</Link>
+                        <Link to="/games/nfl" className={league == 'nfl' ? 'selected' : ''} onClick={(e) => this.goToPage(e, 'nfl')}>NFL</Link>
                     </div>
                     <div className="two wide center aligned column sports-league">
                         <Link to="/games/nba" className={league == 'nba' ? 'selected' : ''}>NBA</Link>
@@ -41,7 +52,10 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { league: state.games.league };
+    return { 
+        league: state.games.league,
+        loggedIn: state.auth.loggedIn,
+    };
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { loginAlert })(Header);

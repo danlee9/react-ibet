@@ -18,7 +18,8 @@ import {
     CLOSE_OVERLAY,
     SHOW_TRANSACTION_LOADING,
     OPEN_TRANSACTION_MODAL,
-    HIDE_TRANSACTION_MODAL
+    HIDE_TRANSACTION_MODAL,
+    LOG_IN_ALERT
 } from "./types";
 import history from '../history';
 
@@ -158,5 +159,11 @@ export const loginLoading = () => {
 export const closeOverlay = () => {
     return {
         type: CLOSE_OVERLAY
+    }
+}
+
+export const loginAlert = () => {
+    return {
+        type: LOG_IN_ALERT
     }
 }

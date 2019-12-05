@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Game;
+use App\Team;
 use App\Http\Controllers\ThirdPartyServicesController as ThirdParty;
 use App\Transaction;
 use App\User;
@@ -155,6 +156,14 @@ class GameController extends Controller
             $games = Game::where('league', $league)->where('game_status', 'pending')->get();
         else
             $games = Game::where('league', $league)->where('game_status', '!=', 'pending')->get();
+        
+        // $results = [];
+        // foreach ($games as $game) {
+        //     $home_team = Team::where('full_name', $game->home_team)->first();
+        //     $away_team = Team::where('full_name', $game->away_team)->first();
+        //     $game->home_img = $home_team->image_source;
+        //     $game->away_img = $away_team->image_source;
+        // }
         return $games;
     }
 }

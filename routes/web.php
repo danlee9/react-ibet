@@ -16,7 +16,7 @@
 */
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('login')->middleware('guest');
 
 /*
 | All auth routes like register
@@ -33,12 +33,29 @@ Route::get('asdf/{league}', 'GameController@getCompletedGames');
 /*
 | All other urls will get redirected to the welcome page then will be handled with react's router
 */
-Route::get('{catchall}', function() {
+
+// Route::get('about', function() {
+//     return "BLAH";
+// })->middleware('auth');
+
+// Route::get('{catchall}', function() {
+//     return view('welcome');
+// });
+
+Route::get('home', function () {
     return view('welcome');
-});
+})->middleware('auth');
+
+Route::get('bets', function () {
+    return view('welcome');
+})->middleware('auth');
+
+Route::get('transactions', function () {
+    return view('welcome');
+})->middleware('auth');
 
 Route::get('games/{league}', function() {
     return view('welcome');
-});
+})->middleware('auth');
 
 // Route::get('/home', 'HomeController@index')->name('home');

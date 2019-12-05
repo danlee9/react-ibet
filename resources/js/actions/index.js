@@ -4,8 +4,8 @@ import {
     FETCH_USER_INFO,
     SELECT_LEAGUE,
     DESELECT_LEAGUES,
-    FETCH_UPCOMING_NFL_GAMES, 
-    FETCH_COMPLETED_NFL_GAMES, 
+    FETCH_UPCOMING_GAMES, 
+    FETCH_COMPLETED_GAMES, 
     FETCH_BETS,
     SELECT_BET,
     SHOW_BET_LOADING,
@@ -81,12 +81,12 @@ export const deselectLeagues = () => {
 
 export const fetchUpcomingGames = league => async dispatch => {
     const response = await axios.get(`/api/games/${league}/upcoming`);
-    dispatch({type: FETCH_UPCOMING_NFL_GAMES, payload: response.data});
+    dispatch({type: FETCH_UPCOMING_GAMES, payload: {games: response.data, league}});
 }
 
 export const fetchCompletedGames = league => async dispatch => {
     const response = await axios.get(`/api/games/${league}/upcoming`);
-    dispatch({type: FETCH_COMPLETED_NFL_GAMES, payload: response.data});
+    dispatch({type: FETCH_COMPLETED_GAMES, payload: {games: response.data, league}});
 }
 
 export const fetchBets = () => async dispatch => {

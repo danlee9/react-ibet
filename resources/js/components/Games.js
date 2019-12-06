@@ -24,7 +24,7 @@ class Games extends React.Component {
         let { league } = this.props.match.params;
         this.props.selectLeague(league);
         this.props.fetchUpcomingGames(league);
-        this.props.fetchCompletedGames(league);
+        // this.props.fetchCompletedGames(league); // might just not have this as a feature
     }
 
     renderUpcomingGames(league) {
@@ -53,7 +53,6 @@ class Games extends React.Component {
         // }
         // return "Loading...";
         if (this.props[league].upcoming) {
-            console.log(this.props);
             return this.props[league][status].map(game => {
                 return (
                     <GameBlock key={game.id} game={game} />

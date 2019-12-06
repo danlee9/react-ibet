@@ -11,6 +11,16 @@ const renderDateFromUTC = (date, dateFunc) => {
     return dateFunc(dateInput);
 }
 
+const formatPointSpread = (spread) => {
+    if (spread && spread[0] !== "-") {
+        return `+${spread}`;
+    } else if (spread) {
+        return spread;
+    } else {
+        return "PS";
+    }
+}
+
 const BetBlock = props => {
     let { bet } = props;
     let side, rubric;
@@ -21,7 +31,7 @@ const BetBlock = props => {
         if (bet_type == 'moneyline')
             rubric = 'ML';
         else
-            rubric = bet.point_spread;
+            rubric = formatPointSpread(bet.point_spread);
     } else {
         side = bet.position;
         side = side[0].toUpperCase() + side.slice(1); // capitalizes over and under

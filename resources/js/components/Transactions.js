@@ -36,6 +36,16 @@ class Transactions extends React.Component {
         return date.toLocaleDateString();
     }
 
+    formatPointSpread(spread) {
+        if (spread && spread[0] !== "-") {
+            return `+${spread}`;
+        } else if (spread) {
+            return spread;
+        } else {
+            return "PS";
+        }
+    }
+
     renderTransactions() {
         if (this.props.transactions.length) {
             console.log(this.props.transactions);
@@ -63,7 +73,7 @@ class Transactions extends React.Component {
                         if (bet_type == 'moneyline')
                             rubric = 'ML';
                         else
-                            rubric = bet.point_spread;
+                            rubric = this.formatPointSpread(bet.point_spread);
                     } else {
                         side = bet.position;
                         side = side[0].toUpperCase() + side.slice(1); // capitalizes over and under

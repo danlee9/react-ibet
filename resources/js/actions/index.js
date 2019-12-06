@@ -85,7 +85,7 @@ export const fetchUpcomingGames = league => async dispatch => {
 }
 
 export const fetchCompletedGames = league => async dispatch => {
-    const response = await axios.get(`/api/games/${league}/upcoming`);
+    const response = await axios.get(`/api/games/${league}/completed`);
     dispatch({type: FETCH_COMPLETED_GAMES, payload: {games: response.data, league}});
 }
 

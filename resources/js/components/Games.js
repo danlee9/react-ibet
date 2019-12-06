@@ -53,7 +53,7 @@ class Games extends React.Component {
         // }
         // return "Loading...";
         if (this.props[league].upcoming) {
-            console.log('rendering');
+            console.log(this.props);
             return this.props[league][status].map(game => {
                 return (
                     <GameBlock key={game.id} game={game} />

@@ -8,33 +8,36 @@ use App\Team;
 use App\Http\Controllers\ThirdPartyServicesController as ThirdParty;
 use App\Transaction;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 
 class GameController extends Controller
 {
-    public static function blah()
-    {
-        $client = new \GuzzleHttp\Client();
-        $request = $client->get('https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=Arsenal');
-        $response = $request->getBody();
-        $data = $response->getContents();
-        $decoded = json_decode($data);
-        print_r($decoded->teams[0]->idTeam);
-        //americanfootball_nfl
-        //basketball_nba
-    }
-
     public function updateMoneylines($league)
     {
         $thirdParty = new ThirdParty;
         $games = $thirdParty->getMoneyLines($league);
         foreach ($games as $game) {
-            Game::updateOrCreate(
-                ['home_team' => $game['home_team'], 'away_team' => $game['away_team'], 'game_status' => 'pending'],
+            $home_team = $game['home_team'];
+            $away_team = $game['away_team'];
+            $insert = Game::updateOrCreate(
+                ['home_team' => $home_team, 'away_team' => $away_team, 'game_status' => 'pending'],
                 ['league' => $league, 'unix_start_time' => $game['unix_start_time'], 'home_moneyline' => $game['home_moneyline'], 'away_moneyline' => $game['away_moneyline']]
             );
+            $game_id = $insert->id;
+            $home_team_data = Team::where('full_name', $home_team)->first();
+            $away_team_data = Team::where('full_name', $away_team)->first();
+            $home_id = $home_team_data->id;
+            $away_id = $away_team_data->id;
+            if (!DB::table('game_team')->where('game_id', $game_id)->where('team_id', $home_id)->exists()) {
+                print_r('New game added'.PHP_EOL);
+                DB::table('game_team')->insert([
+                    ['game_id' => $game_id, 'team_id' => $home_id],
+                    ['game_id' => $game_id, 'team_id' => $away_id]
+                ]);
+            }
         }
-        print_r("MONEYLINE");
+        print_r("MONEYLINE".PHP_EOL);
     }
 
     public function updatePointSpreads($league)
@@ -42,12 +45,26 @@ class GameController extends Controller
         $thirdParty = new ThirdParty;
         $games = $thirdParty->getPointSpreads($league);
         foreach ($games as $game) {
-            Game::updateOrCreate(
-                ['home_team' => $game['home_team'], 'away_team' => $game['away_team'], 'game_status' => 'pending'],
+            $home_team = $game['home_team'];
+            $away_team = $game['away_team'];
+            $insert = Game::updateOrCreate(
+                ['home_team' => $home_team, 'away_team' => $away_team, 'game_status' => 'pending'],
                 ['league' => $league, 'unix_start_time' => $game['unix_start_time'], 'home_point_spread' => $game['home_point_spread'], 'away_point_spread' => $game['away_point_spread'], 'home_point_odds' => $game['home_point_odds'], 'away_point_odds' => $game['away_point_odds']]
             );
+            $game_id = $insert->id;
+            $home_team_data = Team::where('full_name', $home_team)->first();
+            $away_team_data = Team::where('full_name', $away_team)->first();
+            $home_id = $home_team_data->id;
+            $away_id = $away_team_data->id;
+            if (!DB::table('game_team')->where('game_id', $game_id)->where('team_id', $home_id)->exists()) {
+                print_r('New game added'.PHP_EOL);
+                DB::table('game_team')->insert([
+                    ['game_id' => $game_id, 'team_id' => $home_id],
+                    ['game_id' => $game_id, 'team_id' => $away_id]
+                ]);
+            }
         }
-        print_r("SPREADSSSSSSSS");
+        print_r("SPREADSSSSSSSS".PHP_EOL);
     }
 
     public function updateOverUnders($league)
@@ -56,12 +73,26 @@ class GameController extends Controller
         $thirdParty = new ThirdParty;
         $games = $thirdParty->getOverUnders($league);
         foreach ($games as $game) {
-            Game::updateOrCreate(
-                ['home_team' => $game['home_team'], 'away_team' => $game['away_team'], 'game_status' => 'pending'],
+            $home_team = $game['home_team'];
+            $away_team = $game['away_team'];
+            $insert = Game::updateOrCreate(
+                ['home_team' => $home_team, 'away_team' => $away_team, 'game_status' => 'pending'],
                 ['league' => $league, 'unix_start_time' => $game['unix_start_time'], 'over_under' => $game['over_under'], 'over_odds' => $game['over_odds'], 'under_odds' => $game['under_odds']]
             );
+            $game_id = $insert->id;
+            $home_team_data = Team::where('full_name', $home_team)->first();
+            $away_team_data = Team::where('full_name', $away_team)->first();
+            $home_id = $home_team_data->id;
+            $away_id = $away_team_data->id;
+            if (!DB::table('game_team')->where('game_id', $game_id)->where('team_id', $home_id)->exists()) {
+                print_r('New game added'.PHP_EOL);
+                DB::table('game_team')->insert([
+                    ['game_id' => $game_id, 'team_id' => $home_id],
+                    ['game_id' => $game_id, 'team_id' => $away_id]
+                ]);
+            }
         }
-        print_r("TOTALLSSSSS");
+        print_r("TOTALLSSSSS".PHP_EOL);
     }
 
     public function updateScores($league)
@@ -77,7 +108,7 @@ class GameController extends Controller
                     // print_r("<br>");
                 }
                 if ($dbEntry) {
-                    print_r("Updating scores with home team {$game['home_team']}");
+                    print_r("Updating scores with home team {$game['home_team']}".PHP_EOL);
                     print_r("<br>");
                     $dbEntry->update([
                         'home_score' => $game['home_score'],
@@ -107,18 +138,18 @@ class GameController extends Controller
                         $wager = $bet->wager;
                         $user = User::find(+$bet->user_id);
                         if ($bet->status === 'win') {
-                            print_r("Won Money");
+                            print_r("Won Money".PHP_EOL);
                             print_r("<br>");
                             $money_won = $wager * +$bet->odds;
                             Transaction::addMoneyWon($bet->user_id, $bet->id, $money_won, 'bet_won');
                             $user->addMoneyWon($money_won, $wager);
                         } else if ($bet->status === 'push') {
-                            print_r("Pushed");
+                            print_r("Pushed".PHP_EOL);
                             print_r("<br>");
                             Transaction::addMoneyWon($bet->user_id, $bet->id, $wager, 'bet_pushed');
                             $user->addMoneyWon($wager, $wager);
                         } else {
-                            print_r("Lost Bet");
+                            print_r("Lost Bet".PHP_EOL);
                             print_r("<br>");
                             $user->removeMoneyInPlay($wager);
                         }
@@ -127,7 +158,7 @@ class GameController extends Controller
             } else {
                 $dbEntry = Game::where('home_team', $game['home_team'])->where('away_team', $game['away_team'])->where('game_status', 'pending')->first();
                 if ($dbEntry) {
-                    print_r("Updating game with home team {$game['home_team']}");
+                    print_r("Updating game with home team {$game['home_team']}".PHP_EOL);
                     print_r("<br>");
                     $dbEntry->update([
                         'game_status' => 'marked'
@@ -135,7 +166,7 @@ class GameController extends Controller
                 }
             }   
         }
-        print_r("SCORESSSS");
+        print_r("SCORESSSS".PHP_EOL);
     }
 
     public function getUpcomingGames($league)
@@ -157,13 +188,12 @@ class GameController extends Controller
         else
             $games = Game::where('league', $league)->where('game_status', '!=', 'pending')->get();
         
-        // $results = [];
-        // foreach ($games as $game) {
-        //     $home_team = Team::where('full_name', $game->home_team)->first();
-        //     $away_team = Team::where('full_name', $game->away_team)->first();
-        //     $game->home_img = $home_team->image_source;
-        //     $game->away_img = $away_team->image_source;
-        // }
-        return $games;
+        $results = [];
+        // adds the teams relationship. look up how to do this automatically
+        foreach ($games as $game) {
+            $game->teams;
+            $results[] = $game;
+        }
+        return $results;
     }
 }

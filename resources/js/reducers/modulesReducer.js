@@ -6,7 +6,10 @@ import {
     LOG_OUT,
     LOG_IN_FAIL,
     SHOW_MESSAGE,
-    HIDE_MESSAGE
+    HIDE_MESSAGE,
+    REGISTER,
+    SHOW_FORM_LOADING,
+    HIDE_FORM_LOADING
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -16,8 +19,10 @@ const INITIAL_STATE = {
     message: {
         show: false,
         type: '',
-        content: ''
-    }
+        header: '',
+        items: null
+    },
+    formLoading: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -31,12 +36,20 @@ export default (state = INITIAL_STATE, action) => {
         case CLOSE_OVERLAY:
             return INITIAL_STATE;
         case LOG_IN_FAIL:
-            return { ...INITIAL_STATE, message: {show: true, type: 'error', content: 'Login Failed'} };
+            return { ...INITIAL_STATE, message: {show: true, type: 'error', header: 'Login Failed'} };
         case SHOW_MESSAGE:
-            let { type, content } = action.payload;
-            return { ...state, message: { show: true, type, content } };
+            let { type, header, items } = action.payload;
+            return { ...state, message: { show: true, type, header, items } };
         case HIDE_MESSAGE:
-            return { ...state, message: { show: false, type: '', content: '' } }
+            let messageCopy = {...state.message};
+            messageCopy.show = false;
+            return { ...state, message: messageCopy }
+        case REGISTER:
+            return { ...INITIAL_STATE, message: {show: true, type: 'success', header: 'New User Registered!'}}
+        case SHOW_FORM_LOADING:
+            return { ...state, formLoading: true };
+        case HIDE_FORM_LOADING:
+            return { ...state, formLoading: false };
         default:
             return state;
     }

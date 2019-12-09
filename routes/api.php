@@ -26,3 +26,4 @@ Route::middleware('auth:api')->get('bets', 'BetController@index');
 Route::middleware('auth:api')->get('transactions', 'TransactionController@index');
 // Route::get('bets', 'BetController@index');
 Route::middleware('auth:api')->post('bets', 'BetController@store');
+Route::middleware('auth:api')->post('transactions', 'TransactionController@store');

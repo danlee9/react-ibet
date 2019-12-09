@@ -16,7 +16,6 @@ class Home extends React.Component {
                 let id = sessionStorage.getItem('id');
                 let token = sessionStorage.getItem('token');
                 this.props.setLoggedIn(id, token);
-                console.log('setting logged in');
             }
         }
     }
@@ -30,8 +29,8 @@ class Home extends React.Component {
         this.props.logOut();
     }
 
-    openTransactionModal = () => {
-        this.props.openTransactionModal();
+    openTransactionModal = type => {
+        this.props.openTransactionModal(type);
     }
 
     // className="ui center aligned grid"
@@ -47,7 +46,7 @@ class Home extends React.Component {
                             <Link to="/bets" className="ui button primary">Bet History</Link> <Link to="/transactions" className="ui button positive">Transactions</Link>
                         </div> */}
                         <div>
-                            <button onClick={this.openTransactionModal} className="ui button primary">Deposit</button> <button onClick={this.openTransactionModal} className="ui button positive">Withdraw</button>
+                            <button onClick={() => this.openTransactionModal('deposit')} className="ui button primary">Deposit</button> <button onClick={() => this.openTransactionModal('withdraw')} className="ui button positive">Withdraw</button>
                         </div>
                     </div>
                 </div>

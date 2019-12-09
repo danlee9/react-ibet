@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Transaction;
+use App\User;
 
 class TransactionController extends Controller
 {
@@ -24,5 +25,20 @@ class TransactionController extends Controller
             $response[] = $transaction;
         }
         return json_encode($response);
+    }
+
+    public function store()
+    {
+        $userId = auth()->id();
+        $type = request('type');
+        $amount = request('amount');
+        $transaction = Transaction::create([
+            'user_id' => $userId,
+            'type' => $type,
+            'amount' => $amount
+        ]);
+        $user = User::find(+$userId);
+        $user->adjustBankroll($amount);
+        return json_encode($transaction);
     }
 }

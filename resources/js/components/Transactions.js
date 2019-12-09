@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { Transition } from "semantic-ui-react";
 
-import { deselectLeagues, fetchUserInfo, getTransactions, addTransaction, setLoggedIn } from "../actions";
+import { deselectLeagues, fetchUserInfo, getTransactions, setLoggedIn } from "../actions";
 import { convertEuroOdds, formatDate } from "../utilities";
 import history from '../history';
 
@@ -62,8 +62,17 @@ class Transactions extends React.Component {
                         title = "Bet Winnings";
                         icon = 'trophy';
                         break;
+                    case 'deposit':
+                        title = "Deposit";
+                        icon = 'credit card outline';
+                        break;
+                    case 'withdrawal':
+                        title = 'Withdrawal';
+                        icon = 'shopping cart';
+                        break;
                 }
 
+                var description = '';
                 if (bet) {
                     var side, rubric;
                     var odds = convertEuroOdds(bet.odds);
@@ -80,12 +89,19 @@ class Transactions extends React.Component {
                         rubric = bet.over_under;
                     }
                     var gameDate = this.dateFormatShort(bet.game.unix_start_time);
+                    description = `${side} ${rubric} (${odds}) ${gameDate}`;
+                } else {
+                    description = 'Account Transaction';
                 }
 
                 // gift or shopping basket for withdrawal
                 // credit card for deposit
 
                 let transactionDate = this.getTransactionDate(transaction.created_at, formatDate);
+                var transactionAmount = transaction.amount;
+                if (+transaction.amount > 0) {
+                    transactionAmount = `+${transaction.amount}`;
+                }
                 
                 return (
                     <div className="row" key={transaction.id}>
@@ -95,7 +111,7 @@ class Transactions extends React.Component {
                                     <i className={`${icon} icon`}></i>
                                     <div className="content">
                                         <div className="header" style={{marginBottom: '5px'}}>{title}</div>
-                                        <div className="description">{side} {rubric} ({odds}) {gameDate}</div>
+                                        <div className="description">{description}</div>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +121,7 @@ class Transactions extends React.Component {
                                 <div className="item">
                                     <div className="content">
                                         <div className="header" style={{marginBottom: '5px'}}>{transactionDate}</div>
-                                        <div className="description" style={{fontSize: '1.3em'}}>{transaction.amount}</div>
+                                        <div className="description" style={{fontSize: '1.3em'}}>{transactionAmount}</div>
                                     </div>
                                 </div>
                             </div>
@@ -177,4 +193,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { deselectLeagues, fetchUserInfo, getTransactions, addTransaction, setLoggedIn })(Transactions);
+export default connect(mapStateToProps, { deselectLeagues, fetchUserInfo, getTransactions, setLoggedIn })(Transactions);

@@ -12,7 +12,7 @@ import {
     PLACE_BET,
     HIDE_BET_MODAL,
     GET_TRANSACTIONS,
-    ADD_TRANSACTION,
+    PLACE_TRANSACTION,
     OPEN_SIDEBAR,
     LOG_IN_LOADING,
     CLOSE_OVERLAY,
@@ -21,7 +21,10 @@ import {
     HIDE_TRANSACTION_MODAL,
     LOG_IN_FAIL,
     SHOW_MESSAGE,
-    HIDE_MESSAGE
+    HIDE_MESSAGE,
+    REGISTER,
+    SHOW_FORM_LOADING,
+    HIDE_FORM_LOADING
 } from "./types";
 import history from '../history';
 
@@ -64,6 +67,18 @@ export const fetchUserInfo = id => async (dispatch) => {
     let { name, email, bankroll, money_in_play } = response.data;
     const payload = { name, email, bankroll, money_in_play };
     dispatch({type: FETCH_USER_INFO, payload});
+}
+
+export const register = data => async dispatch => {
+    dispatch({type: SHOW_FORM_LOADING});
+    const res = await axios.post('/register', data);
+    if (res.data.success) {
+        dispatch({type: REGISTER});
+    } else {
+        let errObj = { type: 'error', header: 'Failed to register', items: res.data.error }
+        dispatch({type: SHOW_MESSAGE, payload: errObj});
+        dispatch({type: HIDE_FORM_LOADING});
+    }
 }
 
 export const selectLeague = league => {
@@ -112,7 +127,6 @@ export const showBetLoading = () => {
 export const placeBet = data => async dispatch => {
     const token = sessionStorage.getItem('token');
     const response = await axios.post(`/api/bets?api_token=${token}`, data);
-    console.log(response.data);
     dispatch({type: PLACE_BET, payload: response.data});
 }
 
@@ -128,9 +142,10 @@ export const getTransactions = () => async dispatch => {
     dispatch({type: GET_TRANSACTIONS, payload: response.data});
 }
 
-export const openTransactionModal = () => {
+export const openTransactionModal = transactionType => {
     return {
-        type: OPEN_TRANSACTION_MODAL
+        type: OPEN_TRANSACTION_MODAL,
+        payload: transactionType
     }
 }
 
@@ -140,8 +155,10 @@ export const showTransactionLoading = () => {
     };
 }
 
-export const addTransaction = data => async dispatch => {
+export const placeTransaction = data => async dispatch => {
     const token = sessionStorage.getItem('token');
+    const response = await axios.post(`/api/transactions?api_token=${token}`, data);
+    dispatch({type: PLACE_TRANSACTION, payload: response.data});
 }
 
 export const hideTransactionModal = () => {
@@ -168,12 +185,13 @@ export const closeOverlay = () => {
     }
 }
 
-export const showMessage = (msgType, content) => {
+export const showMessage = (msgType, header, items) => {
     return {
         type: SHOW_MESSAGE,
         payload: {
             type: msgType,
-            content
+            header,
+            items
         }
     }
 }

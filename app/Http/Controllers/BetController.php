@@ -26,7 +26,7 @@ class BetController extends Controller
         return json_encode($response);
     }
 
-    public function store(Request $request)
+    public function store()
     {
         $userId = auth()->id();
         $bet = Bet::create([

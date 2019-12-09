@@ -1,4 +1,4 @@
-import { FETCH_USER_INFO, PLACE_BET } from "../actions/types";
+import { FETCH_USER_INFO, PLACE_BET, PLACE_TRANSACTION } from "../actions/types";
 
 const INITIAL_STATE = {
     name: '',
@@ -8,13 +8,16 @@ const INITIAL_STATE = {
 }
 
 export default (state = INITIAL_STATE, action) => {
+    let newState = {...state};
     switch (action.type) {
         case FETCH_USER_INFO:
             return action.payload;
         case PLACE_BET:
-            let newState = {...state};
             newState.bankroll -= action.payload.wager;
             newState.money_in_play += action.payload.wager;
+            return newState;
+        case PLACE_TRANSACTION:
+            newState.bankroll += +action.payload.amount;
             return newState;
         default:
             return state;

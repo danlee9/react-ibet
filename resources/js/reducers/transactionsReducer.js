@@ -2,7 +2,7 @@ import {
     GET_TRANSACTIONS,
     OPEN_TRANSACTION_MODAL,
     SHOW_TRANSACTION_LOADING,
-    ADD_TRANSACTION,
+    PLACE_TRANSACTION,
     PLACE_BET,
     HIDE_TRANSACTION_MODAL
 } from "../actions/types";
@@ -11,6 +11,7 @@ const INITIAL_STATE = {
     transactions: [],
     retrieved: false,
     showTransactionModal: false,
+    transactionType: '',
     transactionLoading: false,
     transactionPlaced: false
 };
@@ -25,12 +26,13 @@ export default (state = INITIAL_STATE, action) => {
         case OPEN_TRANSACTION_MODAL:
             return {
                 ...state,
+                transactionType: action.payload,
                 showTransactionModal: true,
                 transactionPlaced: false
             };
         case SHOW_TRANSACTION_LOADING:
             return { ...state, transactionLoading: true };
-        case ADD_TRANSACTION:
+        case PLACE_TRANSACTION:
             newState.transactions.push(action.payload);
             newState.transactionLoading = false;
             newState.transactionPlaced = true;
@@ -48,7 +50,7 @@ export default (state = INITIAL_STATE, action) => {
             newState.transactions.push(transaction);
             return newState;
         case HIDE_TRANSACTION_MODAL:
-            return { ...state, showTransactionModal: false };
+            return { ...state, showTransactionModal: false, transactionPlaced: false, transactionLoading: false };
         default:
             return state;
     }

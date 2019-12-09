@@ -11,6 +11,22 @@ body > .grid {
 .login {
     max-width: 450px;
 }
-.ui.stacked.segment.dodgerblue {
-    background-color: dodgerblue;
+.ui.raised.segment.dodgerblue {
+    /* background-color: dodgerblue; */
+}
+
+.ibet {
+    margin: auto;
+    display: inline-block;
+    font-size: 1.5rem;
+    z-index: 5;
+    color: deepskyblue;
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+    background-color: black;
+    opacity: .9;
+    text-align: center;
+    border-radius: 100%;
+    border: 1px solid rgba(0,0,0,1);
 }

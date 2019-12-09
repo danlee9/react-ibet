@@ -27,22 +27,6 @@ class Games extends React.Component {
         // this.props.fetchCompletedGames(league); // might just not have this as a feature
     }
 
-    renderUpcomingGames(league) {
-        return this.props[league].upcoming.map(game => {
-            return (
-                <div key={game.id}>{game.away_team} at {game.home_team}</div>
-            );
-        });
-    }
-
-    renderCompletedGames(league) {
-        return this.props[league].completed.map(game => {
-            return (
-                <div key={game.id}>{game.away_team} at {game.home_team}</div>
-            );
-        });
-    }
-
     renderGames(league, status) {
         // if (league && this.props[league].upcoming) {
         //     return this.props[league][status].map(game => {

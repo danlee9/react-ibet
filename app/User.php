@@ -61,4 +61,10 @@ class User extends Authenticatable
         $this->money_in_play = $this->money_in_play - $wager;
         $this->save();
     }
+
+    public function adjustBankroll($amount)
+    {
+        $this->bankroll += $amount;
+        $this->save();
+    }
 }

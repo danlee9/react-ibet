@@ -6,6 +6,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { openSidebar, closeOverlay, logOut } from "../actions";
 
 import Login from "./Login";
+import Register from './Register';
 import Home from './Home';
 import Bets from './Bets';
 import Header from './Header';
@@ -73,6 +74,7 @@ class App extends React.Component {
                                         <div className="route-section">
                                             <Switch location={location}>                                            
                                                 <Route path="/" exact component={Login} />
+                                                <Route path="/register" exact component={Register} />
                                                 <Route path="/home" exact component={Home} />
                                                 <Route path="/bets" exact component={Bets} />
                                                 <Route path="/transactions" exact component={Transactions} />

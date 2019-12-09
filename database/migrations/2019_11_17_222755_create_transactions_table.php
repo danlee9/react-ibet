@@ -16,7 +16,7 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('bet_id');
+            $table->unsignedBigInteger('bet_id')->nullable();
             $table->string('type');
             $table->float('amount');
             $table->boolean('in_play')->default(0);

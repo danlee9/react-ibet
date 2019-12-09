@@ -48,7 +48,13 @@ class Bets extends React.Component {
     }
 
     render() {
-        let { betsRetrieved } = this.props;
+        let { betsRetrieved, current_page, last_page } = this.props;
+        var leftBtnsDisabled = false;
+        var rightBtnsDisabled = false;
+        if (current_page == '1')
+            leftBtnsDisabled = true;
+        if (current_page == last_page)
+            rightBtnsDisabled = true;
         return (
             <div className="ui centered grid">
                 <div className="row">
@@ -77,12 +83,12 @@ class Bets extends React.Component {
                             {this.renderBets()}
                             <div className="ui centered grid">
                                 <div className="row">
-                                    <Link to={this.props.first_page_url} className="ui blue button">
+                                    <Link to="/bets" className={`ui blue ${leftBtnsDisabled ? 'disabled' : ''} button`}>
                                         <i className="left chevron icon"></i>
                                     </Link>
-                                    <Link to={this.props.prev_page_url} className="ui blue button">Prev</Link>
-                                    <Link to={this.props.next_page_url} className="ui blue button">Next</Link>
-                                    <Link to={this.props.last_page_url} className="ui blue button">
+                                    <Link to={this.props.prev_page_url} className={`ui blue ${leftBtnsDisabled ? 'disabled' : ''} button`}>Prev</Link>
+                                    <Link to={this.props.next_page_url} className={`ui blue ${rightBtnsDisabled ? 'disabled' : ''} button`}>Next</Link>
+                                    <Link to={this.props.last_page_url} className={`ui blue ${rightBtnsDisabled ? 'disabled' : ''} button`}>
                                         <i className="right chevron icon"></i>
                                     </Link>
                                 </div>

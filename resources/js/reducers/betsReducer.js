@@ -30,10 +30,10 @@ export default (state = INITIAL_STATE, action) => {
             // return newState;
             let { data, first_page_url, last_page_url, next_page_url, prev_page_url, current_page, last_page, path } = action.payload;
             console.log(path);
-            first_page_url = first_page_url ? `${parsePageParameter(first_page_url, path)}` : '/';
-            last_page_url = last_page_url ? `${parsePageParameter(last_page_url, path)}` : '/';
-            next_page_url = next_page_url ? `${parsePageParameter(next_page_url, path)}` : '/';
-            prev_page_url = prev_page_url ? `${parsePageParameter(prev_page_url, path)}` : '/';
+            first_page_url = first_page_url ? `/bets/${parsePageParameter(first_page_url, path)}` : '/';
+            last_page_url = last_page_url ? `/bets/${parsePageParameter(last_page_url, path)}` : '/';
+            next_page_url = next_page_url ? `/bets/${parsePageParameter(next_page_url, path)}` : '/';
+            prev_page_url = prev_page_url ? `/bets/${parsePageParameter(prev_page_url, path)}` : '/';
             newState = {...newState, bets: data, betsRetrieved: true, first_page_url, last_page_url, next_page_url, prev_page_url, current_page, last_page }
             return newState;
         case CHANGE_BETS_PAGE:

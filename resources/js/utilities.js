@@ -1,4 +1,5 @@
 import React from 'react';
+import queryString from 'query-string'
 
 export const convertEuroOdds = odds => {
     if (odds < 2) {
@@ -25,4 +26,11 @@ export const formatDate = dateInput => {
             {`${weekdayStr} ${dateStr}`} <strong>{timeStr}</strong>
         </span>
     );
+}
+
+export const parsePageParameter = (url, path) => {
+    const query = url.replace(path, '');
+    const values = queryString.parse(query);
+    console.log(values);
+    return values.page;
 }

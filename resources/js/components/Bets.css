@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.bet-blocks-container {
+    margin-bottom: 150px;
+}
+
 .absolute-position-container {
     position: absolute;
     width: 100%;

@@ -34,6 +34,8 @@ Route::get('/scores/{league}', 'GameController@updateScores');
 Route::get('blah/{league}', 'GameController@getUpcomingGames');
 Route::get('asdf/{league}', 'GameController@getCompletedGames');
 
+Route::get('/page', 'BetController@index');
+
 /*
 | All other urls will get redirected to the welcome page then will be handled with react's router
 */
@@ -51,6 +53,10 @@ Route::get('home', function () {
 })->middleware('auth');
 
 Route::get('bets', function () {
+    return view('welcome');
+})->middleware('auth');
+
+Route::get('bets/{bets}', function () {
     return view('welcome');
 })->middleware('auth');
 

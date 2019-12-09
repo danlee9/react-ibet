@@ -31,7 +31,7 @@ class Header extends React.Component {
                         <Link to="/games/nfl" className={league == 'nfl' ? 'selected' : ''} onClick={(e) => this.goToPage(e, 'nfl')}>NFL</Link>
                     </div>
                     <div className="two wide center aligned column sports-league">
-                        <Link to="/games/nba" className={league == 'nba' ? 'selected' : ''}>NBA</Link>
+                        <Link to="/games/nba" className={league == 'nba' ? 'selected' : ''} onClick={(e) => this.goToPage(e, 'nba')}>NBA</Link>
                     </div>
                     <div className="two wide center aligned column sports-league">
                         <Link to="/">MLB</Link>

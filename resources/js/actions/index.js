@@ -24,7 +24,8 @@ import {
     HIDE_MESSAGE,
     REGISTER,
     SHOW_FORM_LOADING,
-    HIDE_FORM_LOADING
+    HIDE_FORM_LOADING,
+    CHANGE_BETS_PAGE
 } from "./types";
 import history from '../history';
 
@@ -104,11 +105,20 @@ export const fetchCompletedGames = league => async dispatch => {
     dispatch({type: FETCH_COMPLETED_GAMES, payload: {games: response.data, league}});
 }
 
-export const fetchBets = () => async dispatch => {
+export const fetchBets = page => async dispatch => {
     const token = sessionStorage.getItem('token');
     // const response = {data: ['test message', 'blah']};
-    const response = await axios.get(`/api/bets?api_token=${token}`);
+    var url = `/api/bets?api_token=${token}`;
+    if (page) url += `&page=${page}`;
+    console.log(url);
+    const response = await axios.get(url);
     dispatch({type: FETCH_BETS, payload: response.data});
+}
+
+export const changeBetsPage = () => {
+    return {
+        type: CHANGE_BETS_PAGE
+    }
 }
 
 export const selectBet = bet => {

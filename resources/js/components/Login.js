@@ -16,9 +16,6 @@ class Login extends React.Component {
             email: '',
             password: ''
         };
-    }
-
-    componentWillUnmount() {
         this.props.hideMessage();
     }
 

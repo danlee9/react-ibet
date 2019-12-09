@@ -12,18 +12,9 @@ class BetController extends Controller
     public function index()
     {
         $userId = auth()->id();
-        $bets = Bet::where('user_id', $userId)->get();
-        $response = [];
-        // foreach ($bets as $bet) {
-        //     $bet->game; // adds game data to response
-        //     $response[] = $bet;
-        // }
-        for ($i = count($bets) - 1; $i >= 0; $i--) {
-            $bet = $bets[$i];
-            $bet->game;
-            $response[] = $bet;
-        }
-        return json_encode($response);
+        $bets = Bet::where('user_id', $userId)->orderBy('created_at', 'desc')->with('game')->paginate(10);
+        // $bets = Bet::where('user_id', $userId)->orderBy('created_at', 'desc')->with('game')->get();
+        return json_encode($bets);
     }
 
     public function store()

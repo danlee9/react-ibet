@@ -49,12 +49,21 @@ const BetBlock = props => {
         case 'Win':
             color = 'blue';
             break;
+        // case 'Pending':
+        //     color = 'gray';
+        //     break;
+        // case 'Loss':
+        //     color = 'black';
+        //     break;
+        // case 'Win':
+        //     color = 'blue';
+        //     break;
     }
     let date = renderDateFromUnix(bet.game.unix_start_time, formatDate)
     let betPlacedDate = renderDateFromUTC(bet.created_at, formatDate);
     return (
         <div className="ui segments" style={{marginBottom: '20px'}}>
-            <div className={`ui secondary segment ${color}`}>
+            <div className={`ui inverted secondary segment ${color}`}>
                 <div className="ui middle aligned grid">
                     <div className="row">
                         <div className="eight wide column"><strong>${bet.wager}</strong> {side} {rubric} ({odds})</div>

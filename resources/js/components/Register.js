@@ -18,12 +18,9 @@ class Register extends React.Component {
             password: '',
             password_confirmation: ''
         };
-    }
-
-    componentWillUnmount() {
         this.props.hideMessage();
     }
-
+    
     onInputChange = e => {
         let { name, value } = e.target;
         this.setState({[name]: value});

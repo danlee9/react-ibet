@@ -77,6 +77,7 @@ class App extends React.Component {
                                                 <Route path="/register" exact component={Register} />
                                                 <Route path="/home" exact component={Home} />
                                                 <Route path="/bets" exact component={Bets} />
+                                                <Route path="/bets/:page" exact component={Bets} />
                                                 <Route path="/transactions" exact component={Transactions} />
                                                 <Route path="/games/:league" component={Games} />
                                             </Switch>

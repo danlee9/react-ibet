@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Transition } from "semantic-ui-react";
-import { deselectLeagues, fetchBets, setLoggedIn } from "../actions";
+import { deselectLeagues, fetchBets, changeBetsPage, setLoggedIn } from "../actions";
 import BetBlock from './BetBlock';
 import './Bets.css';
 import history from '../history';
@@ -22,11 +23,16 @@ class Bets extends React.Component {
     }
 
     componentDidMount() {
+        if (this.props.betsRetrieved) {
+            this.props.changeBetsPage();
+        }
+        let { page } = this.props.match.params;
         this.props.deselectLeagues();
-        this.props.fetchBets();
+        this.props.fetchBets(page);
     }
 
     renderBets() {
+        console.log(this.props.bets);
         return this.props.bets.map(bet => {
             return <BetBlock bet={bet} key={bet.id} />
         });
@@ -46,10 +52,13 @@ class Bets extends React.Component {
         return (
             <div className="ui centered grid">
                 <div className="row">
-                    <div className="eight wide column center aligned">
-                        <div className="ui horizontal segments">
+                    <div className="eight wide column center aligned" style={{marginTop: '1rem', marginBottom: '1rem'}}>
+                        {/* <div className="ui horizontal segments">
                             <div className="ui blue segment"><strong>Pending Bets</strong></div>
                             <div className="ui segment"><strong>Completed Bets</strong></div>
+                        </div> */}
+                        <div className="ui blue segment">
+                            <strong>Previous Bets</strong>
                         </div>
                     </div>
                 </div>
@@ -64,8 +73,20 @@ class Bets extends React.Component {
                         </div>
                     </Transition>
                     <Transition visible={betsRetrieved} animation='fade up' duration={300}>
-                        <div className="absolute-position-container">
+                        <div className="absolute-position-container bet-blocks-container">
                             {this.renderBets()}
+                            <div className="ui centered grid">
+                                <div className="row">
+                                    <Link to={this.props.first_page_url} className="ui blue button">
+                                        <i className="left chevron icon"></i>
+                                    </Link>
+                                    <Link to={this.props.prev_page_url} className="ui blue button">Prev</Link>
+                                    <Link to={this.props.next_page_url} className="ui blue button">Next</Link>
+                                    <Link to={this.props.last_page_url} className="ui blue button">
+                                        <i className="right chevron icon"></i>
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
                     </Transition>
                 </div>
@@ -78,8 +99,14 @@ const mapStateToProps = state => {
     return { 
         bets: state.bets.bets,
         betsRetrieved: state.bets.betsRetrieved,
-        loggedIn: state.auth.loggedIn
+        loggedIn: state.auth.loggedIn,
+        first_page_url: state.bets.first_page_url,
+        last_page_url: state.bets.last_page_url,
+        next_page_url: state.bets.next_page_url,
+        prev_page_url: state.bets.prev_page_url,
+        current_page: state.bets.current_page,
+        last_page: state.bets.last_page
     };
 };
 
-export default connect(mapStateToProps, {deselectLeagues, fetchBets, setLoggedIn})(Bets);
+export default connect(mapStateToProps, {deselectLeagues, fetchBets, changeBetsPage, setLoggedIn})(Bets);

@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { Transition } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
-import { deselectLeagues, fetchUserInfo, getTransactions, setLoggedIn } from "../actions";
+import { deselectLeagues, fetchUserInfo, getTransactions, changeTransactionsPage, setLoggedIn } from "../actions";
 import { convertEuroOdds, formatDate } from "../utilities";
 import history from '../history';
 
@@ -21,9 +22,13 @@ class Transactions extends React.Component {
     }
 
     componentDidMount() {
+        if (this.props.retrieved) {
+            this.props.changeTransactionsPage();
+        }
         this.props.deselectLeagues();
         this.props.fetchUserInfo(sessionStorage.getItem('id'));
-        this.props.getTransactions();
+        let { page } = this.props.match.params;
+        this.props.getTransactions(page);
     }
 
     getTransactionDate = (date, dateFunc) => {
@@ -135,7 +140,13 @@ class Transactions extends React.Component {
     }
 
     render() {
-        let { retrieved } = this.props;
+        let { retrieved, current_page, last_page} = this.props;
+        var leftBtnsDisabled = false;
+        var rightBtnsDisabled = false;
+        if (current_page == '1')
+            leftBtnsDisabled = true;
+        if (current_page == last_page)
+            rightBtnsDisabled = true;
         return (
             <div className="ui centered grid">
                 <div className="row">
@@ -170,9 +181,21 @@ class Transactions extends React.Component {
                             </div>
                         </Transition>
                         <Transition visible={retrieved} animation='fade' duration={300}>
-                            <div className="absolute-position-container">
+                            <div className="absolute-position-container" style={{marginBottom: '150px'}}>
                                 <div className="ui vertically divided two column grid">
                                     {this.renderTransactions()}
+                                </div>
+                                <div className="ui centered grid">
+                                    <div className="row">
+                                        <Link to="/transactions" className={`ui blue ${leftBtnsDisabled ? 'disabled' : ''} button`}>
+                                            <i className="left chevron icon"></i>
+                                        </Link>
+                                        <Link to={this.props.prev_page_url} className={`ui blue ${leftBtnsDisabled ? 'disabled' : ''} button`}>Prev</Link>
+                                        <Link to={this.props.next_page_url} className={`ui blue ${rightBtnsDisabled ? 'disabled' : ''} button`}>Next</Link>
+                                        <Link to={this.props.last_page_url} className={`ui blue ${rightBtnsDisabled ? 'disabled' : ''} button`}>
+                                            <i className="right chevron icon"></i>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         </Transition>
@@ -189,8 +212,14 @@ const mapStateToProps = state => {
         retrieved: state.transactions.retrieved,
         bankroll: state.user.bankroll,
         money_in_play: state.user.money_in_play,
-        loggedIn: state.auth.loggedIn
+        loggedIn: state.auth.loggedIn,
+        first_page_url: state.transactions.first_page_url,
+        last_page_url: state.transactions.last_page_url,
+        next_page_url: state.transactions.next_page_url,
+        prev_page_url: state.transactions.prev_page_url,
+        current_page: state.transactions.current_page,
+        last_page: state.transactions.last_page
     };
 };
 
-export default connect(mapStateToProps, { deselectLeagues, fetchUserInfo, getTransactions, setLoggedIn })(Transactions);
+export default connect(mapStateToProps, { deselectLeagues, fetchUserInfo, getTransactions, changeTransactionsPage, setLoggedIn })(Transactions);

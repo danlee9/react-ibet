@@ -31,6 +31,5 @@ export const formatDate = dateInput => {
 export const parsePageParameter = (url, path) => {
     const query = url.replace(path, '');
     const values = queryString.parse(query);
-    console.log(values);
     return values.page;
 }

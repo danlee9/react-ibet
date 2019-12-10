@@ -4,8 +4,10 @@ import {
     SHOW_TRANSACTION_LOADING,
     PLACE_TRANSACTION,
     PLACE_BET,
-    HIDE_TRANSACTION_MODAL
+    HIDE_TRANSACTION_MODAL,
+    CHANGE_TRANSACTIONS_PAGE
 } from "../actions/types";
+import { parsePageParameter } from "../utilities";
 
 const INITIAL_STATE = {
     transactions: [],
@@ -13,15 +15,31 @@ const INITIAL_STATE = {
     showTransactionModal: false,
     transactionType: '',
     transactionLoading: false,
-    transactionPlaced: false
+    transactionPlaced: false,
+    first_page_url: '',
+    last_page_url: '',
+    next_page_url: '',
+    prev_page_url: '',
+    current_page: null,
+    last_page: null
 };
 
 export default (state = INITIAL_STATE, action) => {
     let newState = { ...state };
     switch (action.type) {
         case GET_TRANSACTIONS:
-            newState.transactions = action.payload;
-            newState.retrieved = true;
+            // newState.transactions = action.payload;
+            // newState.retrieved = true;
+            // return newState;
+            let { data, first_page_url, last_page_url, next_page_url, prev_page_url, current_page, last_page, path } = action.payload;
+            first_page_url = first_page_url ? `/transactions/${parsePageParameter(first_page_url, path)}` : '/';
+            last_page_url = last_page_url ? `/transactions/${parsePageParameter(last_page_url, path)}` : '/';
+            next_page_url = next_page_url ? `/transactions/${parsePageParameter(next_page_url, path)}` : '/';
+            prev_page_url = prev_page_url ? `/transactions/${parsePageParameter(prev_page_url, path)}` : '/';
+            newState = {...newState, transactions: data, retrieved: true, first_page_url, last_page_url, next_page_url, prev_page_url, current_page, last_page }
+            return newState;
+        case CHANGE_TRANSACTIONS_PAGE:
+            newState.retrieved = false;
             return newState;
         case OPEN_TRANSACTION_MODAL:
             return {

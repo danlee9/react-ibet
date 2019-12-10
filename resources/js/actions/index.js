@@ -25,7 +25,8 @@ import {
     REGISTER,
     SHOW_FORM_LOADING,
     HIDE_FORM_LOADING,
-    CHANGE_BETS_PAGE
+    CHANGE_BETS_PAGE,
+    CHANGE_TRANSACTIONS_PAGE
 } from "./types";
 import history from '../history';
 
@@ -146,10 +147,21 @@ export const hideBetModal = () => {
     }
 }
 
-export const getTransactions = () => async dispatch => {
+export const getTransactions = page => async dispatch => {
     const token = sessionStorage.getItem('token');
-    const response = await axios.get(`/api/transactions?api_token=${token}`);
+    // const response = await axios.get(`/api/transactions?api_token=${token}`);
+    // dispatch({type: GET_TRANSACTIONS, payload: response.data});
+    var url = `/api/transactions?api_token=${token}`;
+    if (page) url += `&page=${page}`;
+    console.log(url);
+    const response = await axios.get(url);
     dispatch({type: GET_TRANSACTIONS, payload: response.data});
+}
+
+export const changeTransactionsPage = () => {
+    return {
+        type: CHANGE_TRANSACTIONS_PAGE
+    }
 }
 
 export const openTransactionModal = transactionType => {

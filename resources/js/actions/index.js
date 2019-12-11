@@ -98,7 +98,14 @@ export const deselectLeagues = () => {
 
 export const fetchUpcomingGames = league => async dispatch => {
     const response = await axios.get(`/api/games/${league}/upcoming`);
-    dispatch({type: FETCH_UPCOMING_GAMES, payload: {games: response.data, league}});
+    let { offSeason } = response.data;
+    var payload = { league };
+    if (offSeason) {
+        payload = {...payload, offSeason};
+    } else {
+        payload = {...payload, games: response.data};
+    }
+    dispatch({type: FETCH_UPCOMING_GAMES, payload});
 }
 
 export const fetchCompletedGames = league => async dispatch => {

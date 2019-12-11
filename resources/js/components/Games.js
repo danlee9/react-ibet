@@ -42,13 +42,15 @@ class Games extends React.Component {
                     <GameBlock key={game.id} game={game} />
                 );
             });
+        } else if (this.props[league].offSeason) {
+            return <h1 style={{textAlign: 'center', color: 'dodgerblue'}}>Out of Season!</h1>
         }
     }
 
     render() {
         let { league } = this.props.match.params;
         let gamesRetrieved = false;
-        if (this.props[league].upcoming) {
+        if (this.props[league].upcoming || this.props[league].offSeason) {
             gamesRetrieved = true;
         }
         return (
@@ -86,27 +88,33 @@ const mapStateToProps = state => {
         league: state.games.league,
         nfl: {
             upcoming: state.games.nfl.upcoming,
-            completed: state.games.nfl.completed
+            completed: state.games.nfl.completed,
+            offSeason: state.games.nfl.offSeason
         },
         nba: {
             upcoming: state.games.nba.upcoming,
-            completed: state.games.nba.completed
+            completed: state.games.nba.completed,
+            offSeason: state.games.nba.offSeason
         },
         mlb: {
             upcoming: state.games.mlb.upcoming,
-            completed: state.games.mlb.completed
+            completed: state.games.mlb.completed,
+            offSeason: state.games.mlb.offSeason
         },
         nhl: {
             upcoming: state.games.nhl.upcoming,
-            completed: state.games.nhl.completed
+            completed: state.games.nhl.completed,
+            offSeason: state.games.nhl.offSeason
         },
         cfb: {
             upcoming: state.games.cfb.upcoming,
-            completed: state.games.cfb.completed
+            completed: state.games.cfb.completed,
+            offSeason: state.games.cfb.offSeason
         },
         cbb: {
             upcoming: state.games.cbb.upcoming,
-            completed: state.games.cbb.completed
+            completed: state.games.cbb.completed,
+            offSeason: state.games.cbb.offSeason
         },
         loggedIn: state.auth.loggedIn
     };

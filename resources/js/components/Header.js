@@ -34,16 +34,16 @@ class Header extends React.Component {
                         <Link to="/games/nba" className={league == 'nba' ? 'selected' : ''} onClick={(e) => this.goToPage(e, 'nba')}>NBA</Link>
                     </div>
                     <div className="two wide center aligned column sports-league">
-                        <Link to="/">MLB</Link>
+                        <Link to="/games/mlb" className={league == 'mlb' ? 'selected' : ''} onClick={(e) => this.goToPage(e, 'mlb')}>MLB</Link>
                     </div>
                     <div className="two wide center aligned column sports-league">
-                        <Link to="/">NHL</Link>
+                        <Link to="/games/nhl" className={league == 'nhl' ? 'selected' : ''} onClick={(e) => this.goToPage(e, 'nhl')}>NHL</Link>
                     </div>
                     <div className="two wide center aligned column sports-league">
-                        <Link to="/">CFB</Link>
+                        <Link to="/games/cfb" className={league == 'cfb' ? 'selected' : ''} onClick={(e) => this.goToPage(e, 'cfb')}>CFB</Link>
                     </div>
                     <div className="two wide center aligned column sports-league">
-                        <Link to="/">CBB</Link>
+                        <Link to="/games/cbb" className={league == 'cbb' ? 'selected' : ''} onClick={(e) => this.goToPage(e, 'cbb')}>CBB</Link>
                     </div>
                 </div>
             </div>

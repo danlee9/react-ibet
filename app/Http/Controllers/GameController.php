@@ -171,6 +171,34 @@ class GameController extends Controller
 
     public function getUpcomingGames($league)
     {
+        $offSeason = false;
+        $dateNumber = +date('n');
+        switch ($league) {
+            case 'nfl':
+                if ($dateNumber > 2 && $dateNumber < 9)
+                    $offSeason = true;
+                break;
+            case 'nba':
+            case 'nhl':
+                if ($dateNumber > 6 && $dateNumber < 10)
+                    $offSeason = true;
+                break;
+            case 'mlb':
+                if ($dateNumber < 3 || $dateNumber > 10)
+                    $offSeason = true;
+                break;
+            case 'cfb':
+                if ($dateNumber > 1 && $dateNumber < 8)
+                    $offSeason = true;
+                break;
+            case 'cbb':
+                if ($dateNumber > 4 && $dateNumber < 11)
+                    $offSeason = true;
+                break;
+        }
+        if ($offSeason) {
+            return json_encode(['offSeason' => true]);
+        }
         $games = $this->getGames($league, 'upcoming');
         return json_encode($games);
     }

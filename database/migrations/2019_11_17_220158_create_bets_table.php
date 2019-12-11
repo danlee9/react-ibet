@@ -22,7 +22,7 @@ class CreateBetsTable extends Migration
             $table->string('point_spread')->nullable()->default(null);
             $table->string('position')->nullable()->default(null);
             $table->string('odds');
-            $table->float('wager');
+            $table->double('wager', 11, 2);
             $table->string('status')->default('pending');
             $table->timestamps();
             $table->foreign('user_id')

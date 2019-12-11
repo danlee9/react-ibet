@@ -18,7 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('bet_id')->nullable();
             $table->string('type');
-            $table->float('amount');
+            $table->double('amount', 11, 2);
             $table->boolean('in_play')->default(0);
             $table->timestamps();
             $table->foreign('user_id')

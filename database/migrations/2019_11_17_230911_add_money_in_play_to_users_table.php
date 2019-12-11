@@ -14,7 +14,7 @@ class AddMoneyInPlayToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->float('money_in_play')->after('bankroll')->default(0);
+            $table->double('money_in_play', 11, 2)->after('bankroll')->default(0);
         });
     }
 

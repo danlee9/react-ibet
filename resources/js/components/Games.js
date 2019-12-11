@@ -36,13 +36,18 @@ class Games extends React.Component {
         //     });
         // }
         // return "Loading...";
-        if (this.props[league].upcoming) {
-            return this.props[league][status].map(game => {
-                return (
-                    <GameBlock key={game.id} game={game} />
-                );
-            });
-        } else if (this.props[league].offSeason) {
+        let leagueState = this.props[league];
+        if (leagueState[status]) {
+            if (leagueState[status].length) {
+                return leagueState[status].map(game => {
+                    return (
+                        <GameBlock key={game.id} game={game} />
+                    );
+                });
+            } else {
+                return <h1 style={{textAlign: 'center', color: 'dodgerblue'}}>No games currently</h1>
+            }
+        } else if (leagueState.offSeason) {
             return <h1 style={{textAlign: 'center', color: 'dodgerblue'}}>Out of Season!</h1>
         }
     }

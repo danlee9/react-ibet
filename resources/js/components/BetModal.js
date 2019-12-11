@@ -55,30 +55,60 @@ class BetModal extends React.Component {
     }
 
     wagerInputPress = (e, odds) => {
-        let betAmount = e.target.value;
+        let strVal = e.target.value;
+        if (strVal === '') {
+            this.setState({
+                betAmount: '',
+                toWin: ''
+            });
+        }
+        let strLength = strVal.length;
+        let decimalCount = 0;
+        if (strLength >= 2 && strVal[strLength - 2] == '.') {
+            decimalCount = 1;
+        } else if (strLength >= 3 && strVal[strLength - 3] == '.') {
+            decimalCount = 2;
+        } else if (strVal[strLength - 4] == '.') {
+            return;
+        }
+        let betAmount = +strVal;
         let toWin;
         if (betAmount != "") {
-            betAmount = +betAmount;
             toWin = betAmount * (odds - 1);
         } else {
             toWin = "";
         }
-        // betAmount = betAmount.toFixed(2);
-        // toWin = toWin.toFixed(2);
+        betAmount = betAmount.toFixed(decimalCount);
+        toWin = toWin.toFixed(2);
         this.setState({ betAmount, toWin });
     };
 
     winInputPress = (e, odds) => {
-        let toWin = e.target.value;
+        let strVal = e.target.value;
+        if (strVal === '') {
+            this.setState({
+                betAmount: '',
+                toWin: ''
+            });
+        }
+        let strLength = strVal.length;
+        let decimalCount = 0;
+        if (strLength >= 2 && strVal[strLength - 2] == '.') {
+            decimalCount = 1;
+        } else if (strLength >= 3 && strVal[strLength - 3] == '.') {
+            decimalCount = 2;
+        } else if (strVal[strLength - 4] == '.') {
+            return;
+        }
+        let toWin = +strVal;
         let betAmount;
         if (toWin != "") {
-            toWin = +toWin;
             betAmount = toWin / (odds - 1);
         } else {
             betAmount = "";
         }
-        // betAmount = betAmount.toFixed(2);
-        // toWin = toWin.toFixed(2);
+        betAmount = betAmount.toFixed(decimalCount);
+        toWin = toWin.toFixed(2);
         this.setState({ betAmount, toWin });
     };
 

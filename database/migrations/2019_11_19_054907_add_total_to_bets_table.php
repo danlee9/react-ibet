@@ -14,7 +14,7 @@ class AddTotalToBetsTable extends Migration
     public function up()
     {
         Schema::table('bets', function (Blueprint $table) {
-            $table->string('over_under')->after('position')->nullable()->default(null);
+            $table->double('over_under', 4, 1)->after('position')->nullable()->default(null);
         });
     }
 

@@ -9,7 +9,6 @@ import history from '../history';
 
 class Bets extends React.Component {
     constructor(props) {
-        console.log(props);
         super(props);
         if (!sessionStorage.getItem("id")) {
             history.push("/");

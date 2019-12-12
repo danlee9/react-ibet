@@ -44,17 +44,33 @@ class Bet extends Model
                 $status = 'loss';
             }
         } else if ($this->bet_type === 'point_spread') {
-            if ($chosen_score + +$this->point_spread > $opposing_score) {
+            // ==========DATA_TYPE_CHANGE========
+            // if ($chosen_score + +$this->point_spread > $opposing_score) {
+            //     $status = 'win';
+            // } else if ($chosen_score + +$this->point_spread === $opposing_score) {
+            //     $status = 'push';
+            // } else {
+            //     $status = 'loss';
+            // }
+            if ($chosen_score + $this->point_spread > $opposing_score) {
                 $status = 'win';
-            } else if ($chosen_score + +$this->point_spread === $opposing_score) {
+            } else if ($chosen_score + $this->point_spread == $opposing_score) { // HAVE TO USE WEAK EQUALITY CUZ DIFF NUMBER TYPES
                 $status = 'push';
             } else {
                 $status = 'loss';
             }
         } else {
-            if ($home_score + $away_score > +$this->over_under) {
+            // ==========DATA_TYPE_CHANGE========
+            // if ($home_score + $away_score > +$this->over_under) {
+            //     $status = 'win';
+            // } else if ($home_score + $away_score === +$this->over_under) {
+            //     $status = 'push';
+            // } else {
+            //     $status = 'loss';
+            // }
+            if ($home_score + $away_score > $this->over_under) {
                 $status = 'win';
-            } else if ($home_score + $away_score === +$this->over_under) {
+            } else if ($home_score + $away_score == $this->over_under) { // HAVE TO USE WEAK EQUALITY CUZ DIFF NUMBER TYPES
                 $status = 'push';
             } else {
                 $status = 'loss';

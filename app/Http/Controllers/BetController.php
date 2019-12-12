@@ -33,7 +33,9 @@ class BetController extends Controller
             'status' => 'pending'
         ]);
         $bet->game; // adds game data to bet response
-        $user = User::find(+$userId);
+        // ==========DATA_TYPE_CHANGE========
+        // $user = User::find(+$bet->user_id);
+        $user = User::find($userId);
         $user->placeWager($bet->wager);
         $transaction = Transaction::placeWager($userId, $bet->id, $bet->wager);
         $bet->transaction_id = $transaction->id;

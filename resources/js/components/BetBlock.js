@@ -12,7 +12,15 @@ const renderDateFromUTC = (date, dateFunc) => {
 }
 
 const formatPointSpread = (spread) => {
-    if (spread && spread[0] !== "-") {
+    // ==========DATA_TYPE_CHANGE========
+    // if (spread && spread[0] !== "-") {
+    //     return `+${spread}`;
+    // } else if (spread) {
+    //     return spread;
+    // } else {
+    //     return "PS";
+    // }
+    if (spread && spread > 0) {
         return `+${spread}`;
     } else if (spread) {
         return spread;

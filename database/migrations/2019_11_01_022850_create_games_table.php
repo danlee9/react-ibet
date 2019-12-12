@@ -18,15 +18,15 @@ class CreateGamesTable extends Migration
             $table->string('league');
             $table->string('home_team');
             $table->string('away_team');
-            $table->string('home_moneyline')->nullable()->default(null);
-            $table->string('away_moneyline')->nullable()->default(null);
-            $table->string('home_point_spread')->nullable()->default(null);
-            $table->string('away_point_spread')->nullable()->default(null);
-            $table->string('home_point_odds')->nullable()->default(null);
-            $table->string('away_point_odds')->nullable()->default(null);
-            $table->string('over_under')->nullable()->default(null);
-            $table->string('over_odds')->nullable()->default(null);
-            $table->string('under_odds')->nullable()->default(null);
+            $table->double('home_moneyline', 5, 3)->nullable()->default(null);
+            $table->double('away_moneyline', 5, 3)->nullable()->default(null);
+            $table->double('home_point_spread', 3, 1)->nullable()->default(null);
+            $table->double('away_point_spread', 3, 1)->nullable()->default(null);
+            $table->double('home_point_odds', 5, 3)->nullable()->default(null);
+            $table->double('away_point_odds', 5, 3)->nullable()->default(null);
+            $table->double('over_under', 4, 1)->nullable()->default(null);
+            $table->double('over_odds', 5, 3)->nullable()->default(null);
+            $table->double('under_odds', 5, 3)->nullable()->default(null);
             $table->timestamps();
         });
     }

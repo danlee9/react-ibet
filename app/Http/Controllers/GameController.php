@@ -136,11 +136,15 @@ class GameController extends Controller
                         // exit();
                         $bet->gradeBet();
                         $wager = $bet->wager;
-                        $user = User::find(+$bet->user_id);
+                        // ==========DATA_TYPE_CHANGE========
+                        // $user = User::find(+$bet->user_id);
+                        $user = User::find($bet->user_id);
                         if ($bet->status === 'win') {
                             print_r("Won Money".PHP_EOL);
                             print_r("<br>");
-                            $money_won = $wager * +$bet->odds;
+                            // ==========DATA_TYPE_CHANGE========
+                            // $money_won = $wager * +$bet->odds;
+                            $money_won = $wager * $bet->odds;
                             Transaction::addMoneyWon($bet->user_id, $bet->id, $money_won, 'bet_won');
                             $user->addMoneyWon($money_won, $wager);
                         } else if ($bet->status === 'push') {

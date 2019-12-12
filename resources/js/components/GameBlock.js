@@ -60,7 +60,15 @@ class GameBlock extends React.Component {
     }
 
     formatPointSpread(spread) {
-        if (spread && spread[0] !== "-") {
+        // ==========DATA_TYPE_CHANGE========
+        // if (spread && spread[0] !== "-") {
+        //     return `+${spread}`;
+        // } else if (spread) {
+        //     return spread;
+        // } else {
+        //     return "PS";
+        // }
+        if (spread && spread > 0) {
             return `+${spread}`;
         } else if (spread) {
             return spread;
@@ -206,6 +214,7 @@ class GameBlock extends React.Component {
                 homeImgSrc = `/img/${team.image_source}`;
             }
         });
+        // have to check for this otherwise this.renderAllBets will run infinitely
         if (!this.state.loaded)
             this.renderAllBets(game, bettingOpen);
 

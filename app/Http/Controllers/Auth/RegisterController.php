@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
-use App\Http\Controllers\ApiTokenController;
+use App\Transaction;
 
 class RegisterController extends Controller
 {
@@ -84,10 +84,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'bankroll' => 1000
         ]);
+
+        Transaction::create([
+            'user_id' => $user->id,
+            'type' => 'deposit',
+            'amount' => 1000
+        ]);
+
+        return $user;
     }
 }

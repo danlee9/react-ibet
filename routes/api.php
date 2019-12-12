@@ -19,11 +19,9 @@ Route::get('token/{id}', 'ApiTokenController@update');
 
 // Route::get('user/{id}', 'UserController@info');
 
-Route::get('test', 'UserController@test');
 Route::get('games/{league}/upcoming', 'GameController@getUpcomingGames');
 Route::get('games/{league}/completed', 'GameController@getCompletedGames');
 Route::middleware('auth:api')->get('bets', 'BetController@index');
 Route::middleware('auth:api')->get('transactions', 'TransactionController@index');
-// Route::get('bets', 'BetController@index');
 Route::middleware('auth:api')->post('bets', 'BetController@store');
 Route::middleware('auth:api')->post('transactions', 'TransactionController@store');

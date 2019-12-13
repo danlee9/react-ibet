@@ -118,7 +118,6 @@ export const fetchBets = page => async dispatch => {
     // const response = {data: ['test message', 'blah']};
     var url = `/api/bets?api_token=${token}`;
     if (page) url += `&page=${page}`;
-    console.log(url);
     const response = await axios.get(url);
     dispatch({type: FETCH_BETS, payload: response.data});
 }

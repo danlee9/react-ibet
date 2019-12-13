@@ -30,7 +30,15 @@ class BetModal extends React.Component {
     }
 
     formatPointSpread(spread) {
-        if (spread && spread[0] !== "-") {
+        // ==========DATA_TYPE_CHANGE========
+        // if (spread && spread[0] !== "-") {
+        //     return `+${spread}`;
+        // } else if (spread) {
+        //     return spread;
+        // } else {
+        //     return "PS";
+        // }
+        if (spread && spread > 0) {
             return `+${spread}`;
         } else if (spread) {
             return spread;
@@ -107,8 +115,8 @@ class BetModal extends React.Component {
         } else {
             betAmount = "";
         }
-        betAmount = betAmount.toFixed(decimalCount);
-        toWin = toWin.toFixed(2);
+        betAmount = betAmount.toFixed(2);
+        toWin = toWin.toFixed(decimalCount);
         this.setState({ betAmount, toWin });
     };
 

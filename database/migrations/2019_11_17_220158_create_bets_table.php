@@ -19,9 +19,9 @@ class CreateBetsTable extends Migration
             $table->unsignedBigInteger('game_id');
             $table->string('bet_type');
             $table->string('team')->nullable()->default(null);
-            $table->string('point_spread')->nullable()->default(null);
+            $table->double('point_spread', 3, 1)->nullable()->default(null);
             $table->string('position')->nullable()->default(null);
-            $table->string('odds');
+            $table->double('odds', 5, 3);
             $table->double('wager', 11, 2);
             $table->string('status')->default('pending');
             $table->timestamps();

@@ -41,7 +41,10 @@ class Home extends React.Component {
                     <div className="ui raised segment">
                         <div className="ibet-icon">iBet</div>
                         <h1><i className="icon user outline"></i> Hello {this.props.name}!</h1>
-                        <h3>Your bankroll is ${this.props.bankroll} and have ${this.props.money_in_play} in play</h3>
+                        <h3>Your bankroll is ${this.props.bankroll}
+                            <br/>
+                            You have ${this.props.money_in_play} in play
+                        </h3>
                         {/* <div>
                             <Link to="/bets" className="ui button primary">Bet History</Link> <Link to="/transactions" className="ui button positive">Transactions</Link>
                         </div> */}

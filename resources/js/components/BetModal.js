@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Transition } from "semantic-ui-react";
 
 import { showBetLoading, placeBet, hideBetModal } from "../actions";
+import './BetModal.css';
 
 class BetModal extends React.Component {
     state = {
@@ -178,13 +179,15 @@ class BetModal extends React.Component {
                     <div onClick={this.hideBetModal} className="ui active" style={{position: 'fixed', width: '100%', height: '100%', zIndex: 1000}}>
                         <div onClick={e => e.stopPropagation()} className="ui small modal active" style={style}>
                             <div className="header" style={{backgroundColor: 'rgb(73, 164, 232)', color: 'white', padding: '1rem 1.5rem'}}>
-                                <div className="ui two column grid">
+                                {/* <div className="ui two column grid">
                                     <div className="column">{this.constructTitle(selectedBet)}</div>
-                                    {/* <div className="column"><p>Test</p></div> */}
+                                </div> */}
+                                <div className="ui grid">
+                                    <div className="sixteen wide column">{this.constructTitle(selectedBet)}</div>
                                 </div>
                             </div>
                             <div className="content">
-                                <span className="ui labeled input">
+                                {/* <span className="ui labeled input">
                                     <label htmlFor="risk" className="ui label">Risk $</label>
                                     <input
                                         type="number"
@@ -199,9 +202,27 @@ class BetModal extends React.Component {
                                         onChange={e => this.winInputPress(e, selectedBet.odds)}
                                         id="toWin"
                                     />
+                                </span> */}
+                                <span className="ui labeled input">
+                                    <label htmlFor="risk" className="ui label">Risk $</label>
+                                    <input
+                                        type="number"
+                                        value={betAmount}
+                                        onChange={e => this.wagerInputPress(e, selectedBet.odds)}
+                                        id="risk"
+                                    />
+                                </span>
+                                <span className="ui labeled input">
+                                    <label htmlFor="toWin" className="ui label">Win $</label>
+                                    <input
+                                        type="number"
+                                        value={toWin}
+                                        onChange={e => this.winInputPress(e, selectedBet.odds)}
+                                        id="toWin"
+                                    />
                                 </span>
                             </div>
-                            <div className="actions" style={{position: 'relative', width: '100%', height: '4.5rem', padding: 0}}>
+                            <div className="actions bet-actions">
                                 <Transition visible={!this.state.confirmShown} animation='fade' duration={400}>
                                     <div style={{position: 'absolute', textAlign: 'right', width: '100%', padding: '1rem'}}>
                                         <button className="ui button" onClick={this.hideBetModal} style={{width: '84px'}}>

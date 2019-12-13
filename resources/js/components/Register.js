@@ -79,7 +79,7 @@ class Register extends React.Component {
         let { message, formLoading } = this.props;
         let { name, email, password, password_confirmation } = this.state;
         return (
-            <div className="ui center aligned grid">
+            <div className="ui center stackable aligned grid">
                 <div className="eight wide column">
                     <form className={`ui register small form raised left aligned segment`}>
                         <Transition visible={formLoading} animation='fade' duration={500}>

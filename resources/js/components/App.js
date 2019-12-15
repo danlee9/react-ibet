@@ -74,6 +74,7 @@ class App extends React.Component {
                                         <div className="route-section">
                                             <Switch location={location}>                                            
                                                 <Route path="/" exact component={Login} />
+                                                <Route path="/login" exact component={Login} />
                                                 <Route path="/register" exact component={Register} />
                                                 <Route path="/home" exact component={Home} />
                                                 <Route path="/bets" exact component={Bets} />

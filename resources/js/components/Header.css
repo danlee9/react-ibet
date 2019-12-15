@@ -9,7 +9,7 @@
 
 .sports-league {
     font-family: 'Khand', sans-serif;
-    font-size: 2.2vw;
+    font-size: 2.4em;
     color: black;
     /* text-align: center; */
     /* text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555, 0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135; */
@@ -31,4 +31,34 @@
 
 div.two.wide.column.sports-league {
     text-align: center;
+}
+
+@media (max-width: 992px) {
+    .sports-league {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 992px) {
+    .sports-league {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 640px) {
+    .sports-league {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 520px) {
+    .sports-league {
+        font-size: 1.6em;
+    }
+}
+
+@media (max-width: 480px) {
+    .sports-league {
+        font-size: 1em;
+    }
 }

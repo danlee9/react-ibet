@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import { Transition } from "semantic-ui-react";
 import { placeTransaction, showTransactionLoading, hideTransactionModal } from "../actions";
+import './TransactionModal.css';
 
 class TransactionModal extends React.Component {
     state = {
@@ -65,10 +66,13 @@ class TransactionModal extends React.Component {
                 </Transition>
                 <Transition visible={this.props.showTransactionModal} animation='scale' duration={400}>
                     <div onClick={this.hideTransactionModal} className="ui active" style={{position: 'fixed', width: '100%', height: '100%', zIndex: 1000}}>
-                        <div onClick={e => e.stopPropagation()} className="ui tiny modal active" style={modalStyle}>
+                        <div onClick={e => e.stopPropagation()} className="ui mini modal active" style={modalStyle}>
                             <div className="header" style={{backgroundColor: 'rgb(73, 164, 232)', color: 'white', padding: '1rem 1.5rem'}}>
-                                <div className="ui two column grid">
+                                {/* <div className="ui two column grid">
                                     <div className="column"><strong>Bankroll:</strong> ${this.props.bankroll}</div>
+                                </div> */}
+                                <div className="ui grid">
+                                    <div className="sixteen wide column"><strong>Bankroll:</strong> ${this.props.bankroll}</div>
                                 </div>
                             </div>
                             <div className="content">
@@ -82,7 +86,7 @@ class TransactionModal extends React.Component {
                                     />
                                 </span>
                             </div>
-                            <div className="actions" style={{position: 'relative', width: '100%', height: '4.5rem', padding: 0}}>
+                            <div className="actions transaction-actions">
                                 <Transition visible={!this.state.confirmShown} animation='fade' duration={400}>
                                     <div style={{position: 'absolute', textAlign: 'right', width: '100%', padding: '1rem'}}>
                                         <button className="ui button" onClick={this.hideTransactionModal}>

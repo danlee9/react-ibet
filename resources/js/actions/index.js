@@ -60,7 +60,7 @@ export const logOut = () => async (dispatch) => {
     await axios.post('/logout');
     sessionStorage.removeItem('id');
     sessionStorage.removeItem('token');
-    location.reload('/'); // hard refresh because for someone weird reason laravel isn't liking multiple requests login from SPA
+    location.replace('/'); // hard refresh because for someone weird reason laravel isn't liking multiple requests login from SPA
 }
 
 export const fetchUserInfo = id => async (dispatch) => {

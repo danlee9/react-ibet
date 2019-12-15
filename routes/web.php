@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('login')->middleware('guest');
 
+Route::get('login', function () {
+    return view('welcome');
+})->middleware('guest');
+
 Route::get('register', function () {
     return view('welcome');
 })->middleware('guest');

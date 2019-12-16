@@ -31,27 +31,9 @@ Route::get('register', function () {
 */
 Auth::routes();
 
-Route::get('/moneyline/{league}', 'GameController@updateMoneylines');
-Route::get('/points/{league}', 'GameController@updatePointSpreads');
-Route::get('/totals/{league}', 'GameController@updateOverUnders');
-Route::get('/scores/{league}', 'GameController@updateScores');
-Route::get('blah/{league}', 'GameController@getUpcomingGames');
-Route::get('asdf/{league}', 'GameController@getCompletedGames');
-
-Route::get('/page', 'BetController@index');
-Route::get('/blah', 'TransactionController@test');
-
 /*
 | All other urls will get redirected to the welcome page then will be handled with react's router
 */
-
-// Route::get('about', function() {
-//     return "BLAH";
-// })->middleware('auth');
-
-// Route::get('{catchall}', function() {
-//     return view('welcome');
-// });
 
 Route::get('home', function () {
     return view('welcome');
@@ -76,5 +58,3 @@ Route::get('transactions/{page}', function () {
 Route::get('games/{league}', function() {
     return view('welcome');
 })->middleware('auth');
-
-// Route::get('/home', 'HomeController@index')->name('home');

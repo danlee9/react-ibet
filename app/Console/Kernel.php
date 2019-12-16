@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\UpdateScores::class,
+        Commands\UpdateOdds::class
     ];
 
     /**

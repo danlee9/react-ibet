@@ -48,7 +48,7 @@ class Games extends React.Component {
                 return <h1 style={{textAlign: 'center', color: 'dodgerblue'}}>No games currently</h1>
             }
         } else if (leagueState.offSeason) {
-            return <h1 style={{textAlign: 'center', color: 'dodgerblue'}}>Out of Season!</h1>
+            return <h1 style={{textAlign: 'center', color: 'dodgerblue'}}>{leagueState.offSeason}</h1>
         }
     }
 

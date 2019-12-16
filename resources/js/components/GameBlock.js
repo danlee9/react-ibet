@@ -22,24 +22,9 @@ class GameBlock extends React.Component {
     // timeOut = 'placeholder'; // no longer this time container to clear because you fixed the leak
 
     toggleBlock = () => {
-        // const wrapper = document.querySelector(
-        //     `.bet-info-${this.props.game.id}`
-        // );
-        // wrapper.classList.toggle("hidden");
         this.setState({
             showBlock: !this.state.showBlock
         });
-        // const gameBlock = document.querySelector(
-        //     `.game-block-${this.props.game.id}`
-        // );
-        // const { classList } = gameBlock;
-        // if (classList.contains('stacked')) {
-        //     classList.remove('stacked');
-        // } else {
-        //     setTimeout(() => {
-        //         classList.add("stacked");
-        //     }, 5000);
-        // }
     };
 
     showBetModal = (id, side, rubric, odds) => {
@@ -165,7 +150,7 @@ class GameBlock extends React.Component {
                 btn5 = this.renderBetButtonArea(id, "over", over_under, over_odds, bettingOpen);
                 btn6 = this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen);
                 resolve({btn1, btn2, btn3, btn4, btn5, btn6})
-            }, 1000)
+            }, 1500)
         });
         this.setState({...btns, loaded: true})
     }
@@ -253,34 +238,6 @@ class GameBlock extends React.Component {
                         </div>
                     </div>
                 </div>
-                {/* <div className={`bet-info hidden bet-info-${id} ui segment`}>
-                    <div className="ui middle aligned grid">
-                        <div className="row">
-                            {this.renderPointSpread(away_team, away_point_spread, away_point_odds)}
-                            {this.renderBetButtonArea(id, away_team, away_point_spread, away_point_odds, bettingOpen)}
-                        </div>
-                        <div className="row">
-                            {this.renderPointSpread(home_team, home_point_spread, home_point_odds)}
-                            {this.renderBetButtonArea(id, home_team, home_point_spread, home_point_odds, bettingOpen)}
-                        </div>
-                        <div className="row">
-                            {this.renderMoneyline(away_team, away_moneyline)}
-                            {this.renderBetButtonArea(id, away_team, 'ML', away_moneyline, bettingOpen)}
-                        </div>
-                        <div className="row">
-                            {this.renderMoneyline(home_team, home_moneyline)}
-                            {this.renderBetButtonArea(id, home_team, 'ML', home_moneyline, bettingOpen)}
-                        </div>
-                        <div className="row">
-                            {this.renderOverUnder("over", over_under, over_odds)}
-                            {this.renderBetButtonArea(id, "over", over_under, over_odds, bettingOpen)}
-                        </div>
-                        <div className="row">
-                            {this.renderOverUnder("under", over_under, under_odds)}
-                            {this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen)}
-                        </div>
-                    </div>
-                </div> */}
                 <CSSTransition in={this.state.showBlock} classNames='slide' timeout={300}>
                     <div className={`bet-info bet-info-${id} ui segment`}>
                         <div className="ui middle aligned vertically padded grid">

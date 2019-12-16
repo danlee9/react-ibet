@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Game;
 use App\Team;
 use App\Http\Controllers\ThirdPartyServicesController as ThirdParty;
@@ -175,6 +174,10 @@ class GameController extends Controller
 
     public function getUpcomingGames($league)
     {
+        if ($league == 'nhl' || $league == 'cfb' || $league == 'cbb') {
+            return json_encode(['offSeason' => 'League Page in Development']);
+        }
+
         $offSeason = false;
         $dateNumber = +date('n');
         switch ($league) {
@@ -200,9 +203,12 @@ class GameController extends Controller
                     $offSeason = true;
                 break;
         }
+
         if ($offSeason) {
-            return json_encode(['offSeason' => true]);
+            $offSeason = 'Out of Season!';
+            return json_encode(['offSeason' => $offSeason]);
         }
+
         $games = $this->getGames($league, 'upcoming');
         return json_encode($games);
     }

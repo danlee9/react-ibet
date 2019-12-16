@@ -66,35 +66,35 @@ class Kernel extends ConsoleKernel
             return $dateNumber < 3 || $dateNumber > 10;
         });
 
-        $schedule->command('update:scores nhl')->twiceDaily(4, 23)->when(function() {
-            $dateNumber = +date('n');
-            return $dateNumber > 6 && $dateNumber < 10;
-        });
+        // $schedule->command('update:scores nhl')->twiceDaily(4, 23)->when(function() {
+        //     $dateNumber = +date('n');
+        //     return $dateNumber > 6 && $dateNumber < 10;
+        // });
 
-        $schedule->command('update:odds nhl')->twiceDaily(4, 23)->when(function() {
-            $dateNumber = +date('n');
-            return $dateNumber > 6 && $dateNumber < 10;
-        });
+        // $schedule->command('update:odds nhl')->twiceDaily(4, 23)->when(function() {
+        //     $dateNumber = +date('n');
+        //     return $dateNumber > 6 && $dateNumber < 10;
+        // });
 
-        $schedule->command('update:scores cfb')->twiceDaily(2, 23)->when(function() {
-            $dateNumber = +date('n');
-            return $dateNumber > 1 && $dateNumber < 8;
-        });
+        // $schedule->command('update:scores cfb')->twiceDaily(2, 23)->when(function() {
+        //     $dateNumber = +date('n');
+        //     return $dateNumber > 1 && $dateNumber < 8;
+        // });
 
-        $schedule->command('update:odds cfb')->twiceDaily(2, 23)->when(function() {
-            $dateNumber = +date('n');
-            return $dateNumber > 1 && $dateNumber < 8;
-        });
+        // $schedule->command('update:odds cfb')->twiceDaily(2, 23)->when(function() {
+        //     $dateNumber = +date('n');
+        //     return $dateNumber > 1 && $dateNumber < 8;
+        // });
 
-        $schedule->command('update:scores cbb')->twiceDaily(4, 23)->when(function() {
-            $dateNumber = +date('n');
-            return $dateNumber > 4 && $dateNumber < 11;
-        });
+        // $schedule->command('update:scores cbb')->twiceDaily(4, 23)->when(function() {
+        //     $dateNumber = +date('n');
+        //     return $dateNumber > 4 && $dateNumber < 11;
+        // });
 
-        $schedule->command('update:odds cbb')->twiceDaily(4, 23)->when(function() {
-            $dateNumber = +date('n');
-            return $dateNumber > 4 && $dateNumber < 11;
-        });
+        // $schedule->command('update:odds cbb')->twiceDaily(4, 23)->when(function() {
+        //     $dateNumber = +date('n');
+        //     return $dateNumber > 4 && $dateNumber < 11;
+        // });
     }
 
     /**

@@ -16,3 +16,9 @@
 .loader-container {
     height: 140px;
 }
+
+@media (max-width: 767px) {
+    .ui.grid .non-mobile {
+        display: none;
+    }
+}

@@ -81,14 +81,24 @@ class Bets extends React.Component {
                         <div className="absolute-position-container bet-blocks-container">
                             {this.renderBets()}
                             <div className="ui centered grid">
-                                <div className="row">
+                                <div className="non-mobile row">
                                     <Link to="/bets" className={`ui blue ${leftBtnsDisabled ? 'disabled' : ''} button`}>
-                                        <i className="left chevron icon"></i>
-                                    </Link>
+                                            <i className="angle double left icon"></i>
+                                        </Link>
                                     <Link to={this.props.prev_page_url} className={`ui blue ${leftBtnsDisabled ? 'disabled' : ''} button`}>Prev</Link>
                                     <Link to={this.props.next_page_url} className={`ui blue ${rightBtnsDisabled ? 'disabled' : ''} button`}>Next</Link>
                                     <Link to={this.props.last_page_url} className={`ui blue ${rightBtnsDisabled ? 'disabled' : ''} button`}>
-                                        <i className="right chevron icon"></i>
+                                        <i className="angle double right icon"></i>
+                                    </Link>
+                                </div>
+                                <div className="mobile only row">
+                                    <Link to="/bets" className={`ui blue ${leftBtnsDisabled ? 'disabled' : ''} button`}>
+                                        <i className="angle double left icon"></i>
+                                    </Link>
+                                    <Link to={this.props.prev_page_url} className={`ui blue ${leftBtnsDisabled ? 'disabled' : ''} button`}><i className="angle left icon"></i></Link>
+                                    <Link to={this.props.next_page_url} className={`ui blue ${rightBtnsDisabled ? 'disabled' : ''} button`}><i className="angle right icon"></i></Link>
+                                    <Link to={this.props.last_page_url} className={`ui blue ${rightBtnsDisabled ? 'disabled' : ''} button`}>
+                                        <i className="angle double right icon"></i>
                                     </Link>
                                 </div>
                             </div>

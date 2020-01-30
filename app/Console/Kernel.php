@@ -97,7 +97,7 @@ class Kernel extends ConsoleKernel
         //     return $dateNumber > 4 && $dateNumber < 11;
         // });
 
-        $schedule->command('minute:update')->everyMinute()();
+        $schedule->command('minute:update')->everyMinute();
     }
 
     /**

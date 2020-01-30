@@ -39,65 +39,65 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
         $schedule->command('update:scores nfl')->twiceDaily(2, 22)->when(function() {
             $dateNumber = +date('n');
-            return $dateNumber > 2 && $dateNumber < 9;
+            return $dateNumber < 3 || $dateNumber > 8;
         });
 
         $schedule->command('update:odds nfl')->twiceDaily(2, 22)->when(function() {
             $dateNumber = +date('n');
-            return $dateNumber > 2 && $dateNumber < 9;
+            return $dateNumber < 3 || $dateNumber > 8;
         });
 
         $schedule->command('update:scores nba')->twiceDaily(4, 23)->when(function() {
             $dateNumber = +date('n');
-            return $dateNumber > 6 && $dateNumber < 10;
+            return $dateNumber < 7 || $dateNumber > 9;
         });
 
         $schedule->command('update:odds nba')->twiceDaily(4, 23)->when(function() {
             $dateNumber = +date('n');
-            return $dateNumber > 6 && $dateNumber < 10;
+            return $dateNumber < 7 || $dateNumber > 9;
         });
 
         $schedule->command('update:scores mlb')->twiceDaily(4, 23)->when(function() {
             $dateNumber = +date('n');
-            return $dateNumber < 3 || $dateNumber > 10;
+            return $dateNumber > 2 && $dateNumber < 11;
         });
 
         $schedule->command('update:odds mlb')->twiceDaily(4, 23)->when(function() {
             $dateNumber = +date('n');
-            return $dateNumber < 3 || $dateNumber > 10;
+            return $dateNumber > 2 && $dateNumber < 11;
         });
 
         // $schedule->command('update:scores nhl')->twiceDaily(4, 23)->when(function() {
         //     $dateNumber = +date('n');
-        //     return $dateNumber > 6 && $dateNumber < 10;
+        //     return $dateNumber < 7 || $dateNumber > 9;
         // });
 
         // $schedule->command('update:odds nhl')->twiceDaily(4, 23)->when(function() {
         //     $dateNumber = +date('n');
-        //     return $dateNumber > 6 && $dateNumber < 10;
+        //     return $dateNumber < 7 || $dateNumber > 9;
         // });
 
         // $schedule->command('update:scores cfb')->twiceDaily(2, 23)->when(function() {
         //     $dateNumber = +date('n');
-        //     return $dateNumber > 1 && $dateNumber < 8;
+        //     return $dateNumber < 2 || $dateNumber > 7;
         // });
 
         // $schedule->command('update:odds cfb')->twiceDaily(2, 23)->when(function() {
         //     $dateNumber = +date('n');
-        //     return $dateNumber > 1 && $dateNumber < 8;
+        //     return $dateNumber < 2 || $dateNumber > 7;
         // });
 
         // $schedule->command('update:scores cbb')->twiceDaily(4, 23)->when(function() {
         //     $dateNumber = +date('n');
-        //     return $dateNumber > 4 && $dateNumber < 11;
+        //     return $dateNumber < 5 || $dateNumber > 10;
         // });
 
         // $schedule->command('update:odds cbb')->twiceDaily(4, 23)->when(function() {
         //     $dateNumber = +date('n');
-        //     return $dateNumber > 4 && $dateNumber < 11;
+        //     return $dateNumber < 5 || $dateNumber > 10;
         // });
 
-        $schedule->command('minute:update')->everyMinute();
+        // $schedule->command('minute:update')->everyMinute();
     }
 
     /**

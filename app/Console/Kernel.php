@@ -35,64 +35,110 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-        $schedule->command('update:scores nfl')->twiceDaily(2, 22)->when(function() {
+        // Hourly nfl scores update
+        $schedule->command('update:scores nfl')->hourlyAt(5)->when(function() {
             $dateNumber = +date('n');
             return $dateNumber < 3 || $dateNumber > 8;
         });
 
-        $schedule->command('update:odds nfl')->twiceDaily(2, 22)->when(function() {
+        // Morning nfl odds update
+        $schedule->command('update:odds nfl')->twiceDaily(6, 9)->when(function() {
             $dateNumber = +date('n');
             return $dateNumber < 3 || $dateNumber > 8;
         });
 
-        $schedule->command('update:scores nba')->twiceDaily(4, 23)->when(function() {
+        // Nighttime nfl odds update
+        $schedule->command('update:odds nfl')->twiceDaily(3, 22)->when(function() {
+            $dateNumber = +date('n');
+            return $dateNumber < 3 || $dateNumber > 8;
+        });
+
+        // Hourly nba scores update
+        $schedule->command('update:scores nba')->hourlyAt(15)->when(function() {
             $dateNumber = +date('n');
             return $dateNumber < 7 || $dateNumber > 9;
         });
 
+        // Morning nba odds update
+        $schedule->command('update:odds nba')->twiceDaily(7, 10)->when(function() {
+            $dateNumber = +date('n');
+            return $dateNumber < 7 || $dateNumber > 9;
+        });
+
+        // Nighttime nba odds update
         $schedule->command('update:odds nba')->twiceDaily(4, 23)->when(function() {
             $dateNumber = +date('n');
             return $dateNumber < 7 || $dateNumber > 9;
         });
 
-        $schedule->command('update:scores mlb')->twiceDaily(4, 23)->when(function() {
+        // Hourly mlb scores update
+        $schedule->command('update:scores mlb')->hourlyAt(25)->when(function() {
             $dateNumber = +date('n');
             return $dateNumber > 2 && $dateNumber < 11;
         });
 
+        // Morning mlb odds update
+        $schedule->command('update:odds mlb')->twiceDaily(7, 10)->when(function() {
+            $dateNumber = +date('n');
+            return $dateNumber > 2 && $dateNumber < 11;
+        });
+
+        // Nighttime mlb odds update
         $schedule->command('update:odds mlb')->twiceDaily(4, 23)->when(function() {
             $dateNumber = +date('n');
             return $dateNumber > 2 && $dateNumber < 11;
         });
 
-        // $schedule->command('update:scores nhl')->twiceDaily(4, 23)->when(function() {
+        // // Hourly nhl scores update
+        // $schedule->command('update:scores nhl')->hourlyAt(35)->when(function() {
         //     $dateNumber = +date('n');
         //     return $dateNumber < 7 || $dateNumber > 9;
         // });
 
+        // // Morning nhl odds update
+        // $schedule->command('update:odds nhl')->twiceDaily(7, 10)->when(function() {
+        //     $dateNumber = +date('n');
+        //     return $dateNumber < 7 || $dateNumber > 9;
+        // });
+
+        // // Nighttime nhl odds update
         // $schedule->command('update:odds nhl')->twiceDaily(4, 23)->when(function() {
         //     $dateNumber = +date('n');
         //     return $dateNumber < 7 || $dateNumber > 9;
         // });
 
-        // $schedule->command('update:scores cfb')->twiceDaily(2, 23)->when(function() {
+        // // Hourly cfb scores update
+        // $schedule->command('update:scores cfb')->hourlyAt(45)->when(function() {
         //     $dateNumber = +date('n');
         //     return $dateNumber < 2 || $dateNumber > 7;
         // });
 
-        // $schedule->command('update:odds cfb')->twiceDaily(2, 23)->when(function() {
+        // // Morning cfb odds update
+        // $schedule->command('update:odds cfb')->twiceDaily(6, 9)->when(function() {
         //     $dateNumber = +date('n');
         //     return $dateNumber < 2 || $dateNumber > 7;
         // });
 
-        // $schedule->command('update:scores cbb')->twiceDaily(4, 23)->when(function() {
+        // // Nighttime cfb odds update
+        // $schedule->command('update:odds cfb')->twiceDaily(3, 23)->when(function() {
+        //     $dateNumber = +date('n');
+        //     return $dateNumber < 2 || $dateNumber > 7;
+        // });
+
+        // // Hourly cbb scores update
+        // $schedule->command('update:scores cbb')->hourlyAt(55)->when(function() {
         //     $dateNumber = +date('n');
         //     return $dateNumber < 5 || $dateNumber > 10;
         // });
 
-        // $schedule->command('update:odds cbb')->twiceDaily(4, 23)->when(function() {
+        // // Morning cbb odds update
+        // $schedule->command('update:odds cbb')->twiceDaily(6, 9)->when(function() {
+        //     $dateNumber = +date('n');
+        //     return $dateNumber < 5 || $dateNumber > 10;
+        // });
+
+        // // Nighttime cbb odds update
+        // $schedule->command('update:odds cbb')->twiceDaily(3, 23)->when(function() {
         //     $dateNumber = +date('n');
         //     return $dateNumber < 5 || $dateNumber > 10;
         // });

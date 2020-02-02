@@ -27,6 +27,16 @@ class Games extends React.Component {
         // this.props.fetchCompletedGames(league); // might just not have this as a feature
     }
 
+    getDateFromUnix(timestamp) {
+        let a = new Date(timestamp * 1000);
+        let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        let year = a.getFullYear();
+        let month = months[a.getMonth()];
+        let date = a.getDate();
+        let time = date + ' ' + month + ' ' + year;
+        return time;
+    }
+
     renderGames(league, status) {
         // if (league && this.props[league].upcoming) {
         //     return this.props[league][status].map(game => {
@@ -37,9 +47,21 @@ class Games extends React.Component {
         // }
         // return "Loading...";
         let leagueState = this.props[league];
+        const getDateFromUnix = this.getDateFromUnix;
         if (leagueState[status]) {
             if (leagueState[status].length) {
-                return leagueState[status].map(game => {
+                // return leagueState[status].map(game => {
+                //     return (
+                //         <GameBlock key={game.id} game={game} />
+                //     );
+                // });
+                return leagueState[status].filter(game => {
+                    let gameDateObj = new Date(getDateFromUnix(game.unix_start_time));
+                    let obj = new Date();
+                    let currentDate = getDateFromUnix(obj.getTime());
+                    let currentDateObj = new Date(currentDate);
+                    return gameDateObj.getTime() === currentDateObj.getTime();
+                }).map(game => {
                     return (
                         <GameBlock key={game.id} game={game} />
                     );

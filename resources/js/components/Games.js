@@ -58,7 +58,7 @@ class Games extends React.Component {
                 return leagueState[status].filter(game => {
                     let gameDateObj = new Date(getDateFromUnix(game.unix_start_time));
                     let obj = new Date();
-                    let currentDate = getDateFromUnix(obj.getTime());
+                    let currentDate = getDateFromUnix(obj.getTime() / 1000);
                     let currentDateObj = new Date(currentDate);
                     console.log(gameDateObj.getTime());
                     console.log(currentDateObj.getTime());

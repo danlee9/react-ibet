@@ -159,16 +159,6 @@ class GameBlock extends React.Component {
     //     clearTimeout(this.timeOut); // no longer needed because you find the leak
     // }
 
-    getDateFromUnix(timestamp) {
-        let a = new Date(timestamp * 1000);
-        let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        let year = a.getFullYear();
-        let month = months[a.getMonth()];
-        let date = a.getDate();
-        let time = date + ' ' + month + ' ' + year;
-        return time;
-    }
-
     render() {
         let { game } = this.props;
         let {

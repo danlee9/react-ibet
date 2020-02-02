@@ -56,12 +56,11 @@ class Games extends React.Component {
                 //     );
                 // });
                 return leagueState[status].filter(game => {
-                    let gameDateObj = new Date(getDateFromUnix(game.unix_start_time));
-                    let obj = new Date();
-                    let currentDate = getDateFromUnix(obj.getTime() / 1000);
+                    let gameDate = getDateFromUnix(game.unix_start_time)
+                    let gameDateObj = new Date(gameDate);
+                    let currentTimeObj = new Date();
+                    let currentDate = getDateFromUnix(currentTimeObj.getTime() / 1000); // divide by 1000 to get Unix time
                     let currentDateObj = new Date(currentDate);
-                    console.log(gameDateObj.getTime());
-                    console.log(currentDateObj.getTime());
                     return gameDateObj.getTime() === currentDateObj.getTime();
                 }).map(game => {
                     return (

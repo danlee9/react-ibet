@@ -60,6 +60,8 @@ class Games extends React.Component {
                     let obj = new Date();
                     let currentDate = getDateFromUnix(obj.getTime());
                     let currentDateObj = new Date(currentDate);
+                    console.log(gameDateObj.getTime());
+                    console.log(currentDateObj.getTime());
                     return gameDateObj.getTime() === currentDateObj.getTime();
                 }).map(game => {
                     return (

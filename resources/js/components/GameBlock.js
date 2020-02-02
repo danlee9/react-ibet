@@ -10,12 +10,12 @@ class GameBlock extends React.Component {
         showBlock: false,
         betAmount: "",
         toWin: "",
-        btn1: <span>Test</span>,
-        btn2: <span>Test</span>,
-        btn3: <span>Test</span>,
-        btn4: <span>Test</span>,
-        btn5: <span>Test</span>,
-        btn6: <span>Test</span>,
+        btn1: <span>Retrieving...</span>,
+        btn2: <span>Retrieving...</span>,
+        btn3: <span>Retrieving...</span>,
+        btn4: <span>Retrieving...</span>,
+        btn5: <span>Retrieving...</span>,
+        btn6: <span>Retrieving...</span>,
         loaded: false
     };
 
@@ -150,7 +150,7 @@ class GameBlock extends React.Component {
                 btn5 = this.renderBetButtonArea(id, "over", over_under, over_odds, bettingOpen);
                 btn6 = this.renderBetButtonArea(id, "under", over_under, under_odds, bettingOpen);
                 resolve({btn1, btn2, btn3, btn4, btn5, btn6})
-            }, 1500)
+            }, 1000)
         });
         this.setState({...btns, loaded: true})
     }

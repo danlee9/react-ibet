@@ -60,13 +60,13 @@ class Kernel extends ConsoleKernel
         });
 
         // Morning nba odds update
-        $schedule->command('update:odds nba')->twiceDaily(7, 10)->when(function() {
+        $schedule->command('update:odds nba')->twiceDaily(6, 9)->when(function() {
             $dateNumber = +date('n');
             return $dateNumber < 7 || $dateNumber > 9;
         });
 
         // Nighttime nba odds update
-        $schedule->command('update:odds nba')->twiceDaily(4, 23)->when(function() {
+        $schedule->command('update:odds nba')->twiceDaily(3, 23)->when(function() {
             $dateNumber = +date('n');
             return $dateNumber < 7 || $dateNumber > 9;
         });
@@ -78,13 +78,13 @@ class Kernel extends ConsoleKernel
         });
 
         // Morning mlb odds update
-        $schedule->command('update:odds mlb')->twiceDaily(7, 10)->when(function() {
+        $schedule->command('update:odds mlb')->twiceDaily(6, 9)->when(function() {
             $dateNumber = +date('n');
             return $dateNumber > 2 && $dateNumber < 11;
         });
 
         // Nighttime mlb odds update
-        $schedule->command('update:odds mlb')->twiceDaily(4, 23)->when(function() {
+        $schedule->command('update:odds mlb')->twiceDaily(3, 23)->when(function() {
             $dateNumber = +date('n');
             return $dateNumber > 2 && $dateNumber < 11;
         });
@@ -96,13 +96,13 @@ class Kernel extends ConsoleKernel
         // });
 
         // // Morning nhl odds update
-        // $schedule->command('update:odds nhl')->twiceDaily(7, 10)->when(function() {
+        // $schedule->command('update:odds nhl')->twiceDaily(6, 9)->when(function() {
         //     $dateNumber = +date('n');
         //     return $dateNumber < 7 || $dateNumber > 9;
         // });
 
         // // Nighttime nhl odds update
-        // $schedule->command('update:odds nhl')->twiceDaily(4, 23)->when(function() {
+        // $schedule->command('update:odds nhl')->twiceDaily(3, 23)->when(function() {
         //     $dateNumber = +date('n');
         //     return $dateNumber < 7 || $dateNumber > 9;
         // });

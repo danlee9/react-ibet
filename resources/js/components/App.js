@@ -7,6 +7,7 @@ import { openSidebar, closeOverlay, logOut } from "../actions";
 
 import Login from "./Login";
 import Register from './Register';
+import ResetPassword from './ResetPassword';
 import Home from './Home';
 import Bets from './Bets';
 import Header from './Header';
@@ -76,6 +77,7 @@ class App extends React.Component {
                                                 <Route path="/" exact component={Login} />
                                                 <Route path="/login" exact component={Login} />
                                                 <Route path="/register" exact component={Register} />
+                                                <Route path="/reset" exact component={ResetPassword} />
                                                 <Route path="/home" exact component={Home} />
                                                 <Route path="/bets" exact component={Bets} />
                                                 <Route path="/bets/:page" exact component={Bets} />

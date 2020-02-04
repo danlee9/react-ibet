@@ -58,3 +58,7 @@ Route::get('transactions/{page}', function () {
 Route::get('games/{league}', function() {
     return view('welcome');
 })->middleware('auth');
+
+Route::get('reset', function() {
+    return view('welcome');
+});

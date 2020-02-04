@@ -72,6 +72,7 @@ class Login extends React.Component {
                             <button className="ui fluid large blue submit button" onClick={this.onLogin}>
                                 Login
                             </button>
+                            <div style={{marginTop: '9px'}}>Forgot Password? <Link to="/reset">Reset</Link></div>
                         </div>
                     </form>
                     <div className="ui message">

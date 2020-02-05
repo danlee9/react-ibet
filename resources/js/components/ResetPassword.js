@@ -19,6 +19,15 @@ class ResetPassword extends React.Component {
         this.setState({ [name]: value}); // make sure to set input name correctly
     }
 
+    sendResetPasswordLink = e => {
+        e.preventDefault();
+        const { email } = this.state;
+        console.log(email);
+        axios.post('/password/email', { email }).then(res => {
+            console.log(res);
+        });
+    }
+
     render() {
         return (
             <div className="ui center aligned grid">
@@ -41,7 +50,7 @@ class ResetPassword extends React.Component {
                                 </div>
                                 <div className="ui two column middle aligned grid">
                                     <div className="column">
-                                        <button className="ui blue submit button">Send Link</button>
+                                        <button className="ui blue submit button" onClick={this.sendResetPasswordLink}>Send Link</button>
                                     </div>
                                     <div className="right aligned column"><Link to="/">Back to Home Page</Link></div>
                                 </div>

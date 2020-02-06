@@ -26,7 +26,8 @@ import {
     SHOW_FORM_LOADING,
     HIDE_FORM_LOADING,
     CHANGE_BETS_PAGE,
-    CHANGE_TRANSACTIONS_PAGE
+    CHANGE_TRANSACTIONS_PAGE,
+    SEND_RESET_PASSWORD_LINK
 } from "./types";
 import history from '../history';
 
@@ -81,6 +82,11 @@ export const register = data => async dispatch => {
         dispatch({type: SHOW_MESSAGE, payload: errObj});
         dispatch({type: HIDE_FORM_LOADING});
     }
+}
+
+export const sendResetPasswordLink = email => async dispatch => {
+    const response = await axios.post('/password/email', { email });
+    dispatch({type: SEND_RESET_PASSWORD_LINK, payload: response.data.message});
 }
 
 export const selectLeague = league => {

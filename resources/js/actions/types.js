@@ -2,6 +2,7 @@ export const LOG_IN = 'LOG_IN';
 export const LOG_IN_FAIL = 'LOG_IN_FAIL';
 export const LOG_OUT = 'LOG_OUT';
 export const REGISTER = 'REGISTER';
+export const SEND_RESET_PASSWORD_LINK = 'SEND_RESET_PASSWORD_LINK';
 export const SHOW_FORM_LOADING = 'SHOW_FORM_LOADING';
 export const HIDE_FORM_LOADING = 'HIDE_FORM_LOADING';
 export const FETCH_USER_INFO = 'FETCH_USER_INFO';

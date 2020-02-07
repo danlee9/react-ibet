@@ -9,7 +9,9 @@ import {
     HIDE_MESSAGE,
     REGISTER,
     SHOW_FORM_LOADING,
-    HIDE_FORM_LOADING
+    HIDE_FORM_LOADING,
+    SEND_RESET_PASSWORD_LINK,
+    PASSWORD_LINK_SENT
 } from "../actions/types";
 
 const INITIAL_STATE = {
@@ -46,8 +48,10 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, message: messageCopy }
         case REGISTER:
             return { ...INITIAL_STATE, message: {show: true, type: 'success', header: 'New User Registered!'}}
+        case SEND_RESET_PASSWORD_LINK:
         case SHOW_FORM_LOADING:
             return { ...state, formLoading: true };
+        case PASSWORD_LINK_SENT:
         case HIDE_FORM_LOADING:
             return { ...state, formLoading: false };
         default:

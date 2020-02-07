@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { sendResetPasswordLink, showMessage, hideMessage } from '../actions';
+import { Transition } from "semantic-ui-react";
 
 class ResetPassword extends React.Component {
     constructor(props) {
@@ -19,16 +21,22 @@ class ResetPassword extends React.Component {
         this.setState({ [name]: value}); // make sure to set input name correctly
     }
 
+    hideMessage = () => {
+        this.props.hideMessage();
+    }
+
     sendResetPasswordLink = e => {
         e.preventDefault();
         const { email } = this.state;
         console.log(email);
-        axios.post('/password/email', { email }).then(res => {
-            console.log(res);
-        });
+        // axios.post('/password/email', { email }).then(res => {
+        //     console.log(res);
+        // });
+        this.props.sendResetPasswordLink(email);
     }
 
     render() {
+        const { formLoading, message } = this.props;
         return (
             <div className="ui center aligned grid">
                 <div className="row">
@@ -50,12 +58,22 @@ class ResetPassword extends React.Component {
                                 </div>
                                 <div className="ui two column middle aligned grid">
                                     <div className="column">
-                                        <button className="ui blue submit button" onClick={this.sendResetPasswordLink}>Send Link</button>
+                                        <button className={`ui blue submit ${formLoading ? 'loading' : ''} button`} onClick={this.sendResetPasswordLink}>Send Link</button>
                                     </div>
                                     <div className="right aligned column"><Link to="/">Back to Home Page</Link></div>
                                 </div>
                             </div>
                         </form>
+                        <Transition visible={message.show} animation='fade' duration={300}>
+                            <div className="wrapper-div-that-disappears">
+                                <div className={`ui ${message.type} message`} style={{marginTop: '1em'}}>
+                                    <i className="close icon" onClick={this.hideMessage}></i>
+                                    <div className="header">
+                                        {message.header}
+                                    </div>
+                                </div>
+                            </div>
+                        </Transition>
                     </div>
                 </div>
             </div>
@@ -63,4 +81,11 @@ class ResetPassword extends React.Component {
     }
 }
 
-export default ResetPassword;
+const mapStateToProps = state => {
+    return { 
+        message: state.modules.message,
+        formLoading: state.modules.formLoading
+    };
+};
+
+export default connect(mapStateToProps, { sendResetPasswordLink, showMessage, hideMessage })(ResetPassword);

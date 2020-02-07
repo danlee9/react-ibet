@@ -81,40 +81,6 @@ class Register extends React.Component {
         return (
             <div className="ui center aligned stackable grid">
                 <div className="eight wide column">
-                    {/* <form className={`ui register small form raised left aligned segment`}>
-                        <Transition visible={formLoading} animation='fade' duration={500}>
-                            <div className="form-overlay">
-                                <div className="form-spinner"></div>
-                            </div>
-                        </Transition>
-                        <div className="ui center aligned grid">
-                            <h2 className="ui teal image header" style={{padding: '0.6em'}}>
-                                <div className="content">Register</div>
-                            </h2>
-                        </div>
-                        <div className="required field">
-                            <label>Name</label>
-                            <input placeholder="Name" value={name} name="name" type="text" onChange={this.onInputChange}/>
-                        </div>
-                        <div className="required field">
-                            <label>E-mail</label>
-                            <input placeholder="E-mail" value={email} name="email" type="text" onChange={this.onInputChange}/>
-                        </div>
-                        <div className="required field">
-                            <label>Password</label>
-                            <input placeholder="Password" value={password} name="password" type="text" onChange={this.onInputChange}/>
-                        </div>
-                        <div className="required field">
-                            <label>Confirm Password</label>
-                            <input placeholder="Confirm Password" value={password_confirmation} name="password_confirmation" type="text" onChange={this.onInputChange}/>
-                        </div>
-                        <div className="ui two column middle aligned grid">
-                            <div className="column">
-                                <div className="ui primary submit button" onClick={this.submit}>Submit</div>
-                            </div>
-                            <div className="right aligned column"><Link to="/">Back to Home Page</Link></div>
-                        </div>
-                    </form> */}
                     <form className="ui register small form">
                         <div className="ui raised left aligned segment">
                             <Transition visible={formLoading} animation='fade' duration={500}>
